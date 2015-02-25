@@ -24,8 +24,14 @@ public class Teller extends Person {
     {
         try
         {
-            if (Amount > checkBalance()) throw new Overdrawn
-            else Transaction.Withdrawl(accountNum, pinNum, Amount);
+            if (Amount > checkBalance()) 
+            {
+                throw new Overdrawn();
+            }
+            else
+            {
+                Transaction.Withdrawl(accountNum, pinNum, Amount);
+            }
         }
         
         catch (Overdrawn Over)
