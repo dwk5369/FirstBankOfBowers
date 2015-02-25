@@ -24,12 +24,30 @@ public class Teller extends Person {
     {
         try
         {
-            Transaction.Withdrawl(accountNum, pinNum, Amount);
+            if (Amount > checkBalance()) 
+            {
+                throw new Overdrawn();
+            }
+            else
+            {
+                Transaction.Withdrawl(accountNum, pinNum, Amount);
+            }
         }
         
-        catch (Overdrawn)
+        catch (Overdrawn Over)
         {
              return("Cannot withdrawl " + Amount + ". Insufficient funds.");
         }
     }
+    
+    public void makeDeposit(int accountNum, int pinNum, int Amount)
+    {
+        Transaction.Deposit(accountNum, pinNum, Amount);
+    }
+    
+    public void makeTransfer(int startingAccountNumber, int endingAccountNumber, int Amount)
+    {
+        Transaction.wireTransfer(startingAccountNumber, endingAccountNumber, Amount);
+    }
+    
 }
