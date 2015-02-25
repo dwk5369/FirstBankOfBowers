@@ -12,7 +12,7 @@
 public class Account {
     
     private double accountBalance;
-    private static double MINBALANCE = 100; // Account cannot drop below $100
+    private static final double MINBALANCE = 100; // Account cannot drop below $100
     private double interestRate; // Variable, set by manager/teller on account creation
     
     public class CheckingAccount {
