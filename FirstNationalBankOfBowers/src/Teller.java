@@ -18,9 +18,9 @@ public class Teller extends Person {
     public double checkBalance()
     {
         return Transaction.getBalance();
-    }
+    }//checkBalance
     
-    public String makeWithdrawal(int accountNum, int pinNum, int Amount) throws Overdrawn
+    public void makeWithdrawal(int accountNum, int pinNum, int Amount) throws Overdrawn
     {
         try
         {
@@ -30,24 +30,24 @@ public class Teller extends Person {
             }
             else
             {
-                Transaction.Withdrawl(accountNum, pinNum, Amount);
+                Transaction.Withdrawal(accountNum, pinNum, Amount);
             }
-        }
+        } // try
         
         catch (Overdrawn Over)
         {
-             return("Cannot withdrawl " + Amount + ". Insufficient funds.");
-        }
-    }
+             System.out.println("Cannot withdrawl " + Amount + ". Insufficient funds.");
+        } //catch
+    }//makeWithdrawal
     
     public void makeDeposit(int accountNum, int pinNum, int Amount)
     {
         Transaction.Deposit(accountNum, pinNum, Amount);
-    }
+    } // makeDeposit
     
     public void makeTransfer(int startingAccountNumber, int endingAccountNumber, int Amount)
     {
         Transaction.wireTransfer(startingAccountNumber, endingAccountNumber, Amount);
-    }
+    } //makeTransfer
     
 }
