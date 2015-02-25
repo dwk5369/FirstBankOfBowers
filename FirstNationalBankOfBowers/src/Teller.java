@@ -10,4 +10,26 @@
  */
 public class Teller extends Person {
     
+    public class Overdrawn extends Throwable
+    {
+        
+    }
+    
+    public double checkBalance()
+    {
+        return Transaction.getBalance();
+    }
+    
+    public String makeWithdrawal(int accountNum, int pinNum, int Amount) throws Overdrawn
+    {
+        try
+        {
+            Transaction.Withdrawl(accountNum, pinNum, Amount);
+        }
+        
+        catch (Overdrawn)
+        {
+             return("Cannot withdrawl " + Amount + ". Insufficient funds.");
+        }
+    }
 }
