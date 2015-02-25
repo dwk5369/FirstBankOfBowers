@@ -24,10 +24,11 @@ public class Teller extends Person {
     {
         try
         {
-            Transaction.Withdrawl(accountNum, pinNum, Amount);
+            if (Amount > checkBalance()) throw new Overdrawn
+            else Transaction.Withdrawl(accountNum, pinNum, Amount);
         }
         
-        catch (Overdrawn)
+        catch (Overdrawn Over)
         {
              return("Cannot withdrawl " + Amount + ". Insufficient funds.");
         }
