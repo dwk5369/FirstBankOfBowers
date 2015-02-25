@@ -33,4 +33,15 @@ public class Teller extends Person {
              return("Cannot withdrawl " + Amount + ". Insufficient funds.");
         }
     }
+    
+    public void makeDeposit(int accountNum, int pinNum, int Amount)
+    {
+        Transaction.Deposit(accountNum, pinNum, Amount);
+    }
+    
+    public void makeTransfer(int startingAccountNumber, int endingAccountNumber, int Amount)
+    {
+        Transaction.wireTransfer(startingAccountNumber, endingAccountNumber, Amount);
+    }
+    
 }
