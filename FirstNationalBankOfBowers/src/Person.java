@@ -12,6 +12,9 @@ public class Person {
     
     private String Fname;
     private String Lname;
+    private String City;
+    private String State;
+    private String Zipcode;            
     private String Address;
     private int Phone;
     private String Email;
@@ -30,6 +33,30 @@ public class Person {
 
     public void setLname(String Lname) {
         this.Lname = Lname;
+    }
+
+    public String getCity() {
+        return City;
+    }
+
+    public void setCity(String City) {
+        this.City = City;
+    }
+
+    public String getState() {
+        return State;
+    }
+
+    public void setState(String State) {
+        this.State = State;
+    }
+
+    public String getZipcode() {
+        return Zipcode;
+    }
+
+    public void setZipcode(String Zipcode) {
+        this.Zipcode = Zipcode;
     }
 
     public String getAddress() {
