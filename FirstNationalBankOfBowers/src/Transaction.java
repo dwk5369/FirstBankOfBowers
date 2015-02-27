@@ -14,9 +14,9 @@ import java.sql.SQLException;
  */
 public class Transaction 
 {
-    Connection connDB;
+    private static Connection connDB;
     
-    public Connection connect()
+    public static Connection connect()
     { 
             try 
             { 
@@ -31,7 +31,18 @@ public class Transaction
 
     }// connect
     
-    public void disconnect()
+    public static void withdraw(int intAccountNum, int pinNum, int intAmount)
+    {
+        
+    }//withdraw
+    
+    public static double getBalance()
+    {
+        return 0;
+    }//withdraw
+    
+    
+    public static void disconnect()
     {
         try 
         {
