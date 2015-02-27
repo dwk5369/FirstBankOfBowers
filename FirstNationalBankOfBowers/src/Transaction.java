@@ -7,6 +7,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -24,7 +25,7 @@ public class Transaction
     private static ResultSet rsResult;
     private static ResultSetMetaData rsmdData;
     private static String strGetAcct = "select accountNumber from dwk5369.account;";
-    private static String strGetCust = "select * from CUSTOMER_ACCOUNT;";
+    private static String strGetCust = "select * from CUSTOMER_ACCOUNT where accountNum = ?;";
     
     public static void connect()
     { 
@@ -48,24 +49,30 @@ public class Transaction
     public static Customer getCustomerInfo(String accountNum)
     {
         connect();
+        Customer cGet = new Customer();
         try 
         {
             psGet = connDB.prepareStatement(strGetCust);
+            psGet.setInt(1, Integer.parseInt(accountNum));
             rsResult = psGet.executeQuery();
-            rsmdData = rsResult.getMetaData();
-            Customer cGet = new Customer();
             cGet.setAccountNumber(rsResult.getInt(1));
             cGet.setFname(rsResult.getString(2));
             cGet.setLname(rsResult.getString(3));
             cGet.setAddress(rsResult.getString(4));
+            cGet.setCity(rsResult.getString(5));
+            cGet.setState(rsResult.getString(6));
+            cGet.setZipcode(rsResult.getString(7));
             cGet.setEmail(rsResult.getString(8));
+
         } 
         catch (SQLException ex) 
         {
-            Logger.getLogger(Transaction.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT.", "Error", JOptionPane.ERROR);
+            return null;
         }
         disconnect();
-        return null;
+        return cGet;
+
     }//getAccount
     
     /**
