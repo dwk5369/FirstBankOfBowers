@@ -3,17 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+import javax.swing.*;
 /**
  *
  * @author krm5188
  */
-public class SavingsAccount {
-    
-    private double balance = 0;
-    private static int MINBALANCE = 100;
-    private double interestRate = 0;
-    private String accountNumber;
+public class SavingsAccount extends Account {
     
     public SavingsAccount(String acc){
         accountNumber = acc;
@@ -27,18 +22,6 @@ public class SavingsAccount {
         else{
             
         }
-    }
-    
-    public void deposit(double depositAmount){
-        balance += depositAmount;
-    }
-    
-    public void withdraw(double withdrawAmount){
-        balance -= withdrawAmount;
-    }
-    
-    public double getBalance(){
-        return balance;
     }
     
 }

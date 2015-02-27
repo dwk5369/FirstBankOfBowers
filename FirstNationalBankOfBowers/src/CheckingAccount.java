@@ -3,17 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+import javax.swing.*;
 /**
  *
  * @author krm5188
  */
-public class CheckingAccount {
-    
-    private double balance = 0;
-    private static int MINBALANCE = 100;
-    private double interestRate = 0;
-    private String accountNumber;
+public class CheckingAccount extends Account {
     
     public CheckingAccount(String acc) {
         accountNumber = acc;
@@ -25,20 +20,8 @@ public class CheckingAccount {
             balance = bal;
         }
         else{
-            
+            JOptionPane.showMessageDialog(null,"Insufficient amount", "Error", ERROR_MESSAGE);
         }
-    }
-    
-    public void deposit(double depositAmount){
-        
-    }
-    
-    public void withdraw(double withdrawAmount){
-        
-    }
-    
-    public double getBalance(){
-        return balance;
     }
     
 }
