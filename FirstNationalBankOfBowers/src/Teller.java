@@ -10,9 +10,9 @@
  */
 public class Teller extends Person {
     
-    public class Overdrawn extends Throwable
+    public class Overdrawn extends Exception
     {
-        
+
     }
     
     public double checkBalance()
@@ -20,7 +20,7 @@ public class Teller extends Person {
         return Transaction.getBalance();
     }//checkBalance
     
-    public void makeWithdrawal(int accountNum, int pinNum, int Amount) throws Overdrawn
+    public void makeWithdraw(int accountNum, int pinNum, int Amount) throws Overdrawn
     {
         try
         {
@@ -30,7 +30,7 @@ public class Teller extends Person {
             }
             else
             {
-                Transaction.Withdrawal(accountNum, pinNum, Amount);
+                Transaction.Withdraw(accountNum, pinNum, Amount);
             }
         } // try
         
