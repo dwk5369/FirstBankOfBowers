@@ -1,6 +1,5 @@
 
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,21 +13,33 @@ import java.sql.Statement;
  */
 public class Manager extends Teller
 {
-    Transaction test = new Transaction();
+    Transaction transaction = new Transaction();
+    
 
     
     public void createAccount()
     {
+         
         try
         {
-            Statement st = test.connDB.createStatement();
+            Transaction.connect();
+            Statement state = Transaction.connect().createStatement();
+            
+            String sql = "SELECT* FROM Manager";
+            ResultSet rs = state.executeQuery(sql);
+            
+            while(rs.next())
+            {
+                int id = rs.getInt("id");
+                String userName = rs.getString("username");
+            }
         }
         catch (Exception SQLException)
         {
-            
-        }
+            System.out.println("test");
+        }   
     }
-
+    
     public void closeAccount()
     {
                 
@@ -45,3 +56,5 @@ public class Manager extends Teller
     }
 
 }
+
+
