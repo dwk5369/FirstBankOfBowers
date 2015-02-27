@@ -20,23 +20,23 @@ public class Teller extends Person {
         return Transaction.getBalance();
     }//checkBalance
     
-    public void makeWithdraw(int accountNum, int pinNum, int Amount) throws Overdrawn
+    public void makeWithdraw(int intaccountNum, int pinNum, int intAmount) throws Overdrawn
     {
         try
         {
-            if (Amount > checkBalance()) 
+            if (intAmount > checkBalance()) 
             {
                 throw new Overdrawn();
             }
             else
             {
-                Transaction.Withdraw(accountNum, pinNum, Amount);
+                Transaction.Withdraw(intaccountNum, pinNum, intAmount);
             }
         } // try
         
         catch (Overdrawn Over)
         {
-             System.out.println("Cannot withdrawl " + Amount + ". Insufficient funds.");
+             System.out.println("Cannot withdrawl " + intAmount + ". Insufficient funds.");
         } //catch
     }//makeWithdrawal
     
