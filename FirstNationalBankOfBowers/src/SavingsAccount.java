@@ -20,7 +20,7 @@ public class SavingsAccount extends Account {
             balance = bal;
         }
         else{
-            
+            JOptionPane.showMessageDialog(null,"Insufficient amount", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
