@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -25,7 +26,8 @@ public class Transaction
     private static ResultSet rsResult;
     private static ResultSetMetaData rsmdData;
     private static String strGetAcct = "select accountNumber from dwk5369.account;";
-    private static String strGetCust = "select * from CUSTOMER_ACCOUNT where accountNum = ?;";
+    private static String strGetCust = "select * from CUSTOMER_ACCOUNT where fName = ? OR lName = ?;";
+    private static String strGetCust2 = "select * from CUSTOMER_ACCOUNT where accountNum = ?;";
     
     public static void connect()
     { 
@@ -81,9 +83,39 @@ public class Transaction
      * @param lname
      * @return
      */
-    public static Customer getCustomerInfo(String fname, String lname)
+    public static ArrayList getCustomerInfo(String fname, String lname)
     {
-        return null;
+        connect();
+        Customer cGet = new Customer();
+        ArrayList cResult;
+        try 
+        {
+            psGet = connDB.prepareStatement(strGetCust2);
+            psGet.setString(1, fname);
+            psGet.setString(2,lname);
+            rsResult = psGet.executeQuery();
+            cResult = new ArrayList();
+            while(rsResult.next())
+            {
+                cGet.setAccountNumber(rsResult.getInt(1));
+                cGet.setFname(rsResult.getString(2));
+                cGet.setLname(rsResult.getString(3));
+                cGet.setAddress(rsResult.getString(4));
+                cGet.setCity(rsResult.getString(5));
+                cGet.setState(rsResult.getString(6));
+                cGet.setZipcode(rsResult.getString(7));
+                cGet.setEmail(rsResult.getString(8));
+                cResult.add(cGet);
+                rsResult.next();
+            }
+        } 
+        catch (SQLException ex) 
+        {
+            JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT.", "Error", JOptionPane.ERROR);
+            return null;
+        }
+        disconnect();
+        return cResult;
     }//getAccount
     
     public static Account getAccount(String fname, String lname)
