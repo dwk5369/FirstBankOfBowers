@@ -11,8 +11,11 @@
 public class TransactionTest {
     public static void main(String[] args)
     {
-        String acctNum = "11111111";
-        Customer keith = Transaction.getCustomerInfo(acctNum);
+        Transaction t1 = new Transaction();
+        int acctNum = 11111111;
+        t1.connect();
+        Customer keith = t1.getCustomerInfo(acctNum);
+        t1.disconnect();
         System.out.println(keith.toString());
     }
 }

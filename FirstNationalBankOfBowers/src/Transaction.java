@@ -21,24 +21,30 @@ import javax.swing.JOptionPane;
  */
 public class Transaction 
 {
-    private static Connection connDB;
-    private static PreparedStatement psGet;
-    private static ResultSet rsResult;
-    private static ResultSetMetaData rsmdData;
-    private static String strGetAcct = "select accountNumber from dwk5369.account;";
-    private static String strGetCust = "select * from CUSTOMER_ACCOUNT where fName = ? OR lName = ?;";
-    private static String strGetCust2 = "select * from CUSTOMER_ACCOUNT where accountNum = ?;";
+    protected Connection connDB;
+    protected PreparedStatement psGet;
+    protected ResultSet rsResult;
+    protected ResultSetMetaData rsmdData;
+    protected String strGetAcct = "select accountNumber from dwk5369.account;";
     
-    public static void connect()
+    //get customer info when given a customer's name
+    protected String strGetCust = "select accountNumber,fname,lname,address,city,state,zipcode,email from CUSTOMER_ACCOUNT where fName = ? OR lName = ?;";
+
+    //get customer info when given a customer's account number
+    protected String strGetCust2 = "select accountNumber,fname,lname,address,city,state,zipcode,email from CUSTOMER_ACCOUNT where accountNumber = ?;";
+    
+    public Connection connect()
     { 
             try 
             { 
                 Class.forName("com.mysql.jdbc.Driver");
                 connDB = DriverManager.getConnection("jdbc:mysql://istdata.bk.psu.edu:3306/dwk5369?" + "user=dwk5369&password=berks6125");
+                return connDB;
             } 
             catch (ClassNotFoundException|SQLException ex) 
             { 
-                //handle
+                Logger.getLogger(Transaction.class.getName()).log(Level.SEVERE, null, ex);
+                return null;
             } 
 
     }// connect
@@ -48,14 +54,13 @@ public class Transaction
      * @param accountNum 
      * @return  
      */
-    public static Customer getCustomerInfo(String accountNum)
+    public Customer getCustomerInfo(int accountNum)
     {
-        connect();
         Customer cGet = new Customer();
         try 
         {
-            psGet = connDB.prepareStatement(strGetCust);
-            psGet.setInt(1, Integer.parseInt(accountNum));
+            psGet = connDB.prepareStatement(strGetCust2);
+            psGet.setInt(1, accountNum);
             rsResult = psGet.executeQuery();
             cGet.setAccountNumber(rsResult.getInt(1));
             cGet.setFname(rsResult.getString(2));
@@ -69,10 +74,9 @@ public class Transaction
         } 
         catch (SQLException ex) 
         {
-            JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT.", "Error", JOptionPane.ERROR);
+            JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT.", "Error", JOptionPane.ERROR_MESSAGE);
             return null;
         }
-        disconnect();
         return cGet;
 
     }//getAccount
@@ -83,14 +87,13 @@ public class Transaction
      * @param lname
      * @return
      */
-    public static ArrayList getCustomerInfo(String fname, String lname)
+    public ArrayList getCustomerInfo(String fname, String lname)
     {
-        connect();
         Customer cGet = new Customer();
         ArrayList cResult;
         try 
         {
-            psGet = connDB.prepareStatement(strGetCust2);
+            psGet = connDB.prepareStatement(strGetCust);
             psGet.setString(1, fname);
             psGet.setString(2,lname);
             rsResult = psGet.executeQuery();
@@ -111,30 +114,29 @@ public class Transaction
         } 
         catch (SQLException ex) 
         {
-            JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT.", "Error", JOptionPane.ERROR);
+            JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT.", "Error", JOptionPane.ERROR_MESSAGE);
             return null;
         }
-        disconnect();
         return cResult;
     }//getAccount
     
-    public static Account getAccount(String fname, String lname)
+    public Account getAccount(String fname, String lname)
     {
         return null;
     }//getAccount
     
-    public static void withdraw(int intAccountNum, int pinNum, int intAmount)
+    public void withdraw(int intAccountNum, int pinNum, int intAmount)
     {
         
     }//withdraw
     
-    public static double getBalance()
+    public double getBalance(Account acct)
     {
         return 0;
     }//withdraw
     
     
-    public static void disconnect()
+    public void disconnect()
     {
         try 
         {
