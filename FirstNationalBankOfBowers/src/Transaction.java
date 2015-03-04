@@ -23,6 +23,7 @@ public class Transaction
 {
     protected Connection connDB;
     protected PreparedStatement psGet;
+    protected PreparedStatement psGetCust;
     protected ResultSet rsResult;
     protected ResultSetMetaData rsmdData;
     protected String strGetAcct = "select accountNumber from dwk5369.account;";
@@ -42,7 +43,7 @@ public class Transaction
                 return connDB;
             } 
             catch (ClassNotFoundException|SQLException ex) 
-            { 
+            {
                 Logger.getLogger(Transaction.class.getName()).log(Level.SEVERE, null, ex);
                 return null;
             } 
@@ -62,6 +63,7 @@ public class Transaction
             psGet = connDB.prepareStatement(strGetCust2);
             psGet.setInt(1, accountNum);
             rsResult = psGet.executeQuery();
+            rsResult.first();            
             cGet.setAccountNumber(rsResult.getInt(1));
             cGet.setFname(rsResult.getString(2));
             cGet.setLname(rsResult.getString(3));
@@ -70,13 +72,14 @@ public class Transaction
             cGet.setState(rsResult.getString(6));
             cGet.setZipcode(rsResult.getString(7));
             cGet.setEmail(rsResult.getString(8));
-
+            psGet.close();
         } 
         catch (SQLException ex) 
         {
-            JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE);
             return null;
         }
+        
         return cGet;
 
     }//getAccount
@@ -89,17 +92,18 @@ public class Transaction
      */
     public ArrayList getCustomerInfo(String fname, String lname)
     {
-        Customer cGet = new Customer();
+        Customer cGet;
         ArrayList cResult;
         try 
         {
             psGet = connDB.prepareStatement(strGetCust);
-            psGet.setString(1, fname);
+            psGet.setString(1,fname);
             psGet.setString(2,lname);
             rsResult = psGet.executeQuery();
             cResult = new ArrayList();
             while(rsResult.next())
             {
+                cGet = new Customer();
                 cGet.setAccountNumber(rsResult.getInt(1));
                 cGet.setFname(rsResult.getString(2));
                 cGet.setLname(rsResult.getString(3));
@@ -109,12 +113,12 @@ public class Transaction
                 cGet.setZipcode(rsResult.getString(7));
                 cGet.setEmail(rsResult.getString(8));
                 cResult.add(cGet);
-                rsResult.next();
             }
+            psGet.close();
         } 
         catch (SQLException ex) 
         {
-            JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE);
             return null;
         }
         return cResult;
