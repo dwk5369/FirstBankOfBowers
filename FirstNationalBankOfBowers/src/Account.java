@@ -15,12 +15,16 @@ public class Account {
     public double interestRate = 0;
     public String accountNumber;
     
+    Transaction t = new Transaction();
+    
     public void deposit(double depositAmount){
         balance += depositAmount;
+        t.deposit(balance);
     }
     
     public void withdraw(double withdrawAmount){
         balance -= withdrawAmount;
+        t.withdraw(balance);
     }
     
     public double getBalance(){
