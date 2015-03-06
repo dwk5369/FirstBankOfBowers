@@ -10,8 +10,10 @@ import javax.swing.*;
  */
 public class SavingsAccount extends Account {
     
-    public SavingsAccount(String acc){
-        accountNumber = acc;
+    public SavingsAccount(String acc,double balance,int interestRate) {
+        this.accountNumber = acc;
+        this.interestRate = interestRate;
+        this.balance = balance;
     }
     
     public SavingsAccount(double bal, String acc){
@@ -23,5 +25,8 @@ public class SavingsAccount extends Account {
             JOptionPane.showMessageDialog(null,"Insufficient amount", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+    @Override
+    public String toString() {
+        return "SavingsAccount{" + accountNumber + ',' + balance + '}';
+    }    
 }

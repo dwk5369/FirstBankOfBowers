@@ -23,7 +23,6 @@ public class Transaction
 {
     protected Connection connDB;
     protected PreparedStatement psGet;
-    protected PreparedStatement psGetCust;
     protected ResultSet rsResult;
     protected ResultSetMetaData rsmdData;
     
@@ -34,13 +33,13 @@ public class Transaction
     protected String strGetCust = "select accountNumber,fname,lname,address,city,state,zipcode,email from CUSTOMER_ACCOUNT where accountNumber = ?;";
     
     //get customer info when given a customer's account number
-    protected String strGetCust2 = "select accountNumber,fname,lname,address,city,state,zipcode,email from CUSTOMER_ACCOUNT where fName = ? AND lName = ?;";
+    protected String strGetCust2 = "select accountNumber,fname,lname,address,city,state,zipcode,email from CUSTOMER_ACCOUNT where ssn = ?;";
     
     //get account info when given a customer's account number
-    protected String strGetAcct = "select balance from CUSTOMER_ACCOUNT where accountNumber = ?";
-        
-    //get account info when given a customer's account number
-    protected String strGetAcct2 = "select balance from account where accountNumber = ?";
+    protected String strGetAcct = "select balance, interestRate, COS from CUSTOMER_ACCOUNT where accountNumber = ?";
+    
+    //confirm that a user's login credentials match in the database
+    protected String strLogin = "select balance from account where accountNumber = ?";
     
     public Connection connect()
     { 
@@ -59,9 +58,11 @@ public class Transaction
     }// connect
     
     /**
+     * Searches the database for a customer with the given first name and last name and returns
+     * an object containing that customer's information.
      * 
-     * @param accountNum 
-     * @return  
+     * @param accountNum the customer's account number
+     * @return an object of type Customer containing that customer's information
      */
     public Customer getCustomerInfo(int accountNum)
     {
@@ -92,14 +93,21 @@ public class Transaction
 
     }//getCustomerInfo
     
-    public Customer getCustomerInfo(String fname, String lname)
+    /**
+     * Searches the database for a customer with the given first name and last name and returns
+     * an object containing that customer's information.
+     * 
+     * @param fname the customer's first name
+     * @param lname the customer's last name
+     * @return an object of type Customer containing that customer's information
+     */
+    public Customer getCustomerInfo(String ssn)
     {
         Customer cGet = new Customer();
         try 
         {
             psGet = connDB.prepareStatement(strGetCust2);
-            psGet.setString(1, fname);
-            psGet.setString(2, lname);
+            psGet.setString(1, ssn);
             rsResult = psGet.executeQuery();
             rsResult.first();            
             cGet.setAccountNumber(rsResult.getInt(1));
@@ -123,10 +131,11 @@ public class Transaction
     }//getCustomerInfo
     
     /**
-     *
-     * @param fname
-     * @param lname
-     * @return
+     * Searches the database for customers with the given first name or last name
+     * 
+     * @param fname first name to search for. Pass in an empty string to only search for last names
+     * @param lname last name to search for. Pass in an empty string to only search for first names
+     * @return an ArrayList object containing each Customer that is a potential match
      */
     public ArrayList searchCustomerInfo(String fname, String lname)
     {
@@ -160,14 +169,58 @@ public class Transaction
             return null;
         }
         return cResult;
-    }//getAccount
+    }//searchCustomerInfo
     
-    public Account getAccount(String fname, String lname)
+    /**
+     * 
+     * @param strUserName
+     * @param strPass
+     * @return 
+     */
+    public Teller login(String strUserName, String strPass)
     {
-        return null;
+        
+        return new Teller();
+    }//
+    
+    /**
+     * 
+     * @param cust
+     * @return 
+     */
+    public Account getAccount(Customer cust)
+    {
+        try 
+        {
+            String acctNum = cust.getAccountNumber()+"";
+            
+            psGet = connDB.prepareStatement(strGetAcct);
+            psGet.setString(1, acctNum);
+            rsResult = psGet.executeQuery();
+            rsResult.first();            
+            
+            double balance = rsResult.getDouble(1);
+            int intRate = rsResult.getInt(2);
+            String cOrS = rsResult.getString(3);
+            psGet.close();
+            if(cOrS.equals("c"))
+                return new CheckingAccount(acctNum, balance, intRate);
+            else
+                return new SavingsAccount(acctNum, balance, intRate);
+        } 
+        catch (SQLException ex) 
+        {
+            JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
     }//getAccount
     
-    public void withdraw(int intAccountNum, int pinNum, int intAmount)
+    public void withdraw(Account acct, double dblAmount)
+    {
+        
+    }//withdraw
+    
+    public void deposit(Account acct, double dblAmount)
     {
         
     }//withdraw

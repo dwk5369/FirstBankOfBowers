@@ -19,12 +19,12 @@ public class Account {
     
     public void deposit(double depositAmount){
         balance += depositAmount;
-        t.deposit(balance);
+        t.deposit(this,balance);
     }
     
     public void withdraw(double withdrawAmount){
         balance -= withdrawAmount;
-        t.withdraw(balance);
+        t.withdraw(this,balance);
     }
     
     public double getBalance(){
