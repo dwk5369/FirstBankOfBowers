@@ -18,6 +18,7 @@ public class Person {
     private String Address;
     private int Phone;
     private String Email;
+    private int SocialSecurity;
 
     public String getFname() {
         return Fname;
@@ -81,6 +82,14 @@ public class Person {
 
     public void setEmail(String Email) {
         this.Email = Email;
+    }
+
+    public int getSocialSecurity() {
+        return SocialSecurity;
+    }
+
+    public void setSocialSecurity(int SocialSecurity) {
+        this.SocialSecurity = SocialSecurity;
     }
     
     public String toString()
