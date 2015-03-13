@@ -10,7 +10,7 @@ import javax.swing.*;
  */
 public class SavingsAccount extends Account {
     
-    public SavingsAccount(String acc,double balance,int interestRate) {
+    public SavingsAccount(String acc,double balance,double interestRate) {
         this.accountNumber = acc;
         this.interestRate = interestRate;
         this.balance = balance;

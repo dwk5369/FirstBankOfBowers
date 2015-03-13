@@ -192,21 +192,21 @@ public class Transaction
     {
         try 
         {
-            String acctNum = cust.getAccountNumber()+"";
+            int acctNum = cust.getAccountNumber();
             
             psGet = connDB.prepareStatement(strGetAcct);
-            psGet.setString(1, acctNum);
+            psGet.setInt(1, acctNum);
             rsResult = psGet.executeQuery();
             rsResult.first();            
             
             double balance = rsResult.getDouble(1);
-            int intRate = rsResult.getInt(2);
+            double intRate = rsResult.getDouble(2);
             String cOrS = rsResult.getString(3);
             psGet.close();
             if(cOrS.equals("c"))
-                return new CheckingAccount(acctNum, balance, intRate);
+                return new CheckingAccount(acctNum+"", balance, intRate);
             else
-                return new SavingsAccount(acctNum, balance, intRate);
+                return new SavingsAccount(acctNum+"", balance, intRate);
         } 
         catch (SQLException ex) 
         {

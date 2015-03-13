@@ -17,7 +17,7 @@ public class Teller extends Person {
     
     public double checkBalance()
     {
-        return Account.getBalance();
+        return 0;//Account.getBalance();
     }//checkBalance
     
     public void makeWithdraw(int intaccountNum, int pinNum, int intAmount) throws Overdrawn
@@ -30,7 +30,7 @@ public class Teller extends Person {
             }
             else
             {
-                Account.Withdraw(intaccountNum, pinNum, intAmount);
+                //Account.Withdraw(intaccountNum, pinNum, intAmount);
             }
         } // try
         
@@ -42,12 +42,12 @@ public class Teller extends Person {
     
     public void makeDeposit(int accountNum, int pinNum, int Amount)
     {
-        Account.Deposit(accountNum, pinNum, Amount);
+        //Account.Deposit(accountNum, pinNum, Amount);
     } // makeDeposit
     
     public void makeTransfer(int startingAccountNumber, int endingAccountNumber, int Amount)
     {
-        Account.wireTransfer(startingAccountNumber, endingAccountNumber, Amount);
+        //Account.wireTransfer(startingAccountNumber, endingAccountNumber, Amount);
     } //makeTransfer
     
 }
