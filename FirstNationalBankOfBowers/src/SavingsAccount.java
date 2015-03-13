@@ -25,6 +25,8 @@ public class SavingsAccount extends Account {
             JOptionPane.showMessageDialog(null,"Insufficient amount", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    
     @Override
     public String toString() {
         return "SavingsAccount{" + accountNumber + ',' + balance + '}';

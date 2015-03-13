@@ -32,6 +32,10 @@ public class TransactionTest {
         
         Account acct = t1.getAccount(keith);
         System.out.println(acct.toString());
+        t1.withdraw(acct.getAccountNumber(),100);
+        System.out.println(t1.getAccount(keith).getBalance());
+        t1.deposit(acct.getAccountNumber(),1000);
+        System.out.println(t1.getAccount(keith).getBalance());        
         t1.disconnect();
     }
 }

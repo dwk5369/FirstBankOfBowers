@@ -41,6 +41,12 @@ public class Transaction
     //confirm that a user's login credentials match in the database
     protected String strLogin = "select balance from account where accountNumber = ?";
     
+    //perform a withdrawal
+    protected String strWithdraw = "update account set balance = balance - ? where accountNumber = ?";
+   
+    //perform a deposit
+    protected String strDeposit = "update account set balance = balance + ? where accountNumber = ?";
+    
     public Connection connect()
     { 
             try 
@@ -215,14 +221,34 @@ public class Transaction
         }
     }//getAccount
     
-    public void withdraw(Account acct, double dblAmount)
+    public void withdraw(String strAcctNum, double dblAmount)
     {
-        
+        try
+        {
+            psGet = connDB.prepareStatement(strWithdraw);
+            psGet.setDouble(1, dblAmount);
+            psGet.setInt(2, Integer.parseInt(strAcctNum));
+            psGet.executeUpdate();
+        }
+        catch (SQLException ex) 
+        {
+            JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE);      
+        }
     }//withdraw
     
-    public void deposit(Account acct, double dblAmount)
+    public void deposit(String strAcctNum, double dblAmount)
     {
-        
+        try
+        {
+            psGet = connDB.prepareStatement(strDeposit);
+            psGet.setDouble(1, dblAmount);
+            psGet.setInt(2, Integer.parseInt(strAcctNum));
+            psGet.executeUpdate();
+        }
+        catch (SQLException ex) 
+        {
+            JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE);      
+        }        
     }//withdraw
     
     public double getBalance(Account acct)
