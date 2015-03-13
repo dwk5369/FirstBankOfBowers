@@ -19,7 +19,7 @@ public class Manager extends Teller
     
     public void createAccount()
     {
-         
+        /*  
         try
         {
             Transaction.connect();
@@ -37,7 +37,8 @@ public class Manager extends Teller
         catch (Exception SQLException)
         {
             System.out.println("test");
-        }   
+        }  
+                */
     }
     
     public void closeAccount()
