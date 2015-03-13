@@ -47,6 +47,13 @@ public class Transaction
     //perform a deposit
     protected String strDeposit = "update account set balance = balance + ? where accountNumber = ?";
     
+    /*
+    For login view:
+    select * from person
+    inner join teller on person.ssn = teller.ssn
+    left outer join manager on teller.tellerID = manager.tellerID
+    */
+    
     public Connection connect()
     { 
             try 
