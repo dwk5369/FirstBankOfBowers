@@ -110,8 +110,7 @@ public class Transaction
      * Searches the database for a customer with the given first name and last name and returns
      * an object containing that customer's information.
      * 
-     * @param fname the customer's first name
-     * @param lname the customer's last name
+     * @param ssn the customer's social security number, in a string
      * @return an object of type Customer containing that customer's information
      */
     public Customer getCustomerInfo(String ssn)
