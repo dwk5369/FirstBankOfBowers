@@ -64,7 +64,7 @@ public class Transaction
             } 
             catch (ClassNotFoundException|SQLException ex) 
             {
-                Logger.getLogger(Transaction.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE);
                 return null;
             } 
 
