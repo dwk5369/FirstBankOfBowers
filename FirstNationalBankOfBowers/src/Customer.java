@@ -9,15 +9,15 @@
  * @author trm5313
  */
 public class Customer extends Person {
-    private int accountNumber;
+    private int customerIDNumber;
     private int pinNum;
 
-    public int getAccountNumber() {
-        return accountNumber;
+    public int getCustomerIDNumber() {
+        return customerIDNumber;
     }
 
-    public void setAccountNumber(int accountNumber) {
-        this.accountNumber = accountNumber;
+    public void setCustomerIDNumber(int customerIDNumber) {
+        this.customerIDNumber = customerIDNumber;
     }
 
     public int getPinNum() {
