@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import javax.swing.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author krm5188
@@ -14,17 +14,24 @@ public class Account {
     public static int MINBALANCE = 100;
     public double interestRate = 0;
     public String accountNumber;
+    public int customerId = 0;
     
     Transaction t = new Transaction();
     
     public void deposit(double depositAmount){
         balance += depositAmount;
-        //t.deposit(this,balance);
+        t.deposit(accountNumber,balance);
     }
     
     public void withdraw(double withdrawAmount){
         balance -= withdrawAmount;
-        t.withdraw(accountNumber,balance);
+        if (balance < 0){
+            JOptionPane.showMessageDialog(null, "Cannot withdraw ammount: Account will become over-drawn", "Error", JOptionPane.ERROR_MESSAGE);
+            balance += withdrawAmount;
+        }
+        else {
+            t.withdraw(accountNumber, balance);
+        }
     }
     
     public double getBalance(){
