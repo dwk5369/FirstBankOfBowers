@@ -213,7 +213,7 @@ public class Transaction
     {
         try 
         {
-            int acctNum = cust.getAccountNumber();
+            int acctNum = cust.getCustomerIDnumber();
             
             psGet = connDB.prepareStatement(strGetAcct);
             psGet.setInt(1, acctNum);
