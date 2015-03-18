@@ -17,11 +17,11 @@ public class TransactionTest {
         Transaction t1 = new Transaction();
         int acctNum = 11111111;
         t1.connect();
-        Customer keith = t1.getCustomerInfo(acctNum);
+        ArrayList test = t1.getAccountOwners(acctNum);
         
-        System.out.println(keith.toString());
+        System.out.println(test.toString());
         
-        Customer someone = t1.getCustomerInfo("444444444");
+        Customer someone = t1.getCustomerInfo("333333333");
         System.out.println(someone.toString());
         
         String fname = "Keith";
@@ -30,12 +30,12 @@ public class TransactionTest {
         ArrayList maybeKeith = t1.searchCustomerInfo(fname, lname);
         System.out.println(maybeKeith.toString());
         
-        Account acct = t1.getAccount(keith);
+       /* Account acct = t1.getAccount(keith);
         System.out.println(acct.toString());
         t1.withdraw(acct.getAccountNumber(),100);
         System.out.println(t1.getAccount(keith).getBalance());
         t1.deposit(acct.getAccountNumber(),1000);
         System.out.println(t1.getAccount(keith).getBalance());        
-        t1.disconnect();
+        t1.disconnect();*/
     }
 }
