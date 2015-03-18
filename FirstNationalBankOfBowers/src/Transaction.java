@@ -86,7 +86,7 @@ public class Transaction
             psGet.setInt(1, accountNum);
             rsResult = psGet.executeQuery();
             rsResult.first();            
-            cGet.setAccountNumber(rsResult.getInt(1));
+            cGet.setCustomerIDnumber(rsResult.getInt(1));
             cGet.setFname(rsResult.getString(2));
             cGet.setLname(rsResult.getString(3));
             cGet.setAddress(rsResult.getString(4));
@@ -122,7 +122,7 @@ public class Transaction
             psGet.setString(1, ssn);
             rsResult = psGet.executeQuery();
             rsResult.first();            
-            cGet.setAccountNumber(rsResult.getInt(1));
+            cGet.setCustomerIDnumber(rsResult.getInt(1));
             cGet.setFname(rsResult.getString(2));
             cGet.setLname(rsResult.getString(3));
             cGet.setAddress(rsResult.getString(4));
@@ -163,7 +163,7 @@ public class Transaction
             while(rsResult.next())
             {
                 cGet = new Customer();
-                cGet.setAccountNumber(rsResult.getInt(1));
+                cGet.setCustomerIDnumber(rsResult.getInt(1));
                 cGet.setFname(rsResult.getString(2));
                 cGet.setLname(rsResult.getString(3));
                 cGet.setAddress(rsResult.getString(4));
@@ -204,7 +204,7 @@ public class Transaction
     {
         try 
         {
-            int acctNum = cust.getAccountNumber();
+            int acctNum = cust.getCustomerIDnumber();
             
             psGet = connDB.prepareStatement(strGetAcct);
             psGet.setInt(1, acctNum);
