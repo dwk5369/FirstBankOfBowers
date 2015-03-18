@@ -27,13 +27,15 @@ public class Transaction
     protected ResultSetMetaData rsmdData;
     
     //get customer info when given a customer's name
-    protected String strSearchCust = "select accountNumber,fname,lname,address,city,state,zipcode,email from CUSTOMER_ACCOUNT where fName = ? OR lName = ?;";
+    //protected String strSearchCust = "select accountNumber,fname,lname,address,city,state,zipcode,email from CUSTOMER_ACCOUNT where fName = ? OR lName = ?;";
+    protected String strSearchCust = "select distinct fname,lname,address,city,state,zipcode,email from CUSTOMER_ACCOUNT where fName = ? OR lName = ?;";
 
     //get customer info when given a customer's account number
     protected String strGetCust = "select accountNumber,fname,lname,address,city,state,zipcode,email from CUSTOMER_ACCOUNT where accountNumber = ?;";
     
-    //get customer info when given a customer's account number
-    protected String strGetCust2 = "select accountNumber,fname,lname,address,city,state,zipcode,email from CUSTOMER_ACCOUNT where ssn = ?;";
+    //get customer info when given a customer's ssn
+    //protected String strGetCust2 = "select accountNumber,fname,lname,address,city,state,zipcode,email from CUSTOMER_ACCOUNT where ssn = ?;";
+    protected String strGetCust2 = "select distinct fname,lname,address,city,state,zipcode,email from CUSTOMER_ACCOUNT where ssn = ?;";
     
     //get account info when given a customer's account number
     protected String strGetAcct = "select balance, interestRate, COS from CUSTOMER_ACCOUNT where accountNumber = ?";
@@ -77,23 +79,30 @@ public class Transaction
      * @param accountNum the customer's account number
      * @return an object of type Customer containing that customer's information
      */
-    public Customer getCustomerInfo(int accountNum)
+    public ArrayList getAccountOwners(int accountNum)
     {
-        Customer cGet = new Customer();
+        Customer cGet;
+        ArrayList cResult;
         try 
         {
             psGet = connDB.prepareStatement(strGetCust);
             psGet.setInt(1, accountNum);
             rsResult = psGet.executeQuery();
-            rsResult.first();            
-            cGet.setAccountNumber(rsResult.getInt(1));
-            cGet.setFname(rsResult.getString(2));
-            cGet.setLname(rsResult.getString(3));
-            cGet.setAddress(rsResult.getString(4));
-            cGet.setCity(rsResult.getString(5));
-            cGet.setState(rsResult.getString(6));
-            cGet.setZipcode(rsResult.getString(7));
-            cGet.setEmail(rsResult.getString(8));
+            rsResult.beforeFirst();
+            cResult = new ArrayList();
+            while(rsResult.next())
+            {
+                cGet = new Customer();
+                cGet.setAccountNumber(rsResult.getInt(1));
+                cGet.setFname(rsResult.getString(2));
+                cGet.setLname(rsResult.getString(3));
+                cGet.setAddress(rsResult.getString(4));
+                cGet.setCity(rsResult.getString(5));
+                cGet.setState(rsResult.getString(6));
+                cGet.setZipcode(rsResult.getString(7));
+                cGet.setEmail(rsResult.getString(8));
+                cResult.add(cGet);
+            }
             psGet.close();
         } 
         catch (SQLException ex) 
@@ -102,7 +111,7 @@ public class Transaction
             return null;
         }
         
-        return cGet;
+        return cResult;
 
     }//getCustomerInfo
     
@@ -122,14 +131,14 @@ public class Transaction
             psGet.setString(1, ssn);
             rsResult = psGet.executeQuery();
             rsResult.first();            
-            cGet.setAccountNumber(rsResult.getInt(1));
-            cGet.setFname(rsResult.getString(2));
-            cGet.setLname(rsResult.getString(3));
-            cGet.setAddress(rsResult.getString(4));
-            cGet.setCity(rsResult.getString(5));
-            cGet.setState(rsResult.getString(6));
-            cGet.setZipcode(rsResult.getString(7));
-            cGet.setEmail(rsResult.getString(8));
+            //cGet.setAccountNumber(rsResult.getInt(1));
+            cGet.setFname(rsResult.getString(1));
+            cGet.setLname(rsResult.getString(2));
+            cGet.setAddress(rsResult.getString(3));
+            cGet.setCity(rsResult.getString(4));
+            cGet.setState(rsResult.getString(5));
+            cGet.setZipcode(rsResult.getString(6));
+            cGet.setEmail(rsResult.getString(7));
             psGet.close();
         } 
         catch (SQLException ex) 
@@ -163,14 +172,14 @@ public class Transaction
             while(rsResult.next())
             {
                 cGet = new Customer();
-                cGet.setAccountNumber(rsResult.getInt(1));
-                cGet.setFname(rsResult.getString(2));
-                cGet.setLname(rsResult.getString(3));
-                cGet.setAddress(rsResult.getString(4));
-                cGet.setCity(rsResult.getString(5));
-                cGet.setState(rsResult.getString(6));
-                cGet.setZipcode(rsResult.getString(7));
-                cGet.setEmail(rsResult.getString(8));
+                //cGet.setAccountNumber(rsResult.getInt(1));
+                cGet.setFname(rsResult.getString(1));
+                cGet.setLname(rsResult.getString(2));
+                cGet.setAddress(rsResult.getString(3));
+                cGet.setCity(rsResult.getString(4));
+                cGet.setState(rsResult.getString(5));
+                cGet.setZipcode(rsResult.getString(6));
+                cGet.setEmail(rsResult.getString(7));
                 cResult.add(cGet);
             }
             psGet.close();
