@@ -18,7 +18,7 @@ public class Person {
     private String Address;
     private int Phone;
     private String Email;
-    private int SocialSecurity;
+    private String SocialSecurity;
 
     public String getFname() {
         return Fname;
@@ -84,11 +84,11 @@ public class Person {
         this.Email = Email;
     }
 
-    public int getSocialSecurity() {
+    public String getSocialSecurity() {
         return SocialSecurity;
     }
 
-    public void setSocialSecurity(int SocialSecurity) {
+    public void setSocialSecurity(String SocialSecurity) {
         this.SocialSecurity = SocialSecurity;
     }
     
