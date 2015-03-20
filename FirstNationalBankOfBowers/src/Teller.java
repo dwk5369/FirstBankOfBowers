@@ -40,6 +40,18 @@ public class Teller extends Person {
      * References transaction class for searching customer info
      * NOTE: Overloaded method
      * 
+     * @param accountNum
+     * @return 
+     */
+    public ArrayList tellerCustomerSearch(int accountNum)
+    {
+        return tellerTransaction.getAccountOwners(accountNum);
+    }
+    
+    /**
+     * References transaction class for searching customer info
+     * NOTE: Overloaded method
+     * 
      * @param fname
      * @param lname
      * @return 
