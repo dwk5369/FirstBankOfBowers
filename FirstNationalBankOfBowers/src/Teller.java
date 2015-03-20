@@ -15,7 +15,7 @@ public class Teller extends Person {
 
     }
     
-    public double checkBalance()
+    public double checkBalance(Account currentAccount)
     {
         return 0;//Account.getBalance();
     }//checkBalance
@@ -24,13 +24,13 @@ public class Teller extends Person {
     {
         try
         {
-            if (intAmount > checkBalance()) 
+            if (intAmount > checkBalance(currentAccount)) 
             {
                 throw new Overdrawn();
             }
             else
             {
-                //Account.Withdraw(currentAccount, intAmount);
+                //currentAccount.Withdraw(currentAccount, intAmount);
             }
         } // try
         
