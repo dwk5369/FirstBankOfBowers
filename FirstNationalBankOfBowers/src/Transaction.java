@@ -10,9 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Notes 3-20-15 Need to 
  */
 
 /**
@@ -28,7 +26,7 @@ public class Transaction
     
     //get customer info when given a customer's name
     //protected String strSearchCust = "select accountNumber,fname,lname,address,city,state,zipcode,email from CUSTOMER_ACCOUNT where fName = ? OR lName = ?;";
-    protected String strSearchCust = "select distinct fname,lname,address,city,state,zipcode,email from CUSTOMER_ACCOUNT where fName = ? OR lName = ?;";
+    protected String strSearchCust = "select distinct fname,lname,address,city,state,zipcode,email,ssn from CUSTOMER_ACCOUNT where fName = ? OR lName = ?;";
 
     //get customer info when given a customer's account number
     protected String strGetCust = "select accountNumber,fname,lname,address,city,state,zipcode,email from CUSTOMER_ACCOUNT where accountNumber = ?;";
@@ -38,7 +36,7 @@ public class Transaction
     protected String strGetCust2 = "select distinct fname,lname,address,city,state,zipcode,email from CUSTOMER_ACCOUNT where ssn = ?;";
     
     //get account info when given a customer's account number
-    protected String strGetAcct = "select balance, interestRate, COS from CUSTOMER_ACCOUNT where accountNumber = ?";
+    protected String strGetAcct = "select accountNumber, balance, interestRate, COS from CUSTOMER_ACCOUNT where ssn = ?";
     
     //confirm that a user's login credentials match in the database
     protected String strLogin = "select balance from account where accountNumber = ?";
@@ -79,10 +77,10 @@ public class Transaction
      * @param accountNum the customer's account number
      * @return an object of type Customer containing that customer's information
      */
-    public ArrayList getAccountOwners(int accountNum)
+    public ArrayList<Customer> getAccountOwners(int accountNum)
     {
         Customer cGet;
-        ArrayList cResult;
+        ArrayList<Customer> cResult;
         try 
         {
             psGet = connDB.prepareStatement(strGetCust);
@@ -139,6 +137,7 @@ public class Transaction
             cGet.setState(rsResult.getString(5));
             cGet.setZipcode(rsResult.getString(6));
             cGet.setEmail(rsResult.getString(7));
+            cGet.setSocialSecurity(ssn);
             psGet.close();
         } 
         catch (SQLException ex) 
@@ -158,10 +157,10 @@ public class Transaction
      * @param lname last name to search for. Pass in an empty string to only search for first names
      * @return an ArrayList object containing each Customer that is a potential match
      */
-    public ArrayList searchCustomerInfo(String fname, String lname)
+    public ArrayList<Customer> searchCustomerInfo(String fname, String lname)
     {
         Customer cGet;
-        ArrayList cResult;
+        ArrayList<Customer> cResult;
         try 
         {
             psGet = connDB.prepareStatement(strSearchCust);
@@ -180,6 +179,7 @@ public class Transaction
                 cGet.setState(rsResult.getString(5));
                 cGet.setZipcode(rsResult.getString(6));
                 cGet.setEmail(rsResult.getString(7));
+                cGet.setSocialSecurity(rsResult.getString(8));
                 cResult.add(cGet);
             }
             psGet.close();
@@ -213,22 +213,22 @@ public class Transaction
     {
         try 
         {
-            int acctNum = cust.getCustomerIDnumber();
+            String strSSN = cust.getSocialSecurity();
             
             psGet = connDB.prepareStatement(strGetAcct);
-            psGet.setInt(1, acctNum);
+            psGet.setString(1, strSSN);
             rsResult = psGet.executeQuery();
             rsResult.first();            
             
-            double balance = rsResult.getDouble(1);
-            double intRate = rsResult.getDouble(2);
-            String cOrS = rsResult.getString(3);
+            String acctNum = rsResult.getString(1);
+            double balance = rsResult.getDouble(2);
+            double intRate = rsResult.getDouble(3);
+            String cOrS = rsResult.getString(4);
             psGet.close();
-            //if(cOrS.equals("c"))
-                //return new CheckingAccount(acctNum+"", balance, intRate);
-            //else
-                //return new SavingsAccount(acctNum+"", balance, intRate);
-            return new Account();
+            if(cOrS.equals("c"))
+                return new CheckingAccount(acctNum, balance, intRate);
+            else
+                return new SavingsAccount(acctNum, balance, intRate);
         } 
         catch (SQLException ex) 
         {

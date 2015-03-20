@@ -30,12 +30,12 @@ public class TransactionTest {
         ArrayList maybeKeith = t1.searchCustomerInfo(fname, lname);
         System.out.println(maybeKeith.toString());
         
-       /* Account acct = t1.getAccount(keith);
+        Account acct = t1.getAccount(someone);
         System.out.println(acct.toString());
         t1.withdraw(acct.getAccountNumber(),100);
-        System.out.println(t1.getAccount(keith).getBalance());
+        System.out.println(t1.getAccount(someone).getBalance());
         t1.deposit(acct.getAccountNumber(),1000);
-        System.out.println(t1.getAccount(keith).getBalance());        
-        t1.disconnect();*/
+        System.out.println(t1.getAccount(someone).getBalance());        
+        t1.disconnect();
     }
 }

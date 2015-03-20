@@ -10,11 +10,10 @@ import javax.swing.JOptionPane;
  */
 public class CheckingAccount extends Account {
     
-    public CheckingAccount(String acc,double balance, double interestRate, int cId) {
+    public CheckingAccount(String acc,double balance, double interestRate) {
         this.accountNumber = acc;
         this.interestRate = interestRate;
         this.balance = balance;
-        this.customerId = cId;
     }
     
     public CheckingAccount(double bal, String acc, int cId){
