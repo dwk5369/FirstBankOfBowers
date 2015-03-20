@@ -64,7 +64,6 @@ public class Teller extends Person {
     /**
      * checkBalance imports the currentAccount
      * 
-     * @param currentAccount
      * @return 
      */
     public double checkBalance()
