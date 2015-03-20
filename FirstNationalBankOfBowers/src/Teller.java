@@ -17,7 +17,7 @@ public class Teller extends Person {
     
     public double checkBalance(Account currentAccount)
     {
-        return 0;//Account.getBalance();
+        return 0;//currentAccount.getBalance();
     }//checkBalance
     
     public void makeWithdraw(Account currentAccount, int intAmount) throws Overdrawn
