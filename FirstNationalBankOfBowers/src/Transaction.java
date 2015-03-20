@@ -93,14 +93,14 @@ public class Transaction
             while(rsResult.next())
             {
                 cGet = new Customer();
-                cGet.setAccountNumber(rsResult.getInt(1));
-                cGet.setFname(rsResult.getString(2));
-                cGet.setLname(rsResult.getString(3));
-                cGet.setAddress(rsResult.getString(4));
-                cGet.setCity(rsResult.getString(5));
-                cGet.setState(rsResult.getString(6));
-                cGet.setZipcode(rsResult.getString(7));
-                cGet.setEmail(rsResult.getString(8));
+                //cGet.setAccountNumber(rsResult.getInt(1));
+                cGet.setFname(rsResult.getString(1));
+                cGet.setLname(rsResult.getString(2));
+                cGet.setAddress(rsResult.getString(3));
+                cGet.setCity(rsResult.getString(4));
+                cGet.setState(rsResult.getString(5));
+                cGet.setZipcode(rsResult.getString(6));
+                cGet.setEmail(rsResult.getString(7));
                 cResult.add(cGet);
             }
             psGet.close();
@@ -224,10 +224,11 @@ public class Transaction
             double intRate = rsResult.getDouble(2);
             String cOrS = rsResult.getString(3);
             psGet.close();
-            if(cOrS.equals("c"))
-                return new CheckingAccount(acctNum+"", balance, intRate);
-            else
-                return new SavingsAccount(acctNum+"", balance, intRate);
+            //if(cOrS.equals("c"))
+                //return new CheckingAccount(acctNum+"", balance, intRate);
+            //else
+                //return new SavingsAccount(acctNum+"", balance, intRate);
+            return new Account();
         } 
         catch (SQLException ex) 
         {
