@@ -15,10 +15,10 @@ import javax.swing.JOptionPane;
  */
 public class Transaction 
 {
-    private Connection connDB;
-    private PreparedStatement psGet;
-    private ResultSet rsResult;
-    private ResultSetMetaData rsmdData;
+    protected Connection connDB;
+    protected PreparedStatement psGet;
+    protected ResultSet rsResult;
+    protected ResultSetMetaData rsmdData;
     
     //get customer info when given a customer's name
     //protected String strSearchCust = "select accountNumber,fname,lname,address,city,state,zipcode,email from CUSTOMER_ACCOUNT where fName = ? OR lName = ?;";
@@ -35,7 +35,8 @@ public class Transaction
     protected String strGetAcct = "select accountNumber, balance, interestRate, COS from CUSTOMER_ACCOUNT where ssn = ?";
     
     //confirm that a user's login credentials match in the database
-    protected String strLogin = "select fname, lname, managerID from person inner join teller on person.id = teller.id left outer join manager on teller.tellerID = manager.tellerID where userName = ? and password = ?";
+    //protected String strLogin = "select fname, lname, managerID from person inner join teller on person.id = teller.id left outer join manager on teller.tellerID = manager.tellerID where userName = ? and password = ?";
+    protected String strLogin = "select fname, lname, managerID from logininfo where userName = ? and password = ?";
     
     //perform a withdrawal
     protected String strWithdraw = "update account set balance = balance - ? where accountNumber = ?";
@@ -46,7 +47,7 @@ public class Transaction
     /*
     For login view:
     select * from person
-    inner join teller on person.ssn = teller.ssn
+    inner join teller on person.id = teller.id
     left outer join manager on teller.tellerID = manager.tellerID
     */
     
@@ -203,14 +204,21 @@ public class Transaction
             psGet.setString(1,strUserName);
             psGet.setString(2,strPass);
             rsResult = psGet.executeQuery();
+            rsResult.first();
+            String strFName = rsResult.getString(1);
+            String strLName = rsResult.getString(2);
+            int managerID = rsResult.getInt(3);
             psGet.close();
+            if(managerID == 0)
+                return new Teller(strFName,strLName);
+            else
+                return new Manager(strFName,strLName);            
         } 
         catch (SQLException ex) 
         {
-            JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Invalid username or password.", "Login Failed", JOptionPane.ERROR_MESSAGE);
             return null;
         }
-        return new Teller();
     }//
     
     /**
