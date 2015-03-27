@@ -6,12 +6,8 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-/*
- * Notes 3-20-15 Need to 
- */
+
 
 /**
  *
@@ -19,10 +15,10 @@ import javax.swing.JOptionPane;
  */
 public class Transaction 
 {
-    protected Connection connDB;
-    protected PreparedStatement psGet;
-    protected ResultSet rsResult;
-    protected ResultSetMetaData rsmdData;
+    private Connection connDB;
+    private PreparedStatement psGet;
+    private ResultSet rsResult;
+    private ResultSetMetaData rsmdData;
     
     //get customer info when given a customer's name
     //protected String strSearchCust = "select accountNumber,fname,lname,address,city,state,zipcode,email from CUSTOMER_ACCOUNT where fName = ? OR lName = ?;";
@@ -39,7 +35,7 @@ public class Transaction
     protected String strGetAcct = "select accountNumber, balance, interestRate, COS from CUSTOMER_ACCOUNT where ssn = ?";
     
     //confirm that a user's login credentials match in the database
-    protected String strLogin = "select balance from account where accountNumber = ?";
+    protected String strLogin = "select fname, lname, managerID from person inner join teller on person.id = teller.id left outer join manager on teller.tellerID = manager.tellerID where userName = ? and password = ?";
     
     //perform a withdrawal
     protected String strWithdraw = "update account set balance = balance - ? where accountNumber = ?";
@@ -193,14 +189,27 @@ public class Transaction
     }//searchCustomerInfo
     
     /**
+     * Log a user into the system, allowing them to perform tasks.
      * 
-     * @param strUserName
-     * @param strPass
-     * @return 
+     * @param strUserName the username entered in the login screen
+     * @param strPass the password entered in the login screen
+     * @return A Teller object if the user is a teller, a Manager object if the user is a manager, or nothing if the username and password are not found
      */
     public Teller login(String strUserName, String strPass)
     {
-        
+        try 
+        {
+            psGet = connDB.prepareStatement(strLogin);
+            psGet.setString(1,strUserName);
+            psGet.setString(2,strPass);
+            rsResult = psGet.executeQuery();
+            psGet.close();
+        } 
+        catch (SQLException ex) 
+        {
+            JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
         return new Teller();
     }//
     
@@ -237,6 +246,12 @@ public class Transaction
         }
     }//getAccount
     
+    /**
+     * 
+     * 
+     * @param strAcctNum
+     * @param dblAmount 
+     */
     public void withdraw(String strAcctNum, double dblAmount)
     {
         try
@@ -252,6 +267,12 @@ public class Transaction
         }
     }//withdraw
     
+    /**
+     * 
+     * 
+     * @param strAcctNum
+     * @param dblAmount 
+     */
     public void deposit(String strAcctNum, double dblAmount)
     {
         try
@@ -272,6 +293,20 @@ public class Transaction
         return 0;
     }//withdraw
     
+    /**
+     * 
+     * 
+     * @param cust
+     * @param strAcctType
+     * @param dblBalance
+     * @param dblInterest
+     * @return 
+     */
+    public Account createAccount(Customer cust, String strAcctType, double dblBalance, double dblInterest)
+    {
+        
+        return new Account();
+    }//createAccount
     
     public void disconnect()
     {
