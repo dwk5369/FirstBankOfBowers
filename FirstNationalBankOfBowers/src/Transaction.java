@@ -45,7 +45,7 @@ public class Transaction
     protected String strDeposit = "update account set balance = balance + ? where accountNumber = ?";
     
     
-    protected String strCreateCustAccount = "INSERT INTO CUSTOMER VALUES (custID, accountNumber)";
+    protected String strCreateCustAccount = "INSERT INTO CUSTOMER VALUES (?, ?)";
     
     protected String strCreateAccount = "INSERT INTO CUSTOMER_ACCOUNT VALUES (?,?,?,?,?,?,?,? WHERE accountNumber = ?)";
     
