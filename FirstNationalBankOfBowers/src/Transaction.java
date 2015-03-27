@@ -364,7 +364,7 @@ public class Transaction
                 
     }//create_Account
      
-         public void closeAccount(int accountNumber)
+    public void closeAccount(int accountNumber)
     {
            try
         {
