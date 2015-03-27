@@ -13,6 +13,12 @@ import java.sql.*;
 public class Manager extends Teller
 {
     Transaction transaction = new Transaction();
+
+    Manager(String strFName, String strLName) 
+    {
+        super.setFname(strFName); 
+        super.setLname(strLName);
+    }
     
 
     

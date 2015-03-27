@@ -1,5 +1,6 @@
 
 import java.util.Arrays;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,6 +15,9 @@ import java.util.Arrays;
 public class TellerInterface extends javax.swing.JFrame {
 
     Transaction bankTrans = new Transaction();
+    Account acctCurrent;
+    Teller currentUser;
+    
     
     /**
      * Creates new form TellerInterface
@@ -119,11 +123,15 @@ public class TellerInterface extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLoginActionPerformed
-        String userName = jtfUsername.getText();
-        String strPass = Arrays.toString(jpfPass.getPassword());
+        String userName = jtfUsername.getText().trim();
+        String strPass = new String(jpfPass.getPassword()).trim();
         bankTrans.connect();
-        
+        currentUser = bankTrans.login(userName, strPass);
         bankTrans.disconnect();
+        if(currentUser != null)
+        {
+            JOptionPane.showMessageDialog(this, "Welcome, " + currentUser.getFname() + " " + currentUser.getLname() + "!", "Login successful!", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_jbLoginActionPerformed
 
     /**

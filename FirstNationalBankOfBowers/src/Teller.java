@@ -5,6 +5,19 @@ import java.util.ArrayList;
  * @author trm5313
  */
 public class Teller extends Person {
+
+    public Teller()
+    {
+        
+    }
+    
+    public Teller(String strFname, String strLname)
+    {
+        super.setFname(strFname);
+        super.setLname(strLname);
+    }
+    
+    
     
     public class Overdrawn extends Exception
     {
