@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -43,6 +44,13 @@ public class Transaction
    
     //perform a deposit
     protected String strDeposit = "update account set balance = balance + ? where accountNumber = ?";
+    
+    
+    protected String strCreateCustAccount = "INSERT INTO CUSTOMER VALUES (?, ?)";
+    
+    protected String strCreateAccount = "INSERT INTO CUSTOMER_ACCOUNT VALUES (?,?,?,?,?,?,?,? WHERE accountNumber = ?)";
+    
+    protected String strCloseAccount = "DELETE FROM CUSTOMER_ACCOUNT WHERE accountNumber = ?";
     
     /*
     For login view:
@@ -310,6 +318,69 @@ public class Transaction
      * @param dblInterest
      * @return 
      */
+    
+    public void createCustAccount(int custID, int accountNumber)
+    {
+        
+        try
+        {
+            
+            psGet = connDB.prepareStatement(strCreateCustAccount);
+            psGet.setInt(1, custID);
+            psGet.setInt(2, accountNumber);
+            psGet.executeUpdate();
+
+        }
+        catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE); 
+        }  
+                
+    }//createCustAccount
+    
+     public void create_Account(int accountNumber, String fname, String lname, String address, String city, String state, int zipcode, String email, int ssn)
+    {
+        
+        try
+        {
+            
+            psGet = connDB.prepareStatement(strCreateAccount);
+            psGet.setInt(1,accountNumber);
+            psGet.setString(2, fname);
+            psGet.setString(3, lname);
+            psGet.setString(4, address);
+            psGet.setString(5, city);
+            psGet.setString(6, state);
+            psGet.setInt(7, zipcode);
+            psGet.setString(8, email);
+            psGet.setInt(9, ssn);
+            psGet.executeUpdate();
+
+        }
+        catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE); 
+        }
+                
+    }//create_Account
+     
+         public void closeAccount(int accountNumber)
+    {
+           try
+        {
+            psGet = connDB.prepareStatement(strCloseAccount);
+            psGet.setInt(1,accountNumber);
+            psGet.executeUpdate();
+            
+
+        }
+        catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE); 
+        }    
+    } //closeAccount
+    
+    
     public Account createAccount(Customer cust, String strAcctType, double dblBalance, double dblInterest)
     {
         

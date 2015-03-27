@@ -22,38 +22,32 @@ public class Manager extends Teller
     
 
     
-    public void createAccount(int accountNumber, String fname, String lname, String address, String city, String state, int zipcode, String email)
+    public void createCustAccount(int custID, int accountNumber)
     {
         
-        try
-        {
-            
-            Statement CreateState = transaction.connect().createStatement();
-            
-            String createAccount = "INSERT INTO CUSTOMER_ACCOUNT VALUES (accountNumber,fname,lname,address,city,state,zipcode,email)";
-            ResultSet rs = CreateState.executeQuery(createAccount);
-            System.out.println(rs);
-
-        }
-        catch (Exception SQLException)
-        {
-            System.out.println("test");
-        }  
+        transaction.createCustAccount(custID, accountNumber);
                 
     }
     
-    public void closeAccount(int accountNum)
+     public void createAccount(int accountNumber, String fname, String lname, String address, String city, String state, int zipcode, String email, int ssn)
     {
-           try
+        
+        transaction.create_Account(accountNumber, fname, lname, address, city, state, zipcode, email, ssn);
+                
+    }
+    
+    public void closeAccount(int accountNumber)
+    {
+        transaction.closeAccount(accountNumber);
+    }
+    
+    public void createChecking(int accountNumber)
+    {
+            try
         {
             
             Statement CloseState = transaction.connect().createStatement();
-            //test
-            /*String getAccount = "SELECT* FROM CUSTOMER_ACCOUNT WHERE accountNumber =  " + accountNum;
-            ResultSet rs = CloseState.executeQuery(getAccount);
-            System.out.println(rs);
-            */
-            String closeAccount = "DELETE FROM CUSTOMER_ACCOUNT WHERE accountNumber = " + accountNum;
+            String closeAccount = "INSERT INTO CUSTOMER_ACCOUNT VALUES ()";
             ResultSet rs = CloseState.executeQuery(closeAccount);
 
         }
@@ -61,13 +55,7 @@ public class Manager extends Teller
         {
             System.out.println("test");
         }       
-    }
-    
-    public void createChecking()
-    {
-                
-    }
-    
+    }  
     public void createSaving()
     {
                 
