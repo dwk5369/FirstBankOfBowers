@@ -25,7 +25,7 @@ public class Transaction
     protected String strSearchCust = "select distinct fname,lname,address,city,state,zipcode,email,ssn from CUSTOMER_ACCOUNT where fName = ? OR lName = ?;";
 
     //get customer info when given a customer's account number
-    protected String strGetCust = "select accountNumber,fname,lname,address,city,state,zipcode,email from CUSTOMER_ACCOUNT where accountNumber = ?;";
+    protected String strGetCust = "select fname,lname,address,city,state,zipcode,email,ssn from CUSTOMER_ACCOUNT where accountNumber = ?;";
     
     //get customer info when given a customer's ssn
     //protected String strGetCust2 = "select accountNumber,fname,lname,address,city,state,zipcode,email from CUSTOMER_ACCOUNT where ssn = ?;";
@@ -47,9 +47,11 @@ public class Transaction
     
     protected String strCreateCustAccount = "INSERT INTO CUSTOMERACCOUNTS VALUES (?, ?)";
     
-    protected String strCreateAccount = "INSERT INTO ACCOUNT VALUES (?,?,?,?,?,?,?,? WHERE accountNumber = ?)";
+    protected String strCreateAccount = "INSERT INTO ACCOUNT (balance, interestRate, checkingOrSavings) VALUES (?,?,?)";
     
-    protected String strCloseAccount = "DELETE FROM CUSTOMER_ACCOUNT WHERE accountNumber = ?";
+    protected String strCloseAccount = "DELETE FROM ACCOUNT WHERE accountNumber = ?";
+    
+    protected String strGetCustID = "select customerID from customer inner join person on customer.id = person.id where ssn=?";
     
     /*
     For login view:
@@ -103,6 +105,7 @@ public class Transaction
                 cGet.setState(rsResult.getString(5));
                 cGet.setZipcode(rsResult.getString(6));
                 cGet.setEmail(rsResult.getString(7));
+                cGet.setSocialSecurity(rsResult.getString(8));
                 cResult.add(cGet);
             }
             psGet.close();
@@ -262,10 +265,10 @@ public class Transaction
     }//getAccount
     
     /**
+     * Withdraw funds from the specified account
      * 
-     * 
-     * @param strAcctNum
-     * @param dblAmount 
+     * @param strAcctNum account number to withdraw from
+     * @param dblAmount amount to be withdrawn
      */
     public void withdraw(String strAcctNum, double dblAmount)
     {
@@ -283,10 +286,10 @@ public class Transaction
     }//withdraw
     
     /**
+     * Deposit funds into an account
      * 
-     * 
-     * @param strAcctNum
-     * @param dblAmount 
+     * @param strAcctNum account number to deposit into
+     * @param dblAmount amount to be deposited
      */
     public void deposit(String strAcctNum, double dblAmount)
     {
@@ -315,9 +318,34 @@ public class Transaction
      * @param strAcctType
      * @param dblBalance
      * @param dblInterest
-     * @return 
      */
+     public void createAccount(Customer cust, String strAcctType, double dblBalance, double dblInterest)
+    {
+        
+        try
+        {
+            
+            psGet = connDB.prepareStatement(strCreateAccount);
+            psGet.setDouble(1, dblBalance);
+            psGet.setDouble(2, dblInterest);
+            psGet.setString(3, strAcctType);
+            psGet.executeUpdate();
+            int custID = getCustomerID(cust.getSocialSecurity());
+            int acctNum = Integer.parseInt(getAccount(cust).getAccountNumber());
+            createCustAccount(custID,acctNum);
+        }
+        catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE); 
+        }
     
+    }//create_Account
+     
+    /**
+     * 
+     * @param custID
+     * @param accountNumber 
+     */
     public void createCustAccount(int custID, int accountNumber)
     {
         
@@ -337,31 +365,10 @@ public class Transaction
                 
     }//createCustAccount
     
-     public void create_Account(int accountNumber, String fname, String lname, String address, String city, String state, int zipcode, String email, int ssn)
+    private int getCustomerID(String strSSN) 
     {
-        
-        try
-        {
-            
-            psGet = connDB.prepareStatement(strCreateAccount);
-            psGet.setInt(1,accountNumber);
-            psGet.setString(2, fname);
-            psGet.setString(3, lname);
-            psGet.setString(4, address);
-            psGet.setString(5, city);
-            psGet.setString(6, state);
-            psGet.setInt(7, zipcode);
-            psGet.setString(8, email);
-            psGet.setInt(9, ssn);
-            psGet.executeUpdate();
-
-        }
-        catch (SQLException ex)
-        {
-            JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE); 
-        }
-                
-    }//create_Account
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    } 
      
     public void closeAccount(int accountNumber)
     {
@@ -379,13 +386,13 @@ public class Transaction
         }    
     } //closeAccount
     
-    
+    /*
     public Account createAccount(Customer cust, String strAcctType, double dblBalance, double dblInterest)
     {
         
         return new Account();
     }//createAccount
-    
+    */
     public void disconnect()
     {
         try 
@@ -397,4 +404,6 @@ public class Transaction
             //handle
         }
     }// disconnect
+
+
 }

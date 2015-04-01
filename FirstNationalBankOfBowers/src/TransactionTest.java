@@ -17,7 +17,7 @@ public class TransactionTest {
         Transaction t1 = new Transaction();
         int acctNum = 11111111;
         t1.connect();
-        ArrayList test = t1.getAccountOwners(acctNum);
+        ArrayList<Customer> test = t1.getAccountOwners(acctNum);
         
         System.out.println(test.toString());
         
