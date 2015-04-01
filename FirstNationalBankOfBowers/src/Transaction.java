@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -46,9 +45,9 @@ public class Transaction
     protected String strDeposit = "update account set balance = balance + ? where accountNumber = ?";
     
     
-    protected String strCreateCustAccount = "INSERT INTO CUSTOMER VALUES (?, ?)";
+    protected String strCreateCustAccount = "INSERT INTO CUSTOMERACCOUNTS VALUES (?, ?)";
     
-    protected String strCreateAccount = "INSERT INTO CUSTOMER_ACCOUNT VALUES (?,?,?,?,?,?,?,? WHERE accountNumber = ?)";
+    protected String strCreateAccount = "INSERT INTO ACCOUNT VALUES (?,?,?,?,?,?,?,? WHERE accountNumber = ?)";
     
     protected String strCloseAccount = "DELETE FROM CUSTOMER_ACCOUNT WHERE accountNumber = ?";
     

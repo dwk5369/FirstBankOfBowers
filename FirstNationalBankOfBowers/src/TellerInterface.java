@@ -1,4 +1,5 @@
 
+import java.awt.BorderLayout;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
 
@@ -24,6 +25,7 @@ public class TellerInterface extends javax.swing.JFrame {
      */
     public TellerInterface() {
         initComponents();
+        this.setLayout(new BorderLayout());
     }
 
     /**
@@ -131,6 +133,8 @@ public class TellerInterface extends javax.swing.JFrame {
         if(currentUser != null)
         {
             JOptionPane.showMessageDialog(this, "Welcome, " + currentUser.getFname() + " " + currentUser.getLname() + "!", "Login successful!", JOptionPane.INFORMATION_MESSAGE);
+            new MainScreen(currentUser).setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_jbLoginActionPerformed
 
