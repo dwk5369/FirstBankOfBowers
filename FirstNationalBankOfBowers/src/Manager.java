@@ -29,10 +29,10 @@ public class Manager extends Teller
                 
     }
     
-     public void createAccount(int accountNumber, String fname, String lname, String address, String city, String state, int zipcode, String email, int ssn)
+     public void createAccount(Customer cust, String strAcctType, double dblBalance, double dblInterest)
     {
         
-        //transaction.createAccount(accountNumber, fname, lname, address, city, state, zipcode, email, ssn);
+        transaction.createAccount(cust, strAcctType, dblBalance, dblInterest);
                 
     }
     
@@ -40,26 +40,7 @@ public class Manager extends Teller
     {
         transaction.closeAccount(accountNumber);
     }
-    
-    public void createChecking(int accountNumber)
-    {
-            try
-        {
-            
-            Statement CloseState = transaction.connect().createStatement();
-            String closeAccount = "INSERT INTO CUSTOMER_ACCOUNT VALUES ()";
-            ResultSet rs = CloseState.executeQuery(closeAccount);
 
-        }
-        catch (Exception SQLException)
-        {
-            System.out.println("test");
-        }       
-    }  
-    public void createSaving()
-    {
-                
-    }
 
 }
 
