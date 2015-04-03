@@ -417,7 +417,7 @@ public class Transaction
             psGet.setString(7, strZipcode);
             psGet.setString(8, strEmail);
             psGet.executeUpdate();
-            
+            //insert into customer (id,pinnumber) values (7,'9999');
 
         }
         catch (SQLException ex)
