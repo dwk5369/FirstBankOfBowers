@@ -53,6 +53,10 @@ public class Transaction
     
     protected String strGetCustID = "select customerID from customer inner join person on customer.id = person.id where ssn=?";
     
+    protected String strCreateCustomer = "insert into person (ssn, fname, lname, address, city, state, zipcode, email) values (?,?,?,?,?,?,?,?);";
+    
+    protected String strCreateCustomer2 = "insert into customer (id,pinnumber) values (7,'9999');";
+    
     /*
     For login view:
     select * from person
@@ -370,7 +374,7 @@ public class Transaction
         try
         {
             psGet = connDB.prepareStatement(strGetCustID);
-            psGet.setInt(1,Integer.parseInt(strSSN));
+            psGet.setString(1,strSSN);
             rsResult = psGet.executeQuery();
             int intCustID = rsResult.getInt(1);
             return intCustID;
@@ -398,13 +402,31 @@ public class Transaction
         }    
     } //closeAccount
     
-    /*
-    public Account createAccount(Customer cust, String strAcctType, double dblBalance, double dblInterest)
+    
+    public Customer createCustomer(String strSSN, String strFName, String strLName, String strAddress, String strCity, String strState, String strZipcode, String strEmail)
     {
-        
-        return new Account();
+        try
+        {
+            psGet = connDB.prepareStatement(strCloseAccount);
+            psGet.setString(1, strSSN);
+            psGet.setString(2, strFName);
+            psGet.setString(3, strLName);
+            psGet.setString(4, strAddress);
+            psGet.setString(5, strCity);
+            psGet.setString(6, strState);
+            psGet.setString(7, strZipcode);
+            psGet.setString(8, strEmail);
+            psGet.executeUpdate();
+            
+
+        }
+        catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE); 
+        }            
+        return new Customer();
     }//createAccount
-    */
+    
     public void disconnect()
     {
         try 
