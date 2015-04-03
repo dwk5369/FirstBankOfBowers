@@ -319,7 +319,7 @@ public class Transaction
      * @param dblBalance
      * @param dblInterest
      */
-     public void createAccount(Customer cust, String strAcctType, double dblBalance, double dblInterest)
+    public void createAccount(Customer cust, String strAcctType, double dblBalance, double dblInterest)
     {
         
         try
@@ -367,12 +367,24 @@ public class Transaction
     
     private int getCustomerID(String strSSN) 
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try
+        {
+            psGet = connDB.prepareStatement(strGetCustID);
+            psGet.setInt(1,Integer.parseInt(strSSN));
+            rsResult = psGet.executeQuery();
+            int intCustID = rsResult.getInt(1);
+            return intCustID;
+        }
+        catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE); 
+            return 0;
+        }   
     } 
      
     public void closeAccount(int accountNumber)
     {
-           try
+        try
         {
             psGet = connDB.prepareStatement(strCloseAccount);
             psGet.setInt(1,accountNumber);

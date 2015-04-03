@@ -29,6 +29,8 @@ public class MainScreen extends javax.swing.JFrame {
         currentUser = tell;
         initComponents();
         jlLoggedInAs.setText("Logged in as: " + currentUser.getClass().toString().substring(6) + " " + currentUser.toString());
+        if(currentUser.getClass().toString().substring(6).equals("Teller"))
+            jbManagerTools.setVisible(false);
     }
     
     /**
@@ -43,6 +45,7 @@ public class MainScreen extends javax.swing.JFrame {
         jpMain = new javax.swing.JPanel();
         jlLoggedInAs = new javax.swing.JLabel();
         jbLogout = new javax.swing.JButton();
+        jbManagerTools = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("First Bank Of Bowers Account Management System");
@@ -56,28 +59,34 @@ public class MainScreen extends javax.swing.JFrame {
             }
         });
 
+        jbManagerTools.setText("Manager Tools");
+
         javax.swing.GroupLayout jpMainLayout = new javax.swing.GroupLayout(jpMain);
         jpMain.setLayout(jpMainLayout);
         jpMainLayout.setHorizontalGroup(
             jpMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpMainLayout.createSequentialGroup()
-                .addGroup(jpMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(jpMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jpMainLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jlLoggedInAs, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jlLoggedInAs, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 18, Short.MAX_VALUE))
                     .addGroup(jpMainLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jbLogout)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                        .addComponent(jbManagerTools, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jpMainLayout.setVerticalGroup(
             jpMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpMainLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jlLoggedInAs, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 210, Short.MAX_VALUE)
-                .addComponent(jbLogout)
-                .addGap(27, 27, 27))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 319, Short.MAX_VALUE)
+                .addGroup(jpMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbLogout)
+                    .addComponent(jbManagerTools))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -140,6 +149,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jbLogout;
+    private javax.swing.JButton jbManagerTools;
     private javax.swing.JLabel jlLoggedInAs;
     private javax.swing.JPanel jpMain;
     // End of variables declaration//GEN-END:variables
