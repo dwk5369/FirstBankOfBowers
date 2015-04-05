@@ -133,7 +133,7 @@ public class TellerInterface extends javax.swing.JFrame {
         if(currentUser != null)
         {
             JOptionPane.showMessageDialog(this, "Welcome, " + currentUser.getFname() + " " + currentUser.getLname() + "!", "Login successful!", JOptionPane.INFORMATION_MESSAGE);
-            new MainScreen(currentUser).setVisible(true);
+            new MainScreen(currentUser, bankTrans).setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_jbLoginActionPerformed

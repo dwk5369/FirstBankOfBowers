@@ -91,6 +91,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Manager Tools"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbManagerToolsActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

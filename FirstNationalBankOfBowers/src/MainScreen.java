@@ -14,8 +14,9 @@ import javax.swing.JOptionPane;
  */
 public class MainScreen extends javax.swing.JFrame {
 
-    Transaction bankTrans = new Transaction();
+    Transaction bankTrans;
     Account acctCurrent;
+    Customer custCurrent;
     Teller currentUser;
     /**
      * Creates new form MainScreen
@@ -24,14 +25,27 @@ public class MainScreen extends javax.swing.JFrame {
         initComponents();
     }
 
-    public MainScreen(Teller tell)
+    public MainScreen(Teller tell, Transaction trans)
     {
         currentUser = tell;
+        bankTrans = trans;
         initComponents();
         jlLoggedInAs.setText("Logged in as: " + currentUser.getClass().toString().substring(6) + " " + currentUser.toString());
         if(currentUser.getClass().toString().substring(6).equals("Teller"))
             jbManagerTools.setVisible(false);
     }
+
+    public MainScreen(Teller tell, Transaction trans, Customer cust, Account acct)
+    {
+        currentUser = tell;
+        bankTrans = trans;
+        custCurrent = cust;
+        acctCurrent = acct;
+        initComponents();
+        jlLoggedInAs.setText("Logged in as: " + currentUser.getClass().toString().substring(6) + " " + currentUser.toString());
+        if(currentUser.getClass().toString().substring(6).equals("Teller"))
+            jbManagerTools.setVisible(false);
+    }    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -60,6 +74,11 @@ public class MainScreen extends javax.swing.JFrame {
         });
 
         jbManagerTools.setText("Manager Tools");
+        jbManagerTools.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbManagerToolsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpMainLayout = new javax.swing.GroupLayout(jpMain);
         jpMain.setLayout(jpMainLayout);
@@ -111,6 +130,10 @@ public class MainScreen extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_jbLogoutActionPerformed
+
+    private void jbManagerToolsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbManagerToolsActionPerformed
+        
+    }//GEN-LAST:event_jbManagerToolsActionPerformed
 
     /**
      * @param args the command line arguments
