@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -43,7 +46,7 @@ public class ManagerScreen extends javax.swing.JFrame {
         jpButtons = new javax.swing.JPanel();
         jbCreateAccount = new javax.swing.JButton();
         jbTransferFunds = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jbCloseAccount = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,10 +60,15 @@ public class ManagerScreen extends javax.swing.JFrame {
         jpButtons.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jbCreateAccount.setText("Open Account");
+        jbCreateAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCreateAccountActionPerformed(evt);
+            }
+        });
 
         jbTransferFunds.setText("Transfer Funds");
 
-        jButton1.setText("Close Account");
+        jbCloseAccount.setText("Close Account");
 
         javax.swing.GroupLayout jpButtonsLayout = new javax.swing.GroupLayout(jpButtons);
         jpButtons.setLayout(jpButtonsLayout);
@@ -72,7 +80,7 @@ public class ManagerScreen extends javax.swing.JFrame {
                     .addComponent(jbCreateAccount, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbTransferFunds, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jpButtonsLayout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbCloseAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 2, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -84,7 +92,7 @@ public class ManagerScreen extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbTransferFunds)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(jbCloseAccount)
                 .addContainerGap(88, Short.MAX_VALUE))
         );
 
@@ -118,6 +126,19 @@ public class ManagerScreen extends javax.swing.JFrame {
         new MainScreen(currentUser,bankTrans,custCurrent,acctCurrent).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jbExitActionPerformed
+
+    private void jbCreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCreateAccountActionPerformed
+        int intNewCust = JOptionPane.showConfirmDialog(this, "Is this account for a new customer?", "Returning Customer?", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (intNewCust == 0)
+        {
+            System.out.println("Yes");
+            new SearchCustomer(this, true).setVisible(true);
+        }
+        else if (intNewCust == 1)
+            System.out.println("No");
+        else if (intNewCust == -1)
+            System.out.println("Maybe");
+    }//GEN-LAST:event_jbCreateAccountActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,7 +176,7 @@ public class ManagerScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jbCloseAccount;
     private javax.swing.JButton jbCreateAccount;
     private javax.swing.JButton jbExit;
     private javax.swing.JButton jbTransferFunds;
