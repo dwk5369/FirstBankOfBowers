@@ -10,11 +10,24 @@
  */
 public class SearchCustomer extends javax.swing.JDialog {
 
+    private Transaction bankTrans;
+    private Account acctCurrent;
+    private Customer custCurrent;
+    private Manager currentUser;
+    private ManagerScreen msScreen;
     /**
      * Creates new form SearchCustomer
      */
     public SearchCustomer(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        initComponents();
+    }
+    
+    public SearchCustomer(java.awt.Frame parent, boolean modal, ManagerScreen ms, Transaction trans, Manager man) {
+        super(parent, modal);
+        msScreen = ms;
+        bankTrans = trans;
+        currentUser = man;
         initComponents();
     }
 

@@ -13,10 +13,10 @@ import javax.swing.JOptionPane;
  */
 public class ManagerScreen extends javax.swing.JFrame {
 
-    Transaction bankTrans;
-    Account acctCurrent;
-    Customer custCurrent;
-    Manager currentUser;
+    private Transaction bankTrans;
+    private Account acctCurrent;
+    private Customer custCurrent;
+    private Manager currentUser;
     /**
      * Creates new form ManagerScreen
      */
@@ -132,14 +132,42 @@ public class ManagerScreen extends javax.swing.JFrame {
         if (intNewCust == 0)
         {
             System.out.println("Yes");
-            new SearchCustomer(this, true).setVisible(true);
         }
         else if (intNewCust == 1)
+        {
             System.out.println("No");
+            SearchCustomer sc = new SearchCustomer(this, true);
+            sc.setVisible(true);
+        }
         else if (intNewCust == -1)
             System.out.println("Maybe");
     }//GEN-LAST:event_jbCreateAccountActionPerformed
 
+    public Account getAcctCurrent() {
+        return acctCurrent;
+    }
+
+    public void setAcctCurrent(Account acctCurrent) {
+        this.acctCurrent = acctCurrent;
+    }
+
+    public Customer getCustCurrent() {
+        return custCurrent;
+    }
+
+    public void setCustCurrent(Customer custCurrent) {
+        this.custCurrent = custCurrent;
+    }
+
+    public Manager getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(Manager currentUser) {
+        this.currentUser = currentUser;
+    }
+
+    
     /**
      * @param args the command line arguments
      */
