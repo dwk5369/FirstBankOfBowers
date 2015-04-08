@@ -45,6 +45,8 @@ public class MainScreen extends javax.swing.JFrame {
         jlLoggedInAs.setText("Logged in as: " + currentUser.getClass().toString().substring(6) + " " + currentUser.toString());
         if(currentUser.getClass().toString().substring(6).equals("Teller"))
             jbManagerTools.setVisible(false);
+        if(custCurrent != null)
+            jlCustomer.setText("Current Customer: " + custCurrent.toString());
     }    
     
     /**
@@ -97,6 +99,11 @@ public class MainScreen extends javax.swing.JFrame {
         jlLoggedInAs.setFont(new java.awt.Font("Perpetua", 1, 14)); // NOI18N
 
         jbSearchCustomer.setText("Search Customer");
+        jbSearchCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSearchCustomerActionPerformed(evt);
+            }
+        });
 
         jbSelectAccount.setText("Select Account");
 
@@ -241,6 +248,11 @@ public class MainScreen extends javax.swing.JFrame {
         new ManagerScreen((Manager)currentUser,bankTrans,custCurrent,acctCurrent).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jbManagerToolsActionPerformed
+
+    private void jbSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSearchCustomerActionPerformed
+        new SearchCustomer(bankTrans,acctCurrent,custCurrent,currentUser).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jbSearchCustomerActionPerformed
 
     /**
      * @param args the command line arguments
