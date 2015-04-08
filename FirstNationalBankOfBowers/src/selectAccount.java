@@ -166,7 +166,7 @@ public class selectAccount extends javax.swing.JFrame {
     private void accountListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accountListMouseClicked
         String[][] accountInfo = new String[numInList][4]; 
         ArrayList<Account> acc = bankTrans.getAccount(custCurrent);
-        accountInfo = acc.toArray(accountInfo);
+        acc.toArray(accountInfo);
         
         AccountNumField.setText(accountInfo[accountList.getSelectedIndex()][1]);
         BalanceField.setText(accountInfo[accountList.getSelectedIndex()][2]);
