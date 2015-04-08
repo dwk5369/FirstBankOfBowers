@@ -125,10 +125,6 @@
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="jlCustomer" max="32767" attributes="0"/>
                                   </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="jbDeposit" min="-2" pref="128" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jbSelectAccount" min="-2" pref="128" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -139,7 +135,11 @@
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="jlBalance" max="32767" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="jbDeposit" min="-2" pref="128" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
                                       <Component id="jbAccountInfo" min="-2" pref="128" max="-2" attributes="0"/>
                                       <EmptySpace pref="121" max="32767" attributes="0"/>
                                       <Component id="jbEndTransaction" min="-2" pref="128" max="-2" attributes="0"/>
@@ -162,25 +162,25 @@
                           <Component id="jlCustomer" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jbSelectAccount" min="-2" max="-2" attributes="0"/>
-                          <Component id="jlAccount" min="-2" pref="27" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jbSelectAccount" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlAccount" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jbWithdrawl" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jlBalance" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                       <Component id="jbDeposit" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jbTransferFunds" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jbAccountInfo" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jbEndTransaction" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="31" max="32767" attributes="0"/>
+                      <EmptySpace pref="12" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -231,7 +231,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="12" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Selected Account:"/>
+                <Property name="text" type="java.lang.String" value="Current Account:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jlBalance">
@@ -239,7 +239,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="12" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Current Acct Balance:"/>
+                <Property name="text" type="java.lang.String" value="Account Balance: "/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jlCustomer">
@@ -247,7 +247,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="12" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Customer:"/>
+                <Property name="text" type="java.lang.String" value="Current Customer:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="jbEndTransaction">

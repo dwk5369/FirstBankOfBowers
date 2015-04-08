@@ -116,13 +116,13 @@ public class MainScreen extends javax.swing.JFrame {
         jbAccountInfo.setText("Account Info");
 
         jlAccount.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jlAccount.setText("Selected Account:");
+        jlAccount.setText("Current Account:");
 
         jlBalance.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jlBalance.setText("Current Acct Balance:");
+        jlBalance.setText("Account Balance: ");
 
         jlCustomer.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jlCustomer.setText("Customer:");
+        jlCustomer.setText("Current Customer:");
 
         jbEndTransaction.setText("End Transaction");
         jbEndTransaction.addActionListener(new java.awt.event.ActionListener() {
@@ -151,9 +151,6 @@ public class MainScreen extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jlCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jpButtonsLayout.createSequentialGroup()
-                                .addComponent(jbDeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jpButtonsLayout.createSequentialGroup()
                                 .addComponent(jbSelectAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jlAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -161,7 +158,10 @@ public class MainScreen extends javax.swing.JFrame {
                                 .addComponent(jbWithdrawl, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jlBalance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpButtonsLayout.createSequentialGroup()
+                            .addGroup(jpButtonsLayout.createSequentialGroup()
+                                .addComponent(jbDeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jpButtonsLayout.createSequentialGroup()
                                 .addComponent(jbAccountInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                                 .addComponent(jbEndTransaction, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -177,22 +177,22 @@ public class MainScreen extends javax.swing.JFrame {
                     .addComponent(jbSearchCustomer)
                     .addComponent(jlCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jpButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbSelectAccount)
                     .addComponent(jlAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(14, 14, 14)
                 .addGroup(jpButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbWithdrawl)
                     .addComponent(jlBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(16, 16, 16)
                 .addComponent(jbDeposit)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jbTransferFunds)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jpButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbAccountInfo)
                     .addComponent(jbEndTransaction))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jpMainLayout = new javax.swing.GroupLayout(jpMain);
