@@ -93,7 +93,7 @@ public class Teller extends Person {
      */
     public double checkBalance()
     {
-        return 0;//currentAccount.getBalance();
+        return currentAccount.getBalance();
     }//checkBalance
     
     /**
@@ -113,7 +113,7 @@ public class Teller extends Person {
             }
             else
             {
-                //currentAccount.Withdraw(intAmount);
+                currentAccount.withdraw(intAmount);
             }
         } // try
         
@@ -130,7 +130,7 @@ public class Teller extends Person {
      */
     public void makeDeposit(int Amount)
     {
-        //currentAccount.Deposit(currentAccount, Amount);
+        currentAccount.deposit(Amount);
     } // makeDeposit
     
     /**
