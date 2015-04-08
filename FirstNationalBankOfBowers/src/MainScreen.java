@@ -56,16 +56,22 @@ public class MainScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         jpMain = new javax.swing.JPanel();
-        jlLoggedInAs = new javax.swing.JLabel();
         jbLogout = new javax.swing.JButton();
         jbManagerTools = new javax.swing.JButton();
         jpButtons = new javax.swing.JPanel();
+        jlLoggedInAs = new javax.swing.JLabel();
+        jbSearchCustomer = new javax.swing.JButton();
+        jbSelectAccount = new javax.swing.JButton();
+        jbWithdrawl = new javax.swing.JButton();
+        jbDeposit = new javax.swing.JButton();
+        jbTransferFunds = new javax.swing.JButton();
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("First Bank Of Bowers Account Management System");
-
-        jlLoggedInAs.setFont(new java.awt.Font("Perpetua", 1, 14)); // NOI18N
 
         jbLogout.setText("Logout");
         jbLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -83,15 +89,52 @@ public class MainScreen extends javax.swing.JFrame {
 
         jpButtons.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jlLoggedInAs.setFont(new java.awt.Font("Perpetua", 1, 14)); // NOI18N
+
+        jbSearchCustomer.setText("Search Customer");
+
+        jbSelectAccount.setText("Select Account");
+
+        jbWithdrawl.setText("Withdraw");
+
+        jbDeposit.setText("Deposit");
+
+        jbTransferFunds.setText("Transfer Funds");
+
         javax.swing.GroupLayout jpButtonsLayout = new javax.swing.GroupLayout(jpButtons);
         jpButtons.setLayout(jpButtonsLayout);
         jpButtonsLayout.setHorizontalGroup(
             jpButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpButtonsLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jpButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jbSelectAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbSearchCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbWithdrawl, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbDeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addComponent(jbTransferFunds, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(131, 131, 131))
+            .addGroup(jpButtonsLayout.createSequentialGroup()
+                .addComponent(jlLoggedInAs, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jpButtonsLayout.setVerticalGroup(
             jpButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 180, Short.MAX_VALUE)
+            .addGroup(jpButtonsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlLoggedInAs, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jpButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbSearchCustomer)
+                    .addComponent(jbTransferFunds))
+                .addGap(18, 18, 18)
+                .addComponent(jbSelectAccount)
+                .addGap(18, 18, 18)
+                .addComponent(jbWithdrawl)
+                .addGap(18, 18, 18)
+                .addComponent(jbDeposit)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jpMainLayout = new javax.swing.GroupLayout(jpMain);
@@ -101,25 +144,21 @@ public class MainScreen extends javax.swing.JFrame {
             .addGroup(jpMainLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpMainLayout.createSequentialGroup()
+                    .addGroup(jpMainLayout.createSequentialGroup()
+                        .addComponent(jpButtons, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jpMainLayout.createSequentialGroup()
                         .addComponent(jbManagerTools, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpMainLayout.createSequentialGroup()
-                        .addGroup(jpMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlLoggedInAs, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jpButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 18, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jbLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(376, 376, 376))))
         );
         jpMainLayout.setVerticalGroup(
             jpMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpMainLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jlLoggedInAs, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jpButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jpButtons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jpMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jbLogout)
                     .addComponent(jbManagerTools))
@@ -130,11 +169,11 @@ public class MainScreen extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jpMain, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpMain, javax.swing.GroupLayout.PREFERRED_SIZE, 267, Short.MAX_VALUE)
+            .addComponent(jpMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -190,8 +229,14 @@ public class MainScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jbDeposit;
     private javax.swing.JButton jbLogout;
     private javax.swing.JButton jbManagerTools;
+    private javax.swing.JButton jbSearchCustomer;
+    private javax.swing.JButton jbSelectAccount;
+    private javax.swing.JButton jbTransferFunds;
+    private javax.swing.JButton jbWithdrawl;
     private javax.swing.JLabel jlLoggedInAs;
     private javax.swing.JPanel jpButtons;
     private javax.swing.JPanel jpMain;
