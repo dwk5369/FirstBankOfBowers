@@ -34,6 +34,9 @@ public class Transaction
     //get account info when given a customer's account number
     protected String strGetAcct = "select accountNumber, balance, interestRate, COS from CUSTOMER_ACCOUNT where ssn = ?";
     
+    //get account info for a specific account type
+    protected String strGetAcct2 = "select accountNumber, balance, interestRate from CUSTOMER_ACCOUNT where ssn = ? and COS = ?";
+    
     //confirm that a user's login credentials match in the database
     //protected String strLogin = "select fname, lname, managerID from person inner join teller on person.id = teller.id left outer join manager on teller.tellerID = manager.tellerID where userName = ? and password = ?";
     protected String strLogin = "select fname, lname, managerID from logininfo where userName = ? and password = ?";
@@ -240,26 +243,31 @@ public class Transaction
      * @param cust
      * @return 
      */
-    public Account getAccount(Customer cust)
+    public ArrayList<Account> getAccount(Customer cust)
     {
         try 
         {
             String strSSN = cust.getSocialSecurity();
             
+            ArrayList<Account> acct = new ArrayList();
+            
             psGet = connDB.prepareStatement(strGetAcct);
             psGet.setString(1, strSSN);
             rsResult = psGet.executeQuery();
             rsResult.first();            
-            
-            String acctNum = rsResult.getString(1);
-            double balance = rsResult.getDouble(2);
-            double intRate = rsResult.getDouble(3);
-            String cOrS = rsResult.getString(4);
+            while(rsResult.next())
+            {
+                String acctNum = rsResult.getString(1);
+                double balance = rsResult.getDouble(2);
+                double intRate = rsResult.getDouble(3);
+                String cOrS = rsResult.getString(4);
+                if(cOrS.equals("c"))
+                    acct.add(new CheckingAccount(acctNum, balance, intRate));
+                else
+                    acct.add(new SavingsAccount(acctNum, balance, intRate));                
+            }
             psGet.close();
-            if(cOrS.equals("c"))
-                return new CheckingAccount(acctNum, balance, intRate);
-            else
-                return new SavingsAccount(acctNum, balance, intRate);
+            return acct;
         } 
         catch (SQLException ex) 
         {
@@ -267,6 +275,35 @@ public class Transaction
             return null;
         }
     }//getAccount
+
+    public Account getAccount(Customer cust, String strCOS)
+    {
+        try 
+        {
+            String strSSN = cust.getSocialSecurity();
+            Account acct;
+            
+            psGet = connDB.prepareStatement(strGetAcct2);
+            psGet.setString(1, strSSN);
+            psGet.setString(2, strCOS);
+            rsResult = psGet.executeQuery();
+            rsResult.first();            
+            String acctNum = rsResult.getString(1);
+            double balance = rsResult.getDouble(2);
+            double intRate = rsResult.getDouble(3);
+            if(strCOS.equals("c"))
+                acct = new CheckingAccount(acctNum, balance, intRate);
+            else
+                acct = new SavingsAccount(acctNum, balance, intRate);                
+            psGet.close();
+            return acct;
+        } 
+        catch (SQLException ex) 
+        {
+            JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+    }//getAccount    
     
     /**
      * Withdraw funds from the specified account
@@ -335,7 +372,7 @@ public class Transaction
             psGet.setString(3, strAcctType);
             psGet.executeUpdate();
             int custID = getCustomerID(cust.getSocialSecurity());
-            int acctNum = Integer.parseInt(getAccount(cust).getAccountNumber());
+            int acctNum = Integer.parseInt(getAccount(cust, strAcctType).getAccountNumber());
             createCustAccount(custID,acctNum);
         }
         catch (SQLException ex)
