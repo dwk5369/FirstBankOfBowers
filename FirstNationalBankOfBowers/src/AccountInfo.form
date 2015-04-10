@@ -23,51 +23,56 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jlSavingsAcctID" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jlSavingsAcctBalance" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
-                      <Component id="jlCheckingAcctBalance" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jlCheckingAcctID" alignment="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jlCustomerName" max="32767" attributes="0"/>
-                      <Component id="jlCustomerID" max="32767" attributes="0"/>
-                      <Component id="jlSSN" alignment="1" pref="147" max="32767" attributes="0"/>
-                      <Component id="jlAddress" alignment="1" pref="147" max="32767" attributes="0"/>
-                      <Component id="jlCity" alignment="0" pref="147" max="32767" attributes="0"/>
-                      <Component id="jlZip" alignment="0" pref="147" max="32767" attributes="0"/>
-                      <Component id="jlState" alignment="0" pref="147" max="32767" attributes="0"/>
-                      <Component id="jlPhone" alignment="0" pref="147" max="32767" attributes="0"/>
-                      <Component id="jlEmail" alignment="0" pref="147" max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jtxtSSN" pref="292" max="32767" attributes="0"/>
-                  <Component id="jtxtCustomerName" max="32767" attributes="0"/>
-                  <Component id="jtxtCustomerID" alignment="1" pref="292" max="32767" attributes="0"/>
-                  <Component id="jtxtAddress" alignment="0" pref="292" max="32767" attributes="0"/>
-                  <Component id="jtxtCity" alignment="1" pref="292" max="32767" attributes="0"/>
-                  <Component id="jtxtState" alignment="1" pref="292" max="32767" attributes="0"/>
-                  <Component id="jtxtZip" alignment="1" pref="292" max="32767" attributes="0"/>
-                  <Component id="jtxtPhone" alignment="1" pref="292" max="32767" attributes="0"/>
-                  <Component id="jtxtSavingsAcctID" alignment="1" pref="292" max="32767" attributes="0"/>
-                  <Component id="jtxtSavingsAcctBalance" alignment="0" pref="292" max="32767" attributes="0"/>
-                  <Component id="jtxtEmail" alignment="1" pref="292" max="32767" attributes="0"/>
-                  <Component id="jtxtCheckingAcctID" alignment="1" pref="292" max="32767" attributes="0"/>
-                  <Component id="jtxtCheckingAcctBalance" alignment="1" pref="292" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jlCheckingAcctBalance" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                              <Component id="jtxtCheckingAcctBalance" pref="292" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jlSavingsAcctBalance" min="-2" pref="147" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jlCustomerName" max="32767" attributes="0"/>
+                                      <Component id="jlCustomerID" max="32767" attributes="0"/>
+                                      <Component id="jlSSN" alignment="1" pref="147" max="32767" attributes="0"/>
+                                      <Component id="jlAddress" alignment="1" pref="147" max="32767" attributes="0"/>
+                                      <Component id="jlCity" alignment="0" pref="147" max="32767" attributes="0"/>
+                                      <Component id="jlZip" alignment="0" pref="147" max="32767" attributes="0"/>
+                                      <Component id="jlState" alignment="0" pref="147" max="32767" attributes="0"/>
+                                      <Component id="jlPhone" alignment="0" pref="147" max="32767" attributes="0"/>
+                                      <Component id="jlEmail" alignment="0" pref="147" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jtxtSSN" pref="292" max="32767" attributes="0"/>
+                                  <Component id="jtxtCustomerName" max="32767" attributes="0"/>
+                                  <Component id="jtxtCustomerID" alignment="1" pref="292" max="32767" attributes="0"/>
+                                  <Component id="jtxtAddress" alignment="0" pref="292" max="32767" attributes="0"/>
+                                  <Component id="jtxtCity" alignment="1" pref="292" max="32767" attributes="0"/>
+                                  <Component id="jtxtState" alignment="1" pref="292" max="32767" attributes="0"/>
+                                  <Component id="jtxtZip" alignment="1" pref="292" max="32767" attributes="0"/>
+                                  <Component id="jtxtPhone" alignment="1" pref="292" max="32767" attributes="0"/>
+                                  <Component id="jtxtEmail" alignment="1" pref="292" max="32767" attributes="0"/>
+                                  <Component id="jtxtSavingsAcctBalance" alignment="0" pref="292" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                      <Component id="jbSave" min="-2" pref="124" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="jbClose" min="-2" pref="124" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
-              <Component id="jbSave" min="-2" pref="124" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-              <Component id="jbClose" min="-2" pref="124" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -121,18 +126,8 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jlSavingsAcctID" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                  <Component id="jtxtSavingsAcctID" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jlSavingsAcctBalance" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                   <Component id="jtxtSavingsAcctBalance" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jlCheckingAcctID" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                  <Component id="jtxtCheckingAcctID" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -144,7 +139,7 @@
                   <Component id="jbSave" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jbClose" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="20" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -166,15 +161,6 @@
         </Property>
         <Property name="horizontalAlignment" type="int" value="2"/>
         <Property name="text" type="java.lang.String" value="Customer ID:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jlSavingsAcctID">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="12" style="0"/>
-        </Property>
-        <Property name="horizontalAlignment" type="int" value="2"/>
-        <Property name="text" type="java.lang.String" value="Savings Account ID:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jlSavingsAcctBalance">
@@ -258,15 +244,6 @@
         <Property name="text" type="java.lang.String" value="Checking Account Balance:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jlCheckingAcctID">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="12" style="0"/>
-        </Property>
-        <Property name="horizontalAlignment" type="int" value="2"/>
-        <Property name="text" type="java.lang.String" value="Checking Account ID:"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JTextField" name="jtxtCustomerName">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -283,6 +260,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jtxtCustomerID">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="12" style="0"/>
         </Property>
@@ -323,15 +301,9 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jtxtSavingsAcctID">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="12" style="0"/>
-        </Property>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JTextField" name="jtxtSavingsAcctBalance">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="12" style="0"/>
         </Property>
@@ -344,15 +316,9 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jtxtCheckingAcctID">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="12" style="0"/>
-        </Property>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JTextField" name="jtxtCheckingAcctBalance">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="12" style="0"/>
         </Property>
@@ -373,6 +339,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Close"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbCloseActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
