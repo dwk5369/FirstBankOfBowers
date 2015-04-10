@@ -315,6 +315,9 @@ public class MainScreen extends javax.swing.JFrame {
     private void jbTransferFundsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbTransferFundsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbTransferFundsActionPerformed
+        new selectAccount(bankTrans,acctCurrent,custCurrent,currentUser).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jbSelectAccountActionPerformed
 
     /**
      * @param args the command line arguments

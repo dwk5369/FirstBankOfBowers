@@ -1,4 +1,5 @@
 
+import java.awt.HeadlessException;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
@@ -20,12 +21,25 @@ public class selectAccount extends javax.swing.JFrame {
     Teller currentUser;
     DefaultListModel listaccounts;
     int numInList;
+    
+    public selectAccount() {
+        initComponents();
+    }
 
     /**
      * Creates new form selectAccount
      */
-    public selectAccount()
+    public selectAccount(Transaction bankTrans, Account acctCurrent, Customer custCurrent, Teller currentUser) throws HeadlessException
     {
+        this.bankTrans = bankTrans;
+        this.acctCurrent = acctCurrent;
+        this.custCurrent = custCurrent;
+        this.currentUser = currentUser;
+        
+        bankTrans.connect();
+        
+        /*needs its own method
+        listaccounts.removeAllElements();
         ArrayList<Account> acc = bankTrans.getAccount(custCurrent);
         
         for(Account listComp : acc)
@@ -35,6 +49,7 @@ public class selectAccount extends javax.swing.JFrame {
         }
         
         accountList.setModel(listaccounts);
+        */
     }
 
     /**
@@ -60,7 +75,7 @@ public class selectAccount extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Select");
+        jButton1.setText("Select Account");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -103,25 +118,26 @@ public class selectAccount extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AccountNumber)
-                    .addComponent(Balance)
-                    .addComponent(InterestRate)
-                    .addComponent(AccountType))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(AccountNumField, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
-                    .addComponent(InterestRateField)
-                    .addComponent(BalanceField)
-                    .addComponent(AccountTypeField))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(AccountNumber)
+                            .addComponent(Balance)
+                            .addComponent(InterestRate)
+                            .addComponent(AccountType))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(AccountNumField, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                            .addComponent(InterestRateField)
+                            .addComponent(BalanceField)
+                            .addComponent(AccountTypeField)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(167, 167, 167)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 64, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,9 +161,9 @@ public class selectAccount extends javax.swing.JFrame {
                             .addComponent(AccountType)
                             .addComponent(AccountTypeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(42, 42, 42))
+                .addGap(48, 48, 48)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pack();
