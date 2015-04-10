@@ -33,13 +33,14 @@ public class TransferFunds extends javax.swing.JFrame {
     }
 
     public TransferFunds(Transaction bankTrans, Account acctCurrent, Customer custCurrent, Teller currentUser) throws HeadlessException {
+        initComponents();
         this.bankTrans = bankTrans;
         this.acctCurrent = acctCurrent;
         this.custCurrent = custCurrent;
         this.currentUser = currentUser;
         dlmTransferFrom = new DefaultListModel();
         dlmTransferTo = new DefaultListModel();
-        initComponents();
+        
         populateLists();
     }
     
@@ -51,17 +52,21 @@ public class TransferFunds extends javax.swing.JFrame {
         {
             dlmTransferFrom.addElement(a);
             dlmTransferTo.addElement(a);
+            jlTransferFrom.setModel(dlmTransferFrom);
+            jlTransferTo.setModel(dlmTransferTo);
         }
+        bankTrans.disconnect();
         if(custAccounts.size() == 1)
         {
             JOptionPane.showMessageDialog(this, "Customer only has one account! Cannot perform transfer!", "Error", JOptionPane.ERROR_MESSAGE);
-            destroyForm();
+            jbTransfer.setEnabled(false);
         }    
     }//populateLists
 
     private void destroyForm()
     {
-        
+        new MainScreen(currentUser,bankTrans,custCurrent,acctCurrent).setVisible(true);
+        this.dispose();        
     }
     
     /**
@@ -73,99 +78,123 @@ public class TransferFunds extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jlTransferFrom = new javax.swing.JList();
+        jlTransferTo = new javax.swing.JList();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jlTransferFrom1 = new javax.swing.JList();
+        jlTransferFrom = new javax.swing.JList();
         jLabel3 = new javax.swing.JLabel();
         jtfAmount = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jbTransfer = new javax.swing.JButton();
+        jbExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Transfer Between Accounts");
 
-        jLabel1.setText("Transfer Between Accounts");
-
-        jScrollPane1.setViewportView(jlTransferFrom);
+        jScrollPane1.setViewportView(jlTransferTo);
 
         jLabel2.setText("From:");
 
-        jScrollPane2.setViewportView(jlTransferFrom1);
+        jScrollPane2.setViewportView(jlTransferFrom);
 
         jLabel3.setText("To:");
 
         jLabel4.setText("Amount:");
 
-        jButton1.setText("Transfer");
+        jbTransfer.setText("Transfer");
+        jbTransfer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbTransferActionPerformed(evt);
+            }
+        });
+
+        jbExit.setText("Exit");
+        jbExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbExitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jLabel2))
+                        .addGap(13, 13, 13)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
+                                .addGap(13, 13, 13)
                                 .addComponent(jLabel3)
                                 .addGap(45, 45, 45))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel4)
                                 .addGap(33, 33, 33)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jbTransfer, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jbExit, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jtfAmount)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(140, 140, 140)
-                        .addComponent(jButton1)))
-                .addContainerGap(250, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(88, 88, 88)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(250, Short.MAX_VALUE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
-                .addComponent(jLabel2)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
                         .addGap(56, 56, 56)
                         .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addContainerGap(60, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(49, 49, 49)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(198, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbTransfer)
+                    .addComponent(jbExit))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExitActionPerformed
+        destroyForm();
+    }//GEN-LAST:event_jbExitActionPerformed
+
+    private void jbTransferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbTransferActionPerformed
+        double dblTransfer = Double.parseDouble(jtfAmount.getText());
+        Account acctFrom = (Account)jlTransferFrom.getSelectedValue();
+        Account acctTo = (Account)jlTransferTo.getSelectedValue();
+        if(acctFrom.getBalance() - dblTransfer <= 0)
+        {
+            JOptionPane.showMessageDialog(this, "Transfer denied. Insufficient balance.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else
+        {
+            bankTrans.connect();
+            bankTrans.transferFunds(acctFrom,acctTo,dblTransfer);
+            bankTrans.disconnect();
+            JOptionPane.showMessageDialog(this, "Transfer completed successfully,", "Transfer Complete", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+    }//GEN-LAST:event_jbTransferActionPerformed
 
     /**
      * @param args the command line arguments
@@ -203,15 +232,15 @@ public class TransferFunds extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton jbExit;
+    private javax.swing.JButton jbTransfer;
     private javax.swing.JList jlTransferFrom;
-    private javax.swing.JList jlTransferFrom1;
+    private javax.swing.JList jlTransferTo;
     private javax.swing.JTextField jtfAmount;
     // End of variables declaration//GEN-END:variables
 }

@@ -301,7 +301,8 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_jbEndTransactionActionPerformed
 
     private void jbSelectAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSelectAccountActionPerformed
-        // TODO add your handling code here:
+        new selectAccount(bankTrans,acctCurrent,custCurrent,currentUser).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jbSelectAccountActionPerformed
 
     private void jbWithdrawlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbWithdrawlActionPerformed
@@ -313,8 +314,7 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_jbDepositActionPerformed
 
     private void jbTransferFundsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbTransferFundsActionPerformed
-        // TODO add your handling code here:
-        new selectAccount(bankTrans,acctCurrent,custCurrent,currentUser).setVisible(true);
+        new TransferFunds(bankTrans,acctCurrent,custCurrent,currentUser).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jbTransferFundsActionPerformed
                                         
