@@ -31,6 +31,15 @@ public class selectAccount extends javax.swing.JFrame {
      */
     public selectAccount(Transaction bankTrans, Account acctCurrent, Customer custCurrent, Teller currentUser) throws HeadlessException
     {
+        this.bankTrans = bankTrans;
+        this.acctCurrent = acctCurrent;
+        this.custCurrent = custCurrent;
+        this.currentUser = currentUser;
+        
+        bankTrans.connect();
+        
+        /*needs its own method
+        listaccounts.removeAllElements();
         ArrayList<Account> acc = bankTrans.getAccount(custCurrent);
         
         for(Account listComp : acc)
@@ -40,6 +49,7 @@ public class selectAccount extends javax.swing.JFrame {
         }
         
         accountList.setModel(listaccounts);
+        *//
     }
 
     /**
