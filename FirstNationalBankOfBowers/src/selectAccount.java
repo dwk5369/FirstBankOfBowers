@@ -1,4 +1,5 @@
 
+import java.awt.HeadlessException;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
@@ -20,11 +21,15 @@ public class selectAccount extends javax.swing.JFrame {
     Teller currentUser;
     DefaultListModel listaccounts;
     int numInList;
+    
+    public selectAccount() {
+        initComponents();
+    }
 
     /**
      * Creates new form selectAccount
      */
-    public selectAccount()
+    public selectAccount(Transaction bankTrans, Account acctCurrent, Customer custCurrent, Teller currentUser) throws HeadlessException
     {
         ArrayList<Account> acc = bankTrans.getAccount(custCurrent);
         
