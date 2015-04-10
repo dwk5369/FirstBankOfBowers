@@ -106,6 +106,11 @@ public class MainScreen extends javax.swing.JFrame {
         });
 
         jbSelectAccount.setText("Select Account");
+        jbSelectAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSelectAccountActionPerformed(evt);
+            }
+        });
 
         jbWithdrawl.setText("Withdraw");
 
@@ -267,6 +272,11 @@ public class MainScreen extends javax.swing.JFrame {
             acctCurrent = new Account();
         }
     }//GEN-LAST:event_jbEndTransactionActionPerformed
+
+    private void jbSelectAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSelectAccountActionPerformed
+        new selectAccount(bankTrans,acctCurrent,custCurrent,currentUser).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jbSelectAccountActionPerformed
 
     /**
      * @param args the command line arguments
