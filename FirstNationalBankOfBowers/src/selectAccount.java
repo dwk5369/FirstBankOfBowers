@@ -49,7 +49,7 @@ public class selectAccount extends javax.swing.JFrame {
         }
         
         accountList.setModel(listaccounts);
-        *//
+        */
     }
 
     /**
