@@ -45,6 +45,7 @@ public class Withdrawl extends javax.swing.JFrame {
         jbWithdraw = new javax.swing.JButton();
         jtWithdraw = new javax.swing.JTextField();
         jlCurrentAccount = new javax.swing.JLabel();
+        jlNotify = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,6 +72,8 @@ public class Withdrawl extends javax.swing.JFrame {
 
         jlCurrentAccount.setText("Current Account:");
 
+        jlNotify.setText("Withdrawn");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,26 +82,33 @@ public class Withdrawl extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jbExit)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jbWithdraw)
-                        .addGap(18, 18, 18)
-                        .addComponent(jtWithdraw, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jbWithdraw)
+                            .addGap(18, 18, 18)
+                            .addComponent(jtWithdraw, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlCurrentAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(19, 19, 19))))
                 .addContainerGap(23, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jlCurrentAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42))
+                .addComponent(jlNotify, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jlCurrentAccount)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbWithdraw)
                     .addComponent(jtWithdraw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addComponent(jlNotify)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(jbExit)
                 .addContainerGap())
         );
@@ -119,7 +129,8 @@ public class Withdrawl extends javax.swing.JFrame {
        double amountWithdraw = Double.parseDouble(jtWithdraw.getText());
        bankTrans.connect();
        bankTrans.withdraw(acctCurrent.toString(), amountWithdraw);
-       
+       jlNotify.setText(amountWithdraw+" ");
+       jlNotify.setVisible(true);
        
     }//GEN-LAST:event_jbWithdrawActionPerformed
 
@@ -162,6 +173,7 @@ public class Withdrawl extends javax.swing.JFrame {
     private javax.swing.JButton jbExit;
     private javax.swing.JButton jbWithdraw;
     private javax.swing.JLabel jlCurrentAccount;
+    private javax.swing.JLabel jlNotify;
     private javax.swing.JTextField jtWithdraw;
     // End of variables declaration//GEN-END:variables
 }
