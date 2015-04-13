@@ -37,10 +37,7 @@
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jlCurrentCust" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlCurrentAccount" min="-2" pref="188" max="-2" attributes="0"/>
-              </Group>
+              <Component id="jlCurrentAccount" min="-2" pref="188" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -48,9 +45,7 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="12" max="32767" attributes="0"/>
-              <Component id="jlCurrentCust" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="jlCurrentAccount" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -84,7 +79,6 @@
     <Component class="javax.swing.JTextField" name="jtWithdraw">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Amount"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtWithdrawActionPerformed"/>
@@ -93,11 +87,6 @@
     <Component class="javax.swing.JLabel" name="jlCurrentAccount">
       <Properties>
         <Property name="text" type="java.lang.String" value="Current Account:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jlCurrentCust">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Current Customer:"/>
       </Properties>
     </Component>
   </SubComponents>

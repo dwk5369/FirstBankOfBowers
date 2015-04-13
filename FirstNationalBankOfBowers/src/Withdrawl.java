@@ -8,7 +8,7 @@
  *
  * @author mjb6002
  */
-public class Withdraw extends javax.swing.JFrame {
+public class Withdrawl extends javax.swing.JFrame {
  
     Transaction bankTrans;
     Account acctCurrent;
@@ -17,17 +17,18 @@ public class Withdraw extends javax.swing.JFrame {
     /**
      * Creates new form Withdraw
      */
-    public Withdraw(Teller tell, Transaction trans, Customer cust, Account acct) {
+    public Withdrawl(Teller tell, Transaction trans, Customer cust, Account acct) {
         currentUser = tell;
         custCurrent = cust;
         acctCurrent = acct;
         bankTrans = trans;
         initComponents();
         jlCurrentAccount.setText("Current Account: " + acctCurrent.getClass().toString().substring(6) + " " + acctCurrent.toString());
-        jlCurrentCust.setText("Current Customer: " + custCurrent.getClass().toString().substring(6) + " " + custCurrent.toString());   
+        
+        
     }
 
-    private Withdraw() {
+    private Withdrawl() {
         initComponents();
     }
 
@@ -44,7 +45,6 @@ public class Withdraw extends javax.swing.JFrame {
         jbWithdraw = new javax.swing.JButton();
         jtWithdraw = new javax.swing.JTextField();
         jlCurrentAccount = new javax.swing.JLabel();
-        jlCurrentCust = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,7 +63,6 @@ public class Withdraw extends javax.swing.JFrame {
         });
 
         jtWithdraw.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtWithdraw.setText("Amount");
         jtWithdraw.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtWithdrawActionPerformed(evt);
@@ -71,8 +70,6 @@ public class Withdraw extends javax.swing.JFrame {
         });
 
         jlCurrentAccount.setText("Current Account:");
-
-        jlCurrentCust.setText("Current Customer:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,17 +86,13 @@ public class Withdraw extends javax.swing.JFrame {
                 .addContainerGap(23, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlCurrentCust)
-                    .addComponent(jlCurrentAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jlCurrentAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
-                .addComponent(jlCurrentCust)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jlCurrentAccount)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -113,48 +106,21 @@ public class Withdraw extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public Account getAcctCurrent() {
-        return acctCurrent;
-    }
-
-    public void setAcctCurrent(Account acctCurrent) {
-        this.acctCurrent = acctCurrent;
-    }
-
-    public Customer getCustCurrent() {
-        return custCurrent;
-    }
-
-    public void setCustCurrent(Customer custCurrent) {
-        this.custCurrent = custCurrent;
-    }
-    
-    public Teller getCurrentUser() {
-        return currentUser;
-    }   
-
-    public void setCurrentUser(Teller currentUser) {
-        this.currentUser = currentUser;
-    }
-
-    public Transaction getTransaction() {
-        return bankTrans;
-    }    
-    
-    public void setTransaction(Transaction bankTrans) {
-        this.bankTrans = bankTrans;
-    }     
     private void jbExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExitActionPerformed
         new MainScreen(currentUser,bankTrans,custCurrent,acctCurrent).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jbExitActionPerformed
 
     private void jtWithdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtWithdrawActionPerformed
-       double amountWithdraw = Double.parseDouble(jtWithdraw.getText());
+       
     }//GEN-LAST:event_jtWithdrawActionPerformed
 
     private void jbWithdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbWithdrawActionPerformed
-        // TODO add your handling code here:
+       double amountWithdraw = Double.parseDouble(jtWithdraw.getText());
+       bankTrans.connect();
+       bankTrans.withdraw(acctCurrent.toString(), amountWithdraw);
+       
+       
     }//GEN-LAST:event_jbWithdrawActionPerformed
 
     /**
@@ -174,20 +140,20 @@ public class Withdraw extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Withdraw.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Withdrawl.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Withdraw.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Withdrawl.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Withdraw.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Withdrawl.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Withdraw.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Withdrawl.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Withdraw().setVisible(true);
+                new Withdrawl().setVisible(true);
             }
         });
     }
@@ -196,7 +162,6 @@ public class Withdraw extends javax.swing.JFrame {
     private javax.swing.JButton jbExit;
     private javax.swing.JButton jbWithdraw;
     private javax.swing.JLabel jlCurrentAccount;
-    private javax.swing.JLabel jlCurrentCust;
     private javax.swing.JTextField jtWithdraw;
     // End of variables declaration//GEN-END:variables
 }
