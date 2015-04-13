@@ -108,10 +108,6 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jlLoggedInAs" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
@@ -148,6 +144,11 @@
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jlLoggedInAs" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -213,16 +214,25 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Withdraw"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbWithdrawlActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jbDeposit">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Deposit"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbDepositActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jbTransferFunds">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Transfer Funds"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbTransferFundsActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jbAccountInfo">
               <Properties>

@@ -1,5 +1,7 @@
 
 import java.awt.Font;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import javax.swing.JOptionPane;
 
 /*
@@ -12,6 +14,9 @@ import javax.swing.JOptionPane;
  *
  * @author dwk5369
  */
+
+//TODO: Set Withdraw, Deposit, Transfer and other buttons as disabled if the current account is null
+
 public class MainScreen extends javax.swing.JFrame {
 
     Transaction bankTrans;
@@ -47,6 +52,12 @@ public class MainScreen extends javax.swing.JFrame {
             jbManagerTools.setVisible(false);
         if(custCurrent != null)
             jlCustomer.setText("Current Customer: " + custCurrent.toString());
+        if(acctCurrent != null)
+        {
+            jlAccount.setText("Current Account: " + acctCurrent.getAccountNumber());
+            jlBalance.setText("Account Balance: $" + new BigDecimal(acctCurrent.getBalance()).setScale(2, RoundingMode.UP));
+        }
+            
     }    
     
     /**
@@ -113,10 +124,25 @@ public class MainScreen extends javax.swing.JFrame {
         });
 
         jbWithdrawl.setText("Withdraw");
+        jbWithdrawl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbWithdrawlActionPerformed(evt);
+            }
+        });
 
         jbDeposit.setText("Deposit");
+        jbDeposit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbDepositActionPerformed(evt);
+            }
+        });
 
         jbTransferFunds.setText("Transfer Funds");
+        jbTransferFunds.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbTransferFundsActionPerformed(evt);
+            }
+        });
 
         jbAccountInfo.setText("Account Info");
 
@@ -140,9 +166,6 @@ public class MainScreen extends javax.swing.JFrame {
         jpButtons.setLayout(jpButtonsLayout);
         jpButtonsLayout.setHorizontalGroup(
             jpButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpButtonsLayout.createSequentialGroup()
-                .addComponent(jlLoggedInAs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(jpButtonsLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jpButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,6 +194,10 @@ public class MainScreen extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                                 .addComponent(jbEndTransaction, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpButtonsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlLoggedInAs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jpButtonsLayout.setVerticalGroup(
             jpButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,6 +304,20 @@ public class MainScreen extends javax.swing.JFrame {
         new selectAccount(bankTrans,acctCurrent,custCurrent,currentUser).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jbSelectAccountActionPerformed
+
+    private void jbWithdrawlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbWithdrawlActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbWithdrawlActionPerformed
+
+    private void jbDepositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDepositActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbDepositActionPerformed
+
+    private void jbTransferFundsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbTransferFundsActionPerformed
+        new TransferFunds(bankTrans,acctCurrent,custCurrent,currentUser).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jbTransferFundsActionPerformed
+                                        
 
     /**
      * @param args the command line arguments

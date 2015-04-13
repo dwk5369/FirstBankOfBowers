@@ -60,6 +60,10 @@ public class Transaction
     
     protected String strCreateCustomer2 = "insert into customer (id,pinnumber) values (7,'9999');";
     
+    protected String strTransferFrom = "update account set balance = balance - ? where accountNumber = ?";
+    
+    protected String strTransferTo = "update account set balance = balance + ? where accountNumber = ?";
+    
     /*
     For login view:
     select * from person
@@ -254,7 +258,7 @@ public class Transaction
             psGet = connDB.prepareStatement(strGetAcct);
             psGet.setString(1, strSSN);
             rsResult = psGet.executeQuery();
-            rsResult.first();            
+            rsResult.beforeFirst();
             while(rsResult.next())
             {
                 String acctNum = rsResult.getString(1);
@@ -475,6 +479,25 @@ public class Transaction
             //handle
         }
     }// disconnect
+
+    public void transferFunds(Account acctFrom, Account acctTo, double dblTransfer) 
+    {
+        try
+        {
+            psGet = connDB.prepareStatement(strTransferFrom);
+            psGet.setDouble(1, dblTransfer);
+            psGet.setString(2, acctFrom.getAccountNumber());
+            psGet.executeUpdate();
+            psGet = connDB.prepareStatement(strTransferTo);
+            psGet.setDouble(1, dblTransfer);
+            psGet.setString(2, acctTo.getAccountNumber());
+            psGet.executeUpdate();
+        }
+        catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE); 
+        }            
+    }
 
 
 }
