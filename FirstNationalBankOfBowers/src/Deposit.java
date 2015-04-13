@@ -9,11 +9,24 @@
  * @author mjb6002
  */
 public class Deposit extends javax.swing.JFrame {
-
+Transaction bankTrans;
+    Account acctCurrent;
+    Customer custCurrent;
+    Teller currentUser;
     /**
-     * Creates new form Deposit
+     * Creates new form Withdraw
      */
-    public Deposit() {
+    public Deposit(Teller tell, Transaction trans, Customer cust, Account acct) {
+        currentUser = tell;
+        custCurrent = cust;
+        acctCurrent = acct;
+        bankTrans = trans;
+        initComponents();
+        jlCurrentAccount.setText("Current Account: " + acctCurrent.getClass().toString().substring(6) + " " + acctCurrent.toString());
+           
+    }
+
+    private Deposit() {
         initComponents();
     }
 
@@ -26,30 +39,26 @@ public class Deposit extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jlCurrentCust = new javax.swing.JLabel();
         jlCurrentAccount = new javax.swing.JLabel();
-        jbWithdraw = new javax.swing.JButton();
-        jtWithdraw = new javax.swing.JTextField();
+        jbDeposit = new javax.swing.JButton();
+        jtDeposit = new javax.swing.JTextField();
         jbExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jlCurrentCust.setText("Current Customer:");
-
         jlCurrentAccount.setText("Current Account:");
 
-        jbWithdraw.setText("Withdraw");
-        jbWithdraw.addActionListener(new java.awt.event.ActionListener() {
+        jbDeposit.setText("Withdraw");
+        jbDeposit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbWithdrawActionPerformed(evt);
+                jbDepositActionPerformed(evt);
             }
         });
 
-        jtWithdraw.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtWithdraw.setText("Amount");
-        jtWithdraw.addActionListener(new java.awt.event.ActionListener() {
+        jtDeposit.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtDeposit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtWithdrawActionPerformed(evt);
+                jtDepositActionPerformed(evt);
             }
         });
 
@@ -65,35 +74,29 @@ public class Deposit extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jbWithdraw)
+                        .addComponent(jbDeposit)
                         .addGap(18, 18, 18)
-                        .addComponent(jtWithdraw, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jbExit)))
+                        .addComponent(jtDeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbExit))
                 .addContainerGap(24, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlCurrentCust)
-                    .addComponent(jlCurrentAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jlCurrentAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jlCurrentCust)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(5, 5, 5)
                 .addComponent(jlCurrentAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtWithdraw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbWithdraw))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                    .addComponent(jtDeposit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbDeposit))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbExit)
                 .addContainerGap())
         );
@@ -101,13 +104,16 @@ public class Deposit extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbWithdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbWithdrawActionPerformed
+    private void jbDepositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDepositActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jbWithdrawActionPerformed
+    }//GEN-LAST:event_jbDepositActionPerformed
 
-    private void jtWithdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtWithdrawActionPerformed
-        double amountWithdraw = Double.parseDouble(jtWithdraw.getText());
-    }//GEN-LAST:event_jtWithdrawActionPerformed
+    private void jtDepositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtDepositActionPerformed
+       double amountDeposit = Double.parseDouble(jtDeposit.getText());
+       bankTrans.connect();
+       bankTrans.deposit(acctCurrent.toString(), amountDeposit);
+       
+    }//GEN-LAST:event_jtDepositActionPerformed
 
     private void jbExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExitActionPerformed
         new MainScreen(currentUser,bankTrans,custCurrent,acctCurrent).setVisible(true);
@@ -150,10 +156,9 @@ public class Deposit extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jbDeposit;
     private javax.swing.JButton jbExit;
-    private javax.swing.JButton jbWithdraw;
     private javax.swing.JLabel jlCurrentAccount;
-    private javax.swing.JLabel jlCurrentCust;
-    private javax.swing.JTextField jtWithdraw;
+    private javax.swing.JTextField jtDeposit;
     // End of variables declaration//GEN-END:variables
 }
