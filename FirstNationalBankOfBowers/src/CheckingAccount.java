@@ -16,9 +16,8 @@ public class CheckingAccount extends Account {
         this.balance = balance;
     }
     
-    public CheckingAccount(double bal, String acc, int cId){
+    public CheckingAccount(double bal, String acc){
         this.accountNumber = acc;
-        this.customerId = cId;
         if (bal >= 100){
             balance = bal;
         }

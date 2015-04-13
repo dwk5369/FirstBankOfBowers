@@ -467,18 +467,6 @@ public class Transaction
         }            
         return new Customer();
     }//createAccount
-    
-    public void disconnect()
-    {
-        try 
-        {
-            connDB.close();
-        } 
-        catch (SQLException ex) 
-        {
-            //handle
-        }
-    }// disconnect
 
     public void transferFunds(Account acctFrom, Account acctTo, double dblTransfer) 
     {
@@ -497,7 +485,21 @@ public class Transaction
         {
             JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE); 
         }            
-    }
+    }    
+    
+    public void disconnect()
+    {
+        try 
+        {
+            connDB.close();
+        } 
+        catch (SQLException ex) 
+        {
+            //handle
+        }
+    }// disconnect
+
+
 
 
 }
