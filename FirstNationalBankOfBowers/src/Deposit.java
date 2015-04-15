@@ -15,6 +15,10 @@ Transaction bankTrans;
     Teller currentUser;
     /**
      * Creates new form Withdraw
+     * @param tell
+     * @param trans
+     * @param cust
+     * @param acct
      */
     public Deposit(Teller tell, Transaction trans, Customer cust, Account acct) {
         currentUser = tell;

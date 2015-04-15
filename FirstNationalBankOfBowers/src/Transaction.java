@@ -486,6 +486,11 @@ public class Transaction
             JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE); 
         }            
     }    
+
+    public void updateCustomer(Customer cust)
+    {
+        
+    }
     
     public void disconnect()
     {

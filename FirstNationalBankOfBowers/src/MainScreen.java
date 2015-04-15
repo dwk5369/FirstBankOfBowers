@@ -179,20 +179,20 @@ public class MainScreen extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jlCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jpButtonsLayout.createSequentialGroup()
-                                .addComponent(jbSelectAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jlAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jbAccountInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+                                .addComponent(jbEndTransaction, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jpButtonsLayout.createSequentialGroup()
                                 .addComponent(jbWithdrawl, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(jlBalance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jpButtonsLayout.createSequentialGroup()
                                 .addComponent(jbDeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jpButtonsLayout.createSequentialGroup()
-                                .addComponent(jbAccountInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
-                                .addComponent(jbEndTransaction, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jbSelectAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jlAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpButtonsLayout.createSequentialGroup()
                 .addContainerGap()
@@ -306,11 +306,13 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_jbSelectAccountActionPerformed
 
     private void jbWithdrawlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbWithdrawlActionPerformed
-        // TODO add your handling code here:
+        new Withdrawl(currentUser, bankTrans, custCurrent, acctCurrent).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jbWithdrawlActionPerformed
 
     private void jbDepositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDepositActionPerformed
-        // TODO add your handling code here:
+        new Deposit(currentUser, bankTrans, custCurrent, acctCurrent).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jbDepositActionPerformed
 
     private void jbTransferFundsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbTransferFundsActionPerformed
