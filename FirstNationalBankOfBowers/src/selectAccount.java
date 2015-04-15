@@ -35,24 +35,26 @@ public class selectAccount extends javax.swing.JFrame {
         this.acctCurrent = acctCurrent;
         this.custCurrent = custCurrent;
         this.currentUser = currentUser;
-        
-        bankTrans.connect();
-        
-        accountList.setModel(populateList(listaccounts));
+        listaccounts = new DefaultListModel();
+        initComponents();
+        populateList();
+        //accountList.setModel(populateList(listaccounts));
     }
 
-    public DefaultListModel populateList(DefaultListModel listaccounts)
+    //public DefaultListModel populateList(DefaultListModel listaccounts)
+    public void populateList()
     {
         listaccounts.removeAllElements();
+        bankTrans.connect();
         ArrayList<Account> acc = bankTrans.getAccount(custCurrent);
-        
+        bankTrans.disconnect();
         for(Account listComp : acc)
         {
             listaccounts.addElement(listComp);
             numInList++;
         }
         
-        return listaccounts;
+        accountList.setModel(listaccounts);
     }
     
     /**
@@ -85,11 +87,6 @@ public class selectAccount extends javax.swing.JFrame {
             }
         });
 
-        accountList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         accountList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         accountList.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         accountList.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -123,9 +120,9 @@ public class selectAccount extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
+                        .addGap(50, 50, 50)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(99, 99, 99)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(AccountNumber)
                             .addComponent(Balance)
@@ -138,7 +135,7 @@ public class selectAccount extends javax.swing.JFrame {
                             .addComponent(BalanceField)
                             .addComponent(AccountTypeField)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(167, 167, 167)
+                        .addGap(126, 126, 126)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 64, Short.MAX_VALUE))
         );
@@ -164,9 +161,9 @@ public class selectAccount extends javax.swing.JFrame {
                             .addComponent(AccountType)
                             .addComponent(AccountTypeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1))
-                .addGap(48, 48, 48)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGap(33, 33, 33))
         );
 
         pack();
