@@ -153,6 +153,11 @@ public class AccountInfo extends javax.swing.JFrame {
 
         jbSave.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jbSave.setText("Save Changes");
+        jbSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSaveActionPerformed(evt);
+            }
+        });
 
         jbClose.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jbClose.setText("Close");
@@ -280,6 +285,17 @@ public class AccountInfo extends javax.swing.JFrame {
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
         new MainScreen(currentUser,bankTrans,custCurrent,acctCurrent).setVisible(true);
     }//GEN-LAST:event_jbCloseActionPerformed
+
+    private void jbSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSaveActionPerformed
+        custCurrent.setFname(jtxtFirstName.getText());
+        custCurrent.setLname(jtxtLastName.getText());
+        custCurrent.setAddress(jtxtAddress.getText());
+        custCurrent.setCity(jtxtCity.getText());
+        custCurrent.setState(jtxtState.getText());
+        custCurrent.setPhone(Integer.parseInt(jtxtPhone.getText()));
+        custCurrent.setZipcode(jtxtZip.getText());
+        bankTrans.updateCustomer(custCurrent);
+    }//GEN-LAST:event_jbSaveActionPerformed
 
     /**
      * @param args the command line arguments
