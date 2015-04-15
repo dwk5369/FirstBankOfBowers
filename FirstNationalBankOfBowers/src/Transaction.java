@@ -27,6 +27,8 @@ public class Transaction
     //get customer info when given a customer's account number
     protected String strGetCust = "select fname,lname,address,city,state,zipcode,email,ssn from CUSTOMER_ACCOUNT where accountNumber = ?;";
     
+    protected String strUpdateCust = "update customer inner join person on customer.id = person.id set fname=?,lname=?,address=?,city=?,state=?,zipcode=?,email=? where ssn=?";
+    
     //get customer info when given a customer's ssn
     //protected String strGetCust2 = "select accountNumber,fname,lname,address,city,state,zipcode,email from CUSTOMER_ACCOUNT where ssn = ?;";
     protected String strGetCust2 = "select distinct fname,lname,address,city,state,zipcode,email from CUSTOMER_ACCOUNT where ssn = ?;";
@@ -442,8 +444,7 @@ public class Transaction
             JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE); 
         }    
     } //closeAccount
-    
-    
+        
     public Customer createCustomer(String strSSN, String strFName, String strLName, String strAddress, String strCity, String strState, String strZipcode, String strEmail)
     {
         try
@@ -489,7 +490,23 @@ public class Transaction
 
     public void updateCustomer(Customer cust)
     {
-        
+        try
+        {
+            psGet = connDB.prepareStatement(strUpdateCust);
+            psGet.setString(1, cust.getFname());
+            psGet.setString(2,cust.getLname());
+            psGet.setString(3, cust.getAddress());
+            psGet.setString(4, cust.getCity());
+            psGet.setString(5, cust.getState());
+            psGet.setString(6,cust.getZipcode());
+            psGet.setString(7, cust.getFname());
+            psGet.setInt(8,getCustomerID(cust.getSocialSecurity()));
+            psGet.executeUpdate();
+        }
+        catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE); 
+        }              
     }
     
     public void disconnect()
