@@ -43,6 +43,7 @@ Transaction bankTrans;
         jbDeposit = new javax.swing.JButton();
         jtDeposit = new javax.swing.JTextField();
         jbExit = new javax.swing.JButton();
+        jlNotify = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,34 +70,44 @@ Transaction bankTrans;
             }
         });
 
+        jlNotify.setText("Deposited");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jbDeposit)
-                        .addGap(18, 18, 18)
-                        .addComponent(jtDeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jbExit))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jbExit)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jbDeposit)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jtDeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addGap(35, 35, 35)
+                                    .addComponent(jlCurrentAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(20, 20, 20)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(94, 94, 94)
+                        .addComponent(jlNotify)))
                 .addContainerGap(24, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jlCurrentAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(5, 5, 5)
+                .addContainerGap()
                 .addComponent(jlCurrentAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jtDeposit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbDeposit))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jlNotify)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jbExit)
                 .addContainerGap())
         );
@@ -112,6 +123,8 @@ Transaction bankTrans;
        double amountDeposit = Double.parseDouble(jtDeposit.getText());
        bankTrans.connect();
        bankTrans.deposit(acctCurrent.toString(), amountDeposit);
+       jlNotify.setText(amountDeposit+" ");
+       jlNotify.setVisible(true);
        
     }//GEN-LAST:event_jtDepositActionPerformed
 
@@ -159,6 +172,7 @@ Transaction bankTrans;
     private javax.swing.JButton jbDeposit;
     private javax.swing.JButton jbExit;
     private javax.swing.JLabel jlCurrentAccount;
+    private javax.swing.JLabel jlNotify;
     private javax.swing.JTextField jtDeposit;
     // End of variables declaration//GEN-END:variables
 }

@@ -38,7 +38,11 @@ public class selectAccount extends javax.swing.JFrame {
         
         bankTrans.connect();
         
-        /*needs its own method
+        accountList.setModel(populateList(listaccounts));
+    }
+
+    public DefaultListModel populateList(DefaultListModel listaccounts)
+    {
         listaccounts.removeAllElements();
         ArrayList<Account> acc = bankTrans.getAccount(custCurrent);
         
@@ -48,10 +52,9 @@ public class selectAccount extends javax.swing.JFrame {
             numInList++;
         }
         
-        accountList.setModel(listaccounts);
-        */
+        return listaccounts;
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
