@@ -14,24 +14,29 @@ public class Withdrawl extends javax.swing.JFrame {
     Account acctCurrent;
     Customer custCurrent;
     Teller currentUser;
+    
     /**
      * Creates new form Withdraw
+     * @param tell
+     * @param trans
+     * @param cust
+     * @param acct
      */
+    private Withdrawl() {
+        initComponents();
+        
+    }
+    
     public Withdrawl(Teller tell, Transaction trans, Customer cust, Account acct) {
         currentUser = tell;
         custCurrent = cust;
         acctCurrent = acct;
         bankTrans = trans;
+           
         initComponents();
-        jlCurrentAccount.setText("Current Account: " + acctCurrent.getClass().toString().substring(6) + " " + acctCurrent.toString());
         
-        
+        jlCurrentAccount.setText("$" + "Current Account: " + acctCurrent.getAccountNumber());       
     }
-
-    private Withdrawl() {
-        initComponents();
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -72,8 +77,6 @@ public class Withdrawl extends javax.swing.JFrame {
 
         jlCurrentAccount.setText("Current Account:");
 
-        jlNotify.setText("Withdrawn");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -82,20 +85,16 @@ public class Withdrawl extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jbExit)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jbWithdraw)
-                            .addGap(18, 18, 18)
-                            .addComponent(jtWithdraw, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlCurrentAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(19, 19, 19))))
-                .addContainerGap(23, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jlNotify, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jlCurrentAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jbWithdraw)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtWithdraw, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlNotify, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,8 +106,8 @@ public class Withdrawl extends javax.swing.JFrame {
                     .addComponent(jbWithdraw)
                     .addComponent(jtWithdraw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jlNotify)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addComponent(jlNotify, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbExit)
                 .addContainerGap())
         );
@@ -128,9 +127,10 @@ public class Withdrawl extends javax.swing.JFrame {
     private void jbWithdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbWithdrawActionPerformed
        double amountWithdraw = Double.parseDouble(jtWithdraw.getText());
        bankTrans.connect();
-       bankTrans.withdraw(acctCurrent.toString(), amountWithdraw);
-       jlNotify.setText(amountWithdraw+" ");
-       jlNotify.setVisible(true);
+       bankTrans.withdraw(acctCurrent.getAccountNumber(), amountWithdraw);
+       bankTrans.disconnect();
+       jlNotify.setText(amountWithdraw+" Withdrawn");
+       acctCurrent.balance = acctCurrent.getBalance() - amountWithdraw;
        
     }//GEN-LAST:event_jbWithdrawActionPerformed
 
