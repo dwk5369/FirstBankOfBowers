@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.HeadlessException;
 import java.util.ArrayList;
@@ -236,6 +237,15 @@ public class AccountListCellRenderer extends DefaultListCellRenderer
     {
         Account acct = (Account)value;
         String display = acct.toString().split(",")[0];
+        setBackground(new Color(list.getBackground().getRGB()));
+        setForeground(Color.BLACK);
+        isSelected = list.isSelectedIndex(index);
+        if(isSelected)
+        {
+            setBackground(list.getSelectionBackground());
+            setForeground(list.getSelectionForeground());
+        }
+        cellHasFocus = list.isFocusOwner();
         setText(display);
         return this;
     }
