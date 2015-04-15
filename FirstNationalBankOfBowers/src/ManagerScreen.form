@@ -29,7 +29,7 @@
                   <Component id="jbExit" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jpButtons" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="517" max="32767" attributes="0"/>
+              <EmptySpace pref="509" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -71,10 +71,8 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jbCreateAccount" alignment="1" max="32767" attributes="0"/>
                       <Component id="jbTransferFunds" alignment="0" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jbCloseAccount" min="-2" pref="115" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="jbAddNewCustomer" max="32767" attributes="0"/>
+                      <Component id="jbCloseAccount" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -83,13 +81,15 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                  <Component id="jbAddNewCustomer" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jbCreateAccount" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jbTransferFunds" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jbCloseAccount" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="88" max="32767" attributes="0"/>
+                  <EmptySpace pref="51" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -111,6 +111,11 @@
         <Component class="javax.swing.JButton" name="jbCloseAccount">
           <Properties>
             <Property name="text" type="java.lang.String" value="Close Account"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jbAddNewCustomer">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Add New Customer"/>
           </Properties>
         </Component>
       </SubComponents>

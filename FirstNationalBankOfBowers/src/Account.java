@@ -33,6 +33,14 @@ public class Account {
             t.withdraw(accountNumber, balance);
         }
     }
+
+    public double getInterestRate() {
+        return interestRate;
+    }
+
+    public void setInterestRate(double interestRate) {
+        this.interestRate = interestRate;
+    }
     
     public double getBalance(){
         return balance;

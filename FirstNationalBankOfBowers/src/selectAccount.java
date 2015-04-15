@@ -1,7 +1,11 @@
 
+import java.awt.Component;
 import java.awt.HeadlessException;
 import java.util.ArrayList;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
+import javax.swing.JLabel;
+import javax.swing.JList;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -38,6 +42,7 @@ public class selectAccount extends javax.swing.JFrame {
         listaccounts = new DefaultListModel();
         initComponents();
         populateList();
+        accountList.setCellRenderer(new AccountListCellRenderer());
         //accountList.setModel(populateList(listaccounts));
     }
 
@@ -53,7 +58,7 @@ public class selectAccount extends javax.swing.JFrame {
             listaccounts.addElement(listComp);
             numInList++;
         }
-        
+ 
         accountList.setModel(listaccounts);
     }
     
@@ -118,25 +123,25 @@ public class selectAccount extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(99, 99, 99)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(AccountNumber)
                             .addComponent(Balance)
                             .addComponent(InterestRate)
-                            .addComponent(AccountType))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(AccountNumField, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
-                            .addComponent(InterestRateField)
-                            .addComponent(BalanceField)
-                            .addComponent(AccountTypeField)))
+                            .addComponent(AccountType)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(126, 126, 126)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(AccountNumField, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                    .addComponent(InterestRateField)
+                    .addComponent(BalanceField)
+                    .addComponent(AccountTypeField))
                 .addGap(0, 64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -180,14 +185,13 @@ public class selectAccount extends javax.swing.JFrame {
     }//GEN-LAST:event_AccountNumFieldActionPerformed
 
     private void accountListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accountListMouseClicked
-        String[][] accountInfo = new String[numInList][4]; 
-        ArrayList<Account> acc = bankTrans.getAccount(custCurrent);
-        acc.toArray(accountInfo);
+      
+        Account currentAcct = (Account)accountList.getSelectedValue();
         
-        AccountNumField.setText(accountInfo[accountList.getSelectedIndex()][1]);
-        BalanceField.setText(accountInfo[accountList.getSelectedIndex()][2]);
-        InterestRateField.setText(accountInfo[accountList.getSelectedIndex()][3]);
-        AccountTypeField.setText(accountInfo[accountList.getSelectedIndex()][4]);
+        AccountNumField.setText(currentAcct.getAccountNumber());
+        BalanceField.setText("$" + currentAcct.getBalance());
+        InterestRateField.setText(currentAcct.getInterestRate() + "%");
+        AccountTypeField.setText(currentAcct.toString().split(",")[0]);
     }//GEN-LAST:event_accountListMouseClicked
 
     /**
@@ -225,6 +229,18 @@ public class selectAccount extends javax.swing.JFrame {
         });
     }
 
+public class AccountListCellRenderer extends DefaultListCellRenderer
+{
+    public Component getListCellRendererComponent(
+        JList list, Object value, int index, boolean isSelected, boolean cellHasFocus)
+    {
+        Account acct = (Account)value;
+        String display = acct.toString().split(",")[0];
+        setText(display);
+        return this;
+    }
+}
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField AccountNumField;
     private javax.swing.JLabel AccountNumber;
