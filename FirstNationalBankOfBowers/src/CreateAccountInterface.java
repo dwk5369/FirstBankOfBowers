@@ -16,6 +16,8 @@ public class CreateAccountInterface extends javax.swing.JFrame {
     public CreateAccountInterface() {
         initComponents();
     }
+public Transaction crTrans = new Transaction();
+public Person crPerson = new Person();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,6 +45,8 @@ public class CreateAccountInterface extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        textEmail = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,6 +88,15 @@ public class CreateAccountInterface extends javax.swing.JFrame {
         jTextField1.setText("8148654700");
 
         jButton1.setText("Create Account");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("Email");
+
+        textEmail.setText("IloveEmail@email.com");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,12 +131,16 @@ public class CreateAccountInterface extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(textZip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(62, 62, 62)
-                                        .addComponent(jLabel8)))
+                                        .addComponent(jLabel8))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(98, 98, 98)
+                                        .addComponent(jLabel9)))
                                 .addGap(27, 27, 27)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(textLname)
-                                    .addComponent(textState, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                                    .addComponent(jTextField1)))))
+                                    .addComponent(textState)
+                                    .addComponent(jTextField1)
+                                    .addComponent(textEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(136, 136, 136)
                         .addComponent(jButton1)))
@@ -159,7 +176,11 @@ public class CreateAccountInterface extends javax.swing.JFrame {
                     .addComponent(textZip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(textEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(37, 37, 37))
         );
@@ -170,6 +191,12 @@ public class CreateAccountInterface extends javax.swing.JFrame {
     private void textSSNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSSNActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textSSNActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here: 
+        //strCreateCustomer = "insert into person (ssn, fname, lname, address, city, state, zipcode, email) values (?,?,?,?,?,?,?,?);";
+        crTrans.strCreateCustomer(textSSN.getText(), textFname.getText(),textLname.getText(),textAddress.getText(),textCity.getText(),textState.getText(),textZip.getText(), textEmail.getText());
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,9 +243,11 @@ public class CreateAccountInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField textAddress;
     private javax.swing.JTextField textCity;
+    private javax.swing.JTextField textEmail;
     private javax.swing.JTextField textFname;
     private javax.swing.JTextField textLname;
     private javax.swing.JTextField textSSN;
