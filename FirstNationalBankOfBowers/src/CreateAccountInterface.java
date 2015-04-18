@@ -194,8 +194,9 @@ public Person crPerson = new Person();
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here: 
+        
         //strCreateCustomer = "insert into person (ssn, fname, lname, address, city, state, zipcode, email) values (?,?,?,?,?,?,?,?);";
-        crTrans.strCreateCustomer(textSSN.getText(), textFname.getText(),textLname.getText(),textAddress.getText(),textCity.getText(),textState.getText(),textZip.getText(), textEmail.getText());
+        crTrans.createCustomer(textSSN.getText(), textFname.getText(),textLname.getText(),textAddress.getText(),textCity.getText(),textState.getText(),textZip.getText(), textEmail.getText());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
