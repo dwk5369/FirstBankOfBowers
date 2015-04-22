@@ -1,3 +1,7 @@
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -35,7 +39,7 @@ public class Withdrawl extends javax.swing.JFrame {
            
         initComponents();
         
-        jlCurrentAccount.setText("$" + "Current Account: " + acctCurrent.getAccountNumber());       
+        jlCurrentAccount.setText("Current Account: " + acctCurrent.getAccountNumber());       
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -77,13 +81,15 @@ public class Withdrawl extends javax.swing.JFrame {
 
         jlCurrentAccount.setText("Current Account:");
 
+        jlNotify.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jbExit)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -91,9 +97,8 @@ public class Withdrawl extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jbWithdraw)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtWithdraw, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlNotify, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jtWithdraw, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlNotify, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -129,7 +134,7 @@ public class Withdrawl extends javax.swing.JFrame {
        bankTrans.connect();
        bankTrans.withdraw(acctCurrent.getAccountNumber(), amountWithdraw);
        bankTrans.disconnect();
-       jlNotify.setText(amountWithdraw+" Withdrawn");
+       jlNotify.setText("$" + new BigDecimal(amountWithdraw).setScale(2, RoundingMode.UP) + " Withdrawn");
        acctCurrent.balance = acctCurrent.getBalance() - amountWithdraw;
        
     }//GEN-LAST:event_jbWithdrawActionPerformed

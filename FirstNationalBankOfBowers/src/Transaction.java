@@ -39,6 +39,8 @@ public class Transaction
     //get account info for a specific account type
     protected String strGetAcct2 = "select accountNumber, balance, interestRate from CUSTOMER_ACCOUNT where ssn = ? and COS = ?";
     
+    protected String strGetAcct3 = "select balance, interestRate, COS from CUSTOMER_ACCOUNT where accountNumber = ?";
+    
     //confirm that a user's login credentials match in the database
     //protected String strLogin = "select fname, lname, managerID from person inner join teller on person.id = teller.id left outer join manager on teller.tellerID = manager.tellerID where userName = ? and password = ?";
     protected String strLogin = "select fname, lname, managerID from logininfo where userName = ? and password = ?";
@@ -297,6 +299,34 @@ public class Transaction
             String acctNum = rsResult.getString(1);
             double balance = rsResult.getDouble(2);
             double intRate = rsResult.getDouble(3);
+            if(strCOS.equals("c"))
+                acct = new CheckingAccount(acctNum, balance, intRate);
+            else
+                acct = new SavingsAccount(acctNum, balance, intRate);                
+            psGet.close();
+            return acct;
+        } 
+        catch (SQLException ex) 
+        {
+            JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+    }//getAccount    
+ 
+    public Account getAccount(int intAcctNum)
+    {
+        try 
+        {
+            Account acct;
+            
+            psGet = connDB.prepareStatement(strGetAcct3);
+            psGet.setInt(1, intAcctNum);
+            rsResult = psGet.executeQuery();
+            rsResult.first();            
+            String acctNum = intAcctNum + "";
+            double balance = rsResult.getDouble("balance");
+            double intRate = rsResult.getDouble("interestRate");
+            String strCOS = rsResult.getString("COS");
             if(strCOS.equals("c"))
                 acct = new CheckingAccount(acctNum, balance, intRate);
             else

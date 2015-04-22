@@ -1,3 +1,7 @@
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -75,13 +79,15 @@ public class Deposit extends javax.swing.JFrame {
             }
         });
 
+        jlNotify.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jbExit)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
@@ -89,9 +95,8 @@ public class Deposit extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jbDeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtDeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlNotify, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jtDeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlNotify, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -118,7 +123,7 @@ public class Deposit extends javax.swing.JFrame {
        bankTrans.connect();
        bankTrans.deposit(acctCurrent.getAccountNumber(), amountDeposit);
        bankTrans.disconnect();
-       jlNotify.setText("$" + amountDeposit + " Deposited");
+       jlNotify.setText("$" + new BigDecimal(amountDeposit).setScale(2, RoundingMode.UP) + " Deposited");
        acctCurrent.balance = acctCurrent.getBalance() + amountDeposit;
     }//GEN-LAST:event_jbDepositActionPerformed
 

@@ -100,6 +100,11 @@ public class selectAccount extends javax.swing.JFrame {
                 accountListMouseClicked(evt);
             }
         });
+        accountList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                accountListValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(accountList);
 
         AccountNumber.setText("Account Number: ");
@@ -137,13 +142,12 @@ public class selectAccount extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(16, 16, 16)))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(AccountNumField, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
                     .addComponent(InterestRateField)
                     .addComponent(BalanceField)
                     .addComponent(AccountTypeField))
-                .addGap(0, 64, Short.MAX_VALUE))
+                .addGap(0, 82, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,9 +171,9 @@ public class selectAccount extends javax.swing.JFrame {
                             .addComponent(AccountType)
                             .addComponent(AccountTypeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(91, Short.MAX_VALUE))
         );
 
         pack();
@@ -186,14 +190,30 @@ public class selectAccount extends javax.swing.JFrame {
     }//GEN-LAST:event_AccountNumFieldActionPerformed
 
     private void accountListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accountListMouseClicked
-      
+      /*
         Account currentAcct = (Account)accountList.getSelectedValue();
         
         AccountNumField.setText(currentAcct.getAccountNumber());
         BalanceField.setText("$" + currentAcct.getBalance());
         InterestRateField.setText(currentAcct.getInterestRate() + "%");
-        AccountTypeField.setText(currentAcct.toString().split(",")[0]);
+        if(currentAcct.getClass().toString().contains("Checking"))
+            AccountTypeField.setText("Checking");
+        else
+            AccountTypeField.setText("Savings");
+        */
     }//GEN-LAST:event_accountListMouseClicked
+
+    private void accountListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_accountListValueChanged
+        Account currentAcct = (Account)accountList.getSelectedValue();
+        
+        AccountNumField.setText(currentAcct.getAccountNumber());
+        BalanceField.setText("$" + currentAcct.getBalance());
+        InterestRateField.setText(currentAcct.getInterestRate() + "%");
+        if(currentAcct.getClass().toString().contains("Checking"))
+            AccountTypeField.setText("Checking");
+        else
+            AccountTypeField.setText("Savings");
+    }//GEN-LAST:event_accountListValueChanged
 
     /**
      * @param args the command line arguments

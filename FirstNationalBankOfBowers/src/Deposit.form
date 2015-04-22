@@ -25,7 +25,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jbExit" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
@@ -34,11 +34,9 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jbDeposit" min="-2" pref="77" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jtDeposit" min="-2" pref="149" max="-2" attributes="0"/>
-                          <Component id="jlNotify" min="-2" pref="112" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jtDeposit" min="-2" pref="149" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="jlNotify" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="23" max="32767" attributes="0"/>
           </Group>
@@ -94,6 +92,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jlNotify">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

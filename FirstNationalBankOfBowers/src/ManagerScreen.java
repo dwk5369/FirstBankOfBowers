@@ -68,6 +68,11 @@ public class ManagerScreen extends javax.swing.JFrame {
         });
 
         jbTransferFunds.setText("Transfer Funds");
+        jbTransferFunds.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbTransferFundsActionPerformed(evt);
+            }
+        });
 
         jbCloseAccount.setText("Close Account");
 
@@ -130,18 +135,14 @@ public class ManagerScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_jbExitActionPerformed
 
     private void jbCreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCreateAccountActionPerformed
-        int intNewCust = JOptionPane.showConfirmDialog(this, "Is this account for a new customer?", "Returning Customer?", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (intNewCust == 0)
-        {
-            System.out.println("Yes");
-        }
-        else if (intNewCust == 1)
-        {
-            System.out.println("No");
-        }
-        else if (intNewCust == -1)
-            System.out.println("Maybe");
+        new CreateAccountInterface(bankTrans,acctCurrent,custCurrent,currentUser).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jbCreateAccountActionPerformed
+
+    private void jbTransferFundsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbTransferFundsActionPerformed
+        new WireTransfer(bankTrans, acctCurrent, custCurrent, currentUser).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jbTransferFundsActionPerformed
 
     public Account getAcctCurrent() {
         return acctCurrent;

@@ -1,3 +1,8 @@
+
+import java.awt.Color;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,14 +15,28 @@
  */
 public class CreateAccountInterface extends javax.swing.JFrame {
 
+    Transaction bankTrans;
+    Account acctCurrent;
+    Customer custCurrent;
+    Teller currentUser;
+    JTextField[] jtfInfo;
+    
     /**
      * Creates new form CreateAccountInterface
      */
     public CreateAccountInterface() {
         initComponents();
     }
-public Transaction crTrans = new Transaction();
-public Person crPerson = new Person();
+    
+    public CreateAccountInterface(Transaction bankTrans, Account acctCurrent, Customer custCurrent, Teller currentUser)
+    {
+        this.bankTrans = bankTrans;
+        this.acctCurrent = acctCurrent;
+        this.custCurrent = custCurrent;
+        this.currentUser = currentUser;
+        initComponents();
+        jtfInfo = new JTextField[]{textFname,textLname,textSSN,textAddress,textCity,textState,textZip,textPhone,textEmail};
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,7 +62,7 @@ public Person crPerson = new Person();
         jLabel7 = new javax.swing.JLabel();
         textZip = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        textPhone = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         textEmail = new javax.swing.JTextField();
@@ -85,7 +104,7 @@ public Person crPerson = new Person();
 
         jLabel8.setText("Phone");
 
-        jTextField1.setText("8148654700");
+        textPhone.setText("8148654700");
 
         jButton1.setText("Create Account");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -139,7 +158,7 @@ public Person crPerson = new Person();
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(textLname)
                                     .addComponent(textState)
-                                    .addComponent(jTextField1)
+                                    .addComponent(textPhone)
                                     .addComponent(textEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(136, 136, 136)
@@ -175,7 +194,7 @@ public Person crPerson = new Person();
                     .addComponent(jLabel7)
                     .addComponent(textZip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -194,9 +213,31 @@ public Person crPerson = new Person();
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here: 
-        
-        //strCreateCustomer = "insert into person (ssn, fname, lname, address, city, state, zipcode, email) values (?,?,?,?,?,?,?,?);";
-        crTrans.createCustomer(textSSN.getText(), textFname.getText(),textLname.getText(),textAddress.getText(),textCity.getText(),textState.getText(),textZip.getText(), textEmail.getText());
+        boolean isEmpty = false;
+        for(JTextField jtf: jtfInfo)
+        {
+            if(jtf.getText().equals(""))
+            {
+                isEmpty = true;
+                jtf.setForeground(Color.red);
+            }
+            else
+            {
+                jtf.setForeground(Color.BLACK);
+            }
+        }
+        if(isEmpty)
+        {
+            JOptionPane.showMessageDialog(this, "Alert: Please fill in all fields before proceeding. Incomplete fields in red.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else
+        {
+            bankTrans.connect();
+            custCurrent = bankTrans.createCustomer(textSSN.getText(), textFname.getText(),textLname.getText(),textAddress.getText(),textCity.getText(),textState.getText(),textZip.getText(), textEmail.getText());
+            bankTrans.disconnect();
+            new MainScreen(currentUser,bankTrans,custCurrent,acctCurrent).setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -245,12 +286,12 @@ public Person crPerson = new Person();
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField textAddress;
     private javax.swing.JTextField textCity;
     private javax.swing.JTextField textEmail;
     private javax.swing.JTextField textFname;
     private javax.swing.JTextField textLname;
+    private javax.swing.JTextField textPhone;
     private javax.swing.JTextField textSSN;
     private javax.swing.JTextField textState;
     private javax.swing.JTextField textZip;
