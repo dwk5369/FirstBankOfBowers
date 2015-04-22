@@ -479,7 +479,7 @@ public class Transaction
     {
         try
         {
-            psGet = connDB.prepareStatement(strCloseAccount);
+            psGet = connDB.prepareStatement(strCreateCustomer);
             psGet.setString(1, strSSN);
             psGet.setString(2, strFName);
             psGet.setString(3, strLName);
@@ -496,7 +496,7 @@ public class Transaction
         {
             JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE); 
         }            
-        return new Customer();
+        return new Customer(strSSN,strFName,strLName,strAddress,strCity,strState,strZipcode,strEmail);
     }//createAccount
 
     public void transferFunds(Account acctFrom, Account acctTo, double dblTransfer) 

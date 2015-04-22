@@ -48,6 +48,8 @@ public class TransferFunds extends javax.swing.JFrame {
     {
         bankTrans.connect();
         ArrayList<Account> custAccounts = bankTrans.getAccount(custCurrent);
+        dlmTransferFrom.removeAllElements();
+        dlmTransferTo.removeAllElements();
         for(Account a: custAccounts)
         {
             dlmTransferFrom.addElement(a);
@@ -191,8 +193,12 @@ public class TransferFunds extends javax.swing.JFrame {
             bankTrans.transferFunds(acctFrom,acctTo,dblTransfer);
             bankTrans.disconnect();
             JOptionPane.showMessageDialog(this, "Transfer completed successfully,", "Transfer Complete", JOptionPane.INFORMATION_MESSAGE);
+            populateLists();
         }
-
+        if(acctFrom.equals(acctCurrent))
+        {
+            acctCurrent.setBalance(acctCurrent.getBalance() - dblTransfer);
+        }
     }//GEN-LAST:event_jbTransferActionPerformed
 
     /**

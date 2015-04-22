@@ -20,6 +20,34 @@ public class Person {
     private String Email;
     private String SocialSecurity;
 
+    public Person() {
+    }
+
+    
+    
+    public Person(String SocialSecurity, String Fname, String Lname, String Address, String City, String State, String Zipcode, int Phone, String Email) {
+        this.Fname = Fname;
+        this.Lname = Lname;
+        this.City = City;
+        this.State = State;
+        this.Zipcode = Zipcode;
+        this.Address = Address;
+        this.Phone = Phone;
+        this.Email = Email;
+        this.SocialSecurity = SocialSecurity;
+    }
+    
+    public Person(String SocialSecurity, String Fname, String Lname, String Address, String City, String State, String Zipcode, String Email) {
+        this.Fname = Fname;
+        this.Lname = Lname;
+        this.City = City;
+        this.State = State;
+        this.Zipcode = Zipcode;
+        this.Address = Address;
+        this.Email = Email;
+        this.SocialSecurity = SocialSecurity;
+    }    
+    
     public String getFname() {
         return Fname;
     }

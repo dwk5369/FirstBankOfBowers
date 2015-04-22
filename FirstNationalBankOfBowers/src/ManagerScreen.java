@@ -77,6 +77,11 @@ public class ManagerScreen extends javax.swing.JFrame {
         jbCloseAccount.setText("Close Account");
 
         jbAddNewCustomer.setText("Add New Customer");
+        jbAddNewCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAddNewCustomerActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpButtonsLayout = new javax.swing.GroupLayout(jpButtons);
         jpButtons.setLayout(jpButtonsLayout);
@@ -143,6 +148,11 @@ public class ManagerScreen extends javax.swing.JFrame {
         new WireTransfer(bankTrans, acctCurrent, custCurrent, currentUser).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jbTransferFundsActionPerformed
+
+    private void jbAddNewCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAddNewCustomerActionPerformed
+        new CreateAccountInterface(bankTrans,acctCurrent,custCurrent,currentUser).setVisible(true);
+        this.dispose(); //TODO: Ditch this. CreateAccount button will direct directly through the account creation process.
+    }//GEN-LAST:event_jbAddNewCustomerActionPerformed
 
     public Account getAcctCurrent() {
         return acctCurrent;

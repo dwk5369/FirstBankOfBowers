@@ -220,6 +220,7 @@ public class CreateAccountInterface extends javax.swing.JFrame {
             {
                 isEmpty = true;
                 jtf.setForeground(Color.red);
+                jtf.setText("Required");
             }
             else
             {
@@ -235,6 +236,8 @@ public class CreateAccountInterface extends javax.swing.JFrame {
             bankTrans.connect();
             custCurrent = bankTrans.createCustomer(textSSN.getText(), textFname.getText(),textLname.getText(),textAddress.getText(),textCity.getText(),textState.getText(),textZip.getText(), textEmail.getText());
             bankTrans.disconnect();
+            acctCurrent = new Account();
+            //TODO: Direct straight to screen to create account and add money.
             new MainScreen(currentUser,bankTrans,custCurrent,acctCurrent).setVisible(true);
             this.dispose();
         }

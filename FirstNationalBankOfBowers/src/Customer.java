@@ -12,6 +12,20 @@ public class Customer extends Person {
     private int customerIDnumber;
     private int pinNum;
 
+    public Customer(String SocialSecurity, String Fname, String Lname, String Address, String City, String State, String Zipcode, int Phone, String Email) {
+        super(SocialSecurity, Fname, Lname, Address, City, State, Zipcode, Phone, Email);
+    }
+
+    public Customer(String SocialSecurity, String Fname, String Lname, String Address, String City, String State, String Zipcode, String Email) {
+        super(SocialSecurity, Fname, Lname, Address, City, State, Zipcode, Email);
+    }
+
+    public Customer() {
+        
+    }
+
+    
+    
     public int getCustomerIDnumber() {
         return customerIDnumber;
     }
