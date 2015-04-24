@@ -47,7 +47,6 @@ public class ManagerScreen extends javax.swing.JFrame {
         jbCreateAccount = new javax.swing.JButton();
         jbTransferFunds = new javax.swing.JButton();
         jbCloseAccount = new javax.swing.JButton();
-        jbAddNewCustomer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,11 +74,9 @@ public class ManagerScreen extends javax.swing.JFrame {
         });
 
         jbCloseAccount.setText("Close Account");
-
-        jbAddNewCustomer.setText("Add New Customer");
-        jbAddNewCustomer.addActionListener(new java.awt.event.ActionListener() {
+        jbCloseAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbAddNewCustomerActionPerformed(evt);
+                jbCloseAccountActionPerformed(evt);
             }
         });
 
@@ -91,17 +88,14 @@ public class ManagerScreen extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jpButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jbCreateAccount, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbTransferFunds, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbAddNewCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbTransferFunds, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
                     .addComponent(jbCloseAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jpButtonsLayout.setVerticalGroup(
             jpButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpButtonsLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jbAddNewCustomer)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(48, 48, 48)
                 .addComponent(jbCreateAccount)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbTransferFunds)
@@ -140,8 +134,19 @@ public class ManagerScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_jbExitActionPerformed
 
     private void jbCreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCreateAccountActionPerformed
-        new CreateAccountInterface(bankTrans,acctCurrent,custCurrent,currentUser).setVisible(true);
-        this.dispose();
+        String[] strButtons = {"New Customer","Current Customer"};
+        int intChoice = JOptionPane.showOptionDialog(this,"Is this account for a new customer, or for the current customer being helped?", "Create Account", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, strButtons, "New Customer");
+        if(intChoice == 0)
+        {
+            new CreateAccountInterface(bankTrans,acctCurrent,custCurrent,currentUser,true).setVisible(true);
+            this.dispose();               
+        }
+        else
+        {
+            new OpenAccount(bankTrans,acctCurrent,custCurrent,currentUser).setVisible(true);
+            this.dispose();        
+        }
+
     }//GEN-LAST:event_jbCreateAccountActionPerformed
 
     private void jbTransferFundsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbTransferFundsActionPerformed
@@ -149,10 +154,9 @@ public class ManagerScreen extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jbTransferFundsActionPerformed
 
-    private void jbAddNewCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAddNewCustomerActionPerformed
-        new CreateAccountInterface(bankTrans,acctCurrent,custCurrent,currentUser).setVisible(true);
-        this.dispose(); //TODO: Ditch this. CreateAccount button will direct directly through the account creation process.
-    }//GEN-LAST:event_jbAddNewCustomerActionPerformed
+    private void jbCloseAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCloseAccountActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbCloseAccountActionPerformed
 
     public Account getAcctCurrent() {
         return acctCurrent;
@@ -215,7 +219,6 @@ public class ManagerScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jbAddNewCustomer;
     private javax.swing.JButton jbCloseAccount;
     private javax.swing.JButton jbCreateAccount;
     private javax.swing.JButton jbExit;

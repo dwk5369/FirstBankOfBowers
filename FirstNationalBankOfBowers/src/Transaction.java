@@ -62,7 +62,7 @@ public class Transaction
     
     protected String strCreateCustomer = "insert into person (ssn, fname, lname, address, city, state, zipcode, email) values (?,?,?,?,?,?,?,?);";
     
-    protected String strCreateCustomer2 = "insert into customer (id,pinnumber) values (7,'9999');";
+    protected String strCreateCustomer2 = "insert into customer (id,pinnumber) values (?,?);";
     
     protected String strTransferFrom = "update account set balance = balance - ? where accountNumber = ?";
     
@@ -283,7 +283,7 @@ public class Transaction
             return null;
         }
     }//getAccount
-
+    
     public Account getAccount(Customer cust, String strCOS)
     {
         try 
@@ -295,7 +295,7 @@ public class Transaction
             psGet.setString(1, strSSN);
             psGet.setString(2, strCOS);
             rsResult = psGet.executeQuery();
-            rsResult.first();            
+            rsResult.beforeFirst();            
             String acctNum = rsResult.getString(1);
             double balance = rsResult.getDouble(2);
             double intRate = rsResult.getDouble(3);
@@ -395,8 +395,9 @@ public class Transaction
      * @param strAcctType
      * @param dblBalance
      * @param dblInterest
+     * @return 
      */
-    public void createAccount(Customer cust, String strAcctType, double dblBalance, double dblInterest)
+    public Account createAccount(Customer cust, String strAcctType, double dblBalance, double dblInterest)
     {
         
         try
@@ -408,12 +409,21 @@ public class Transaction
             psGet.setString(3, strAcctType);
             psGet.executeUpdate();
             int custID = getCustomerID(cust.getSocialSecurity());
-            int acctNum = Integer.parseInt(getAccount(cust, strAcctType).getAccountNumber());
+            rsResult = psGet.executeQuery("select last_insert_id()");
+            rsResult.first();
+            int acctNum = rsResult.getInt(1);      
+            String strAcctNum = acctNum + "";
+
             createCustAccount(custID,acctNum);
+            if(strAcctType.equals("c"))
+                return new CheckingAccount(strAcctNum, dblBalance, dblInterest);
+            else
+                return new SavingsAccount(strAcctNum, dblBalance, dblInterest);                
         }
         catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE); 
+            return null;
         }
     
     }//create_Account
@@ -449,6 +459,7 @@ public class Transaction
             psGet = connDB.prepareStatement(strGetCustID);
             psGet.setString(1,strSSN);
             rsResult = psGet.executeQuery();
+            rsResult.first();
             int intCustID = rsResult.getInt(1);
             return intCustID;
         }
@@ -490,7 +501,14 @@ public class Transaction
             psGet.setString(8, strEmail);
             psGet.executeUpdate();
             //insert into customer (id,pinnumber) values (7,'9999');
-
+            psGet = connDB.prepareStatement("select id from person where ssn = ?");
+            psGet.setString(1, strSSN);
+            rsResult = psGet.executeQuery();
+            rsResult.first();
+            int intCustomerID = rsResult.getInt("id");
+            psGet = connDB.prepareStatement("insert into customer (id) values (?)");
+            psGet.setInt(1, intCustomerID);
+            psGet.executeUpdate();
         }
         catch (SQLException ex)
         {

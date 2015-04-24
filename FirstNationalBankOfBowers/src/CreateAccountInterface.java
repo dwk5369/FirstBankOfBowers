@@ -15,11 +15,12 @@ import javax.swing.JTextField;
  */
 public class CreateAccountInterface extends javax.swing.JFrame {
 
-    Transaction bankTrans;
-    Account acctCurrent;
-    Customer custCurrent;
-    Teller currentUser;
-    JTextField[] jtfInfo;
+    private Transaction bankTrans;
+    private Account acctCurrent;
+    private Customer custCurrent;
+    private Teller currentUser;
+    private JTextField[] jtfInfo;
+    private boolean bFirstTimeCust = false;
     
     /**
      * Creates new form CreateAccountInterface
@@ -38,6 +39,17 @@ public class CreateAccountInterface extends javax.swing.JFrame {
         jtfInfo = new JTextField[]{textFname,textLname,textSSN,textAddress,textCity,textState,textZip,textPhone,textEmail};
     }
 
+    public CreateAccountInterface(Transaction bankTrans, Account acctCurrent, Customer custCurrent, Teller currentUser, boolean bFirstTimeCust)
+    {
+        this.bankTrans = bankTrans;
+        this.acctCurrent = acctCurrent;
+        this.custCurrent = custCurrent;
+        this.currentUser = currentUser;
+        this.bFirstTimeCust = bFirstTimeCust;
+        initComponents();
+        jtfInfo = new JTextField[]{textFname,textLname,textSSN,textAddress,textCity,textState,textZip,textPhone,textEmail};
+    }    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -237,9 +249,17 @@ public class CreateAccountInterface extends javax.swing.JFrame {
             custCurrent = bankTrans.createCustomer(textSSN.getText(), textFname.getText(),textLname.getText(),textAddress.getText(),textCity.getText(),textState.getText(),textZip.getText(), textEmail.getText());
             bankTrans.disconnect();
             acctCurrent = new Account();
-            //TODO: Direct straight to screen to create account and add money.
-            new MainScreen(currentUser,bankTrans,custCurrent,acctCurrent).setVisible(true);
-            this.dispose();
+            
+            if(bFirstTimeCust)
+            {
+                new OpenAccount(bankTrans,acctCurrent,custCurrent,currentUser).setVisible(true);
+                this.dispose();      
+            }
+            else
+            {
+                new MainScreen(currentUser,bankTrans,custCurrent,acctCurrent).setVisible(true);
+                this.dispose();
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
