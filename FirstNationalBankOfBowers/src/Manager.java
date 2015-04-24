@@ -1,4 +1,5 @@
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -38,7 +39,11 @@ public class Manager extends Teller
     
     public void closeAccount(int accountNumber)
     {
-        transaction.closeAccount(accountNumber);
+        if (JOptionPane.showConfirmDialog(null,"Are you sure you want to close this account?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+        {
+            transaction.closeAccount(accountNumber);
+        }
+        
     }
 
 
