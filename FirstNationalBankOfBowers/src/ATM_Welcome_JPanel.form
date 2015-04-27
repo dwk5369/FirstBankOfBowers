@@ -16,7 +16,22 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="Jlabel_Welcome" alignment="0" pref="635" max="32767" attributes="0"/>
+          <Component id="Jlabel_Welcome" pref="635" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <Component id="bBalance" min="-2" pref="71" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabel3" min="-2" pref="85" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jLabel1" min="-2" pref="85" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="bWithdrawal" min="-2" pref="71" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jLabel2" min="-2" pref="85" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="bDeposit" min="-2" pref="71" max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -24,7 +39,19 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               <Component id="Jlabel_Welcome" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="302" max="32767" attributes="0"/>
+              <EmptySpace pref="92" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="bWithdrawal" pref="32" max="32767" attributes="0"/>
+                  <Component id="bBalance" alignment="0" pref="32" max="32767" attributes="0"/>
+                  <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="bDeposit" max="32767" attributes="0"/>
+                  <Component id="jLabel2" pref="32" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -37,6 +64,36 @@
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Welcome Back!!!"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="bDeposit">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bDepositActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="bWithdrawal">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bWithdrawalActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Withdrawal"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Deposit"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="bBalance">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bBalanceActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Account Balance"/>
       </Properties>
     </Component>
   </SubComponents>

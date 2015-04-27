@@ -8,15 +8,26 @@
  *
  * @author Alexander
  */
+import javax.swing.JPanel;
 public class ATMInterface extends javax.swing.JFrame {
 
     /**
      * Creates new form ATMInterface
      */
+    
+    //declare new jPanel
+    JPanel jMain = new ATM_Main_JPanel();
+    JPanel jDepo = new ATM_Deposit_JPanel();
+    JPanel jWelc = new ATM_Welcome_JPanel();
+    JPanel jWith = new ATM_Withdrawal_JPanel();
+    JPanel jBala = new ATM_Balance_JPanel();
     public ATMInterface() {
         initComponents();
+        setContentPane(jMain);
+        
+        
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,11 +43,11 @@ public class ATMInterface extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 561, Short.MAX_VALUE)
+            .addGap(0, 701, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 342, Short.MAX_VALUE)
+            .addGap(0, 377, Short.MAX_VALUE)
         );
 
         pack();
