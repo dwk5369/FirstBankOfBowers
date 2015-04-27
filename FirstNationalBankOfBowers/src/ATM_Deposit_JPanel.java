@@ -33,28 +33,80 @@ public class ATM_Deposit_JPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         Jlabel_Welcome = new javax.swing.JLabel();
+        bWithdrawal = new javax.swing.JButton();
+        bWithdrawal1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         Jlabel_Welcome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         Jlabel_Welcome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Jlabel_Welcome.setText("Welcome Back!!!");
+
+        bWithdrawal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bWithdrawalActionPerformed(evt);
+            }
+        });
+
+        bWithdrawal1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bWithdrawal1ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Cash");
+
+        jLabel2.setText("Check");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Jlabel_Welcome, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bWithdrawal1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bWithdrawal, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(Jlabel_Welcome)
-                .addContainerGap(348, Short.MAX_VALUE))
+                .addGap(100, 100, 100)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bWithdrawal1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bWithdrawal, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(166, 166, 166))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bWithdrawalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bWithdrawalActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_bWithdrawalActionPerformed
+
+    private void bWithdrawal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bWithdrawal1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bWithdrawal1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Jlabel_Welcome;
+    private javax.swing.JButton bWithdrawal;
+    private javax.swing.JButton bWithdrawal1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

@@ -33,6 +33,8 @@ public class ATM_Main_JPanel extends javax.swing.JPanel {
 
         Jlabel_Insert = new javax.swing.JLabel();
         Jlabel_Welcome = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        bInitialize = new javax.swing.JButton();
 
         Jlabel_Insert.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         Jlabel_Insert.setText("Insert Card To Begin!");
@@ -40,18 +42,31 @@ public class ATM_Main_JPanel extends javax.swing.JPanel {
         Jlabel_Welcome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         Jlabel_Welcome.setText("Welcome To The First Bank of Bowers!");
 
+        jTextField1.setText("Account Number");
+
+        bInitialize.setText("GO!");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(229, 229, 229)
-                .addComponent(Jlabel_Insert, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(161, Short.MAX_VALUE)
                 .addComponent(Jlabel_Welcome, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(140, 140, 140))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(229, 229, 229)
+                        .addComponent(Jlabel_Insert, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(262, 262, 262)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(bInitialize))
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -60,7 +75,11 @@ public class ATM_Main_JPanel extends javax.swing.JPanel {
                 .addComponent(Jlabel_Welcome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
                 .addComponent(Jlabel_Insert)
-                .addGap(183, 183, 183))
+                .addGap(18, 18, 18)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bInitialize)
+                .addGap(111, 111, 111))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -68,5 +87,7 @@ public class ATM_Main_JPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Jlabel_Insert;
     private javax.swing.JLabel Jlabel_Welcome;
+    private javax.swing.JButton bInitialize;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
