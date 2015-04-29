@@ -155,7 +155,12 @@ public class ManagerScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_jbTransferFundsActionPerformed
 
     private void jbCloseAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCloseAccountActionPerformed
-        // TODO add your handling code here:
+        if (JOptionPane.showConfirmDialog(null,"Are you sure you want to close this account?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+        {
+            bankTrans.connect();
+            bankTrans.closeAccount(Integer.parseInt(acctCurrent.getAccountNumber()));
+            bankTrans.disconnect();
+        }
     }//GEN-LAST:event_jbCloseAccountActionPerformed
 
     public Account getAcctCurrent() {
