@@ -14,17 +14,13 @@ import java.awt.event.WindowEvent;
 public class AccountInfo extends javax.swing.JFrame {
 
     Transaction bankTrans;
-    CheckingAccount checkAcct;
-    SavingsAccount saveAcct;
     Customer custCurrent;
     Teller currentUser;
     Account acctCurrent;
     
-    public AccountInfo(Transaction trans, CheckingAccount cAcct, SavingsAccount sAcct, Customer cust) {
+    public AccountInfo(Transaction trans, Customer cust) {
         bankTrans = trans;
         custCurrent = cust;
-        checkAcct = cAcct;
-        saveAcct = sAcct;
         jtxtCustomerID.setText(""+custCurrent.getCustomerIDnumber());
         jtxtLastName.setText(custCurrent.getLname());
         jtxtFirstName.setText(custCurrent.getFname());
@@ -35,8 +31,6 @@ public class AccountInfo extends javax.swing.JFrame {
         jtxtZip.setText(custCurrent.getZipcode());
         jtxtPhone.setText(""+custCurrent.getPhone());
         jtxtEmail.setText(custCurrent.getEmail());
-        jtxtSavingsAcctBalance.setText(""+saveAcct.getBalance());
-        jtxtCheckingAcctBalance.setText(""+checkAcct.getBalance());
     }
     
     private AccountInfo() {
@@ -54,7 +48,6 @@ public class AccountInfo extends javax.swing.JFrame {
 
         jlFirstName = new javax.swing.JLabel();
         jlCustomerID = new javax.swing.JLabel();
-        jlSavingsAcctBalance = new javax.swing.JLabel();
         jlSSN = new javax.swing.JLabel();
         jlAddress = new javax.swing.JLabel();
         jlCity = new javax.swing.JLabel();
@@ -62,7 +55,6 @@ public class AccountInfo extends javax.swing.JFrame {
         jlState = new javax.swing.JLabel();
         jlPhone = new javax.swing.JLabel();
         jlEmail = new javax.swing.JLabel();
-        jlCheckingAcctBalance = new javax.swing.JLabel();
         jtxtLastName = new javax.swing.JTextField();
         jtxtSSN = new javax.swing.JTextField();
         jtxtCustomerID = new javax.swing.JTextField();
@@ -71,9 +63,7 @@ public class AccountInfo extends javax.swing.JFrame {
         jtxtState = new javax.swing.JTextField();
         jtxtZip = new javax.swing.JTextField();
         jtxtPhone = new javax.swing.JTextField();
-        jtxtSavingsAcctBalance = new javax.swing.JTextField();
         jtxtEmail = new javax.swing.JTextField();
-        jtxtCheckingAcctBalance = new javax.swing.JTextField();
         jbSave = new javax.swing.JButton();
         jbClose = new javax.swing.JButton();
         jlLastName = new javax.swing.JLabel();
@@ -88,10 +78,6 @@ public class AccountInfo extends javax.swing.JFrame {
         jlCustomerID.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jlCustomerID.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jlCustomerID.setText("Customer ID:");
-
-        jlSavingsAcctBalance.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jlSavingsAcctBalance.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jlSavingsAcctBalance.setText("Savings Account Balance:");
 
         jlSSN.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jlSSN.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -121,10 +107,6 @@ public class AccountInfo extends javax.swing.JFrame {
         jlEmail.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jlEmail.setText("Email:");
 
-        jlCheckingAcctBalance.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jlCheckingAcctBalance.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jlCheckingAcctBalance.setText("Checking Account Balance:");
-
         jtxtLastName.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jtxtSSN.setEditable(false);
@@ -143,13 +125,7 @@ public class AccountInfo extends javax.swing.JFrame {
 
         jtxtPhone.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        jtxtSavingsAcctBalance.setEditable(false);
-        jtxtSavingsAcctBalance.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-
         jtxtEmail.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-
-        jtxtCheckingAcctBalance.setEditable(false);
-        jtxtCheckingAcctBalance.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jbSave.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jbSave.setText("Save Changes");
@@ -179,41 +155,32 @@ public class AccountInfo extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jlFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlCustomerID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlSSN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                    .addComponent(jlAddress, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                    .addComponent(jlCity, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                    .addComponent(jlZip, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                    .addComponent(jlState, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                    .addComponent(jlPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                    .addComponent(jlEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                    .addComponent(jlLastName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jlCheckingAcctBalance)
-                        .addGap(3, 3, 3)
-                        .addComponent(jtxtCheckingAcctBalance, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlSavingsAcctBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jlFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jlCustomerID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jlSSN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                                .addComponent(jlAddress, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                                .addComponent(jlCity, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                                .addComponent(jlZip, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                                .addComponent(jlState, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                                .addComponent(jlPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                                .addComponent(jlEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                                .addComponent(jlLastName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtxtSSN, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
-                            .addComponent(jtxtLastName)
-                            .addComponent(jtxtCustomerID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
-                            .addComponent(jtxtAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
-                            .addComponent(jtxtCity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
-                            .addComponent(jtxtState, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
-                            .addComponent(jtxtZip, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
-                            .addComponent(jtxtPhone, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
-                            .addComponent(jtxtEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
-                            .addComponent(jtxtSavingsAcctBalance, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
-                            .addComponent(jtxtFirstName, javax.swing.GroupLayout.Alignment.TRAILING))))
+                    .addComponent(jtxtSSN, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                    .addComponent(jtxtLastName)
+                    .addComponent(jtxtCustomerID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                    .addComponent(jtxtAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                    .addComponent(jtxtCity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                    .addComponent(jtxtState, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                    .addComponent(jtxtZip, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                    .addComponent(jtxtPhone, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                    .addComponent(jtxtEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                    .addComponent(jtxtFirstName, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
+                .addGap(89, 89, 89)
                 .addComponent(jbSave, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addComponent(jbClose, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -262,14 +229,6 @@ public class AccountInfo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtxtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlSavingsAcctBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtxtSavingsAcctBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlCheckingAcctBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtxtCheckingAcctBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbSave)
@@ -336,7 +295,6 @@ public class AccountInfo extends javax.swing.JFrame {
     private javax.swing.JButton jbClose;
     private javax.swing.JButton jbSave;
     private javax.swing.JLabel jlAddress;
-    private javax.swing.JLabel jlCheckingAcctBalance;
     private javax.swing.JLabel jlCity;
     private javax.swing.JLabel jlCustomerID;
     private javax.swing.JLabel jlEmail;
@@ -344,11 +302,9 @@ public class AccountInfo extends javax.swing.JFrame {
     private javax.swing.JLabel jlLastName;
     private javax.swing.JLabel jlPhone;
     private javax.swing.JLabel jlSSN;
-    private javax.swing.JLabel jlSavingsAcctBalance;
     private javax.swing.JLabel jlState;
     private javax.swing.JLabel jlZip;
     private javax.swing.JTextField jtxtAddress;
-    private javax.swing.JTextField jtxtCheckingAcctBalance;
     private javax.swing.JTextField jtxtCity;
     private javax.swing.JTextField jtxtCustomerID;
     private javax.swing.JTextField jtxtEmail;
@@ -356,7 +312,6 @@ public class AccountInfo extends javax.swing.JFrame {
     private javax.swing.JTextField jtxtLastName;
     private javax.swing.JTextField jtxtPhone;
     private javax.swing.JTextField jtxtSSN;
-    private javax.swing.JTextField jtxtSavingsAcctBalance;
     private javax.swing.JTextField jtxtState;
     private javax.swing.JTextField jtxtZip;
     // End of variables declaration//GEN-END:variables
