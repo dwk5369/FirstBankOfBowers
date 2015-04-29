@@ -14,10 +14,11 @@ public class ATM_Withdrawal_JPanel extends javax.swing.JPanel{
      * Creates new form ATM_Withdrawal_JPanel
      */
     ATM_Methods AtmM = new ATM_Methods();
-    ATMInterface ATMI = new ATMInterface();
+    ATMInterface ATMI;
     
-    public ATM_Withdrawal_JPanel() {
+    public ATM_Withdrawal_JPanel(ATMInterface ATMIget) {
         initComponents();
+        ATMI = ATMIget;
         //try catch on startup to get user info, if incorrect default
         try{
             Jlabel_Welcome.setText(AtmM.getUserInfoFname());
@@ -139,9 +140,9 @@ public class ATM_Withdrawal_JPanel extends javax.swing.JPanel{
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)

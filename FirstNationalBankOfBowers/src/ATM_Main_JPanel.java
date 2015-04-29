@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,7 +17,9 @@ public class ATM_Main_JPanel extends javax.swing.JPanel {
      * Creates new form ATM_Main_Jpanel
      */
     ATM_Methods AtmM = new ATM_Methods();
-    public ATM_Main_JPanel() {
+    ATMInterface ATMI;
+    public ATM_Main_JPanel(ATMInterface ATMIget) {
+        ATMI = ATMIget;
         initComponents();
         try{
             Jlabel_Welcome.setText(AtmM.getUserInfoFname());
@@ -33,7 +38,7 @@ public class ATM_Main_JPanel extends javax.swing.JPanel {
 
         Jlabel_Insert = new javax.swing.JLabel();
         Jlabel_Welcome = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jtfAccount = new javax.swing.JTextField();
         bInitialize = new javax.swing.JButton();
 
         Jlabel_Insert.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -42,9 +47,12 @@ public class ATM_Main_JPanel extends javax.swing.JPanel {
         Jlabel_Welcome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         Jlabel_Welcome.setText("Welcome To The First Bank of Bowers!");
 
-        jTextField1.setText("Account Number");
-
         bInitialize.setText("GO!");
+        bInitialize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bInitializeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -60,12 +68,11 @@ public class ATM_Main_JPanel extends javax.swing.JPanel {
                         .addGap(229, 229, 229)
                         .addComponent(Jlabel_Insert, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(262, 262, 262)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(bInitialize))
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(261, 261, 261)
+                        .addComponent(jtfAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(286, 286, 286)
+                        .addComponent(bInitialize)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -76,18 +83,34 @@ public class ATM_Main_JPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
                 .addComponent(Jlabel_Insert)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtfAccount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bInitialize)
                 .addGap(111, 111, 111))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bInitializeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bInitializeActionPerformed
+        Transaction trans = new Transaction();
+        int acctNum = Integer.parseInt(jtfAccount.getText().trim());
+        trans.connect();
+        Account userAcct = trans.getAccount(acctNum);
+        trans.disconnect();
+        if(userAcct != null)
+        {
+            ATMI.setContentPane(ATMI.jWelc);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Your card was not recognized", "ATM Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_bInitializeActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Jlabel_Insert;
     private javax.swing.JLabel Jlabel_Welcome;
     private javax.swing.JButton bInitialize;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jtfAccount;
     // End of variables declaration//GEN-END:variables
 }

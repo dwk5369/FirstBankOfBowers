@@ -14,8 +14,9 @@ public class ATM_Welcome_JPanel extends javax.swing.JPanel{
      * Creates new form ATM_Welcome_JPanel
      */
     ATM_Methods AtmM = new ATM_Methods();
-    ATMInterface ATMI = new ATMInterface();
-    public ATM_Welcome_JPanel() {
+    ATMInterface ATMI;
+    public ATM_Welcome_JPanel(ATMInterface ATMIget) {
+        ATMI = ATMIget;
         initComponents();
         //try catch on startup to get user info, if incorrect default
         try{
