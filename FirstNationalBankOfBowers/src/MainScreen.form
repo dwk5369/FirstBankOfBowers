@@ -238,6 +238,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Account Info"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbAccountInfoActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jlAccount">
               <Properties>

@@ -2,6 +2,7 @@
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.HeadlessException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
@@ -207,7 +208,7 @@ public class selectAccount extends javax.swing.JFrame {
         Account currentAcct = (Account)accountList.getSelectedValue();
         
         AccountNumField.setText(currentAcct.getAccountNumber());
-        BalanceField.setText("$" + currentAcct.getBalance());
+        BalanceField.setText("$" + new DecimalFormat("#.##").format(currentAcct.getBalance()));
         InterestRateField.setText(currentAcct.getInterestRate() + "%");
         if(currentAcct.getClass().toString().contains("Checking"))
             AccountTypeField.setText("Checking");
