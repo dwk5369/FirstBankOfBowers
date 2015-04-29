@@ -123,6 +123,12 @@ public class SearchCustomer extends javax.swing.JFrame {
 
         jLabel1.setText("Customer Info:");
 
+        jlCustState.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
+        jlCustZIP.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
+        jlCustEmail.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
         javax.swing.GroupLayout jpCustomerInfoLayout = new javax.swing.GroupLayout(jpCustomerInfo);
         jpCustomerInfo.setLayout(jpCustomerInfoLayout);
         jpCustomerInfoLayout.setHorizontalGroup(
@@ -146,19 +152,21 @@ public class SearchCustomer extends javax.swing.JFrame {
                                         .addComponent(jlCustFname, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jlCustLname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(jpCustomerInfoLayout.createSequentialGroup()
-                                        .addGap(258, 258, 258)
-                                        .addComponent(jlCustEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(jpCustomerInfoLayout.createSequentialGroup()
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpCustomerInfoLayout.createSequentialGroup()
                                         .addComponent(jlCustCity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jlCustState, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jlCustZIP, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGroup(jpCustomerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(jpCustomerInfoLayout.createSequentialGroup()
+                                                .addGap(20, 20, 20)
+                                                .addComponent(jlCustEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addGroup(jpCustomerInfoLayout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jlCustState, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jlCustZIP, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                             .addGroup(jpCustomerInfoLayout.createSequentialGroup()
                                 .addGap(165, 165, 165)
                                 .addComponent(jLabel1)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGap(0, 208, Short.MAX_VALUE))))
                     .addGroup(jpCustomerInfoLayout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(jbClear, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)

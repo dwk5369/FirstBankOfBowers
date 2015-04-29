@@ -145,6 +145,11 @@ public class MainScreen extends javax.swing.JFrame {
         });
 
         jbAccountInfo.setText("Account Info");
+        jbAccountInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAccountInfoActionPerformed(evt);
+            }
+        });
 
         jlAccount.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jlAccount.setText("Current Account:");
@@ -319,6 +324,10 @@ public class MainScreen extends javax.swing.JFrame {
         new TransferFunds(bankTrans,acctCurrent,custCurrent,currentUser).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jbTransferFundsActionPerformed
+
+    private void jbAccountInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAccountInfoActionPerformed
+
+    }//GEN-LAST:event_jbAccountInfoActionPerformed
                                         
 
     /**
