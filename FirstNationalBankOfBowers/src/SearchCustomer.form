@@ -87,7 +87,7 @@
                                               </Group>
                                               <Group type="102" attributes="0">
                                                   <EmptySpace max="32767" attributes="0"/>
-                                                  <Component id="jlCustState" min="-2" pref="34" max="-2" attributes="0"/>
+                                                  <Component id="jlCustState" min="-2" pref="155" max="-2" attributes="0"/>
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                   <Component id="jlCustZIP" min="-2" pref="66" max="-2" attributes="0"/>
                                               </Group>

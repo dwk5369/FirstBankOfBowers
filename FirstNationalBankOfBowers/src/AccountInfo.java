@@ -19,6 +19,7 @@ public class AccountInfo extends javax.swing.JFrame {
     Account acctCurrent;
     
     public AccountInfo(Transaction trans, Customer cust) {
+
         bankTrans = trans;
         custCurrent = cust;
         jtxtCustomerID.setText(""+custCurrent.getCustomerIDnumber());

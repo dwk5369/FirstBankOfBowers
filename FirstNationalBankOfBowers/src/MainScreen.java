@@ -326,7 +326,8 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_jbTransferFundsActionPerformed
 
     private void jbAccountInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAccountInfoActionPerformed
-
+        new AccountInfo(bankTrans,custCurrent).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jbAccountInfoActionPerformed
                                         
 
