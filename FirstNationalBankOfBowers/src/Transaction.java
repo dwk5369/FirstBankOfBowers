@@ -68,6 +68,8 @@ public class Transaction
     
     protected String strTransferTo = "update account set balance = balance + ? where accountNumber = ?";
     
+    protected String strATMFname = "select fname from customer_account where accountNumber = ? and pin = ?";
+    
     /*
     For login view:
     select * from person
@@ -595,6 +597,32 @@ public class Transaction
             JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE); 
         }              
     }
+
+    /**
+     * For Alex
+     * 
+     * @param acctNum
+     * @param pin
+     * @return 
+     */
+    public String getCustFName(String acctNum, String pin) 
+    {
+        try
+        {
+            psGet = connDB.prepareStatement(strATMFname);
+            psGet.setString(1, acctNum);
+            psGet.setString(2, pin);
+            rsResult = psGet.executeQuery();
+            rsResult.first();
+            String fname = rsResult.getString(1);
+            return fname;
+        }
+        catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE); 
+            return null;
+        }            
+    }      
     
     /**
      * Disconnect from the database

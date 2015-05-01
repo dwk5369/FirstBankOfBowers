@@ -99,7 +99,8 @@ public class ATM_Main_JPanel extends javax.swing.JPanel {
         if(userAcct != null)
         {
             ATMI.setContentPane(ATMI.jWelc);
-            
+            ATMI.repaint(); 
+            ATMI.pack();
         }
         else
         {

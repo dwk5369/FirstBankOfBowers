@@ -113,18 +113,23 @@ public class ATM_Welcome_JPanel extends javax.swing.JPanel{
     private void bWithdrawalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bWithdrawalActionPerformed
         // TODO add your handling code here:
         ATMI.setContentPane(ATMI.jWith);
-       
+        ATMI.repaint(); 
+        ATMI.pack();
         
     }//GEN-LAST:event_bWithdrawalActionPerformed
 
     private void bBalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBalanceActionPerformed
         // TODO add your handling code here:
         ATMI.setContentPane(ATMI.jBala);
+        ATMI.repaint(); 
+        ATMI.pack();
     }//GEN-LAST:event_bBalanceActionPerformed
 
     private void bDepositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDepositActionPerformed
         // TODO add your handling code here:
         ATMI.setContentPane(ATMI.jDepo);
+        ATMI.repaint(); 
+        ATMI.pack();
     }//GEN-LAST:event_bDepositActionPerformed
 
 

@@ -17,6 +17,9 @@ public class TransactionTest {
         Transaction t1 = new Transaction();
         int acctNum = 11111111;
         t1.connect();
+        String str = t1.getCustFName("11111111", "1234");
+        System.out.println(str);
+        /**
         ArrayList<Customer> test = t1.getAccountOwners(acctNum);
         
         System.out.println(test.toString());
@@ -37,6 +40,7 @@ public class TransactionTest {
         System.out.println(acct.getBalance());
         t1.deposit(acct.getAccountNumber(),1000);
         System.out.println(acct.getBalance());        
+        */
         t1.disconnect();
     }
 }
