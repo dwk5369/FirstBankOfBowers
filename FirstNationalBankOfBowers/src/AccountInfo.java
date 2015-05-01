@@ -243,9 +243,8 @@ public class AccountInfo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCloseActionPerformed
-        new MainScreen(currentUser,bankTrans,custCurrent,acctCurrent).setVisible(true);
+        new MainScreen(currentUser,bankTrans,custCurrent,acctCurrent).setVisible(true); //Is Fixed
         this.dispose();
-//        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
         
     }//GEN-LAST:event_jbCloseActionPerformed
 
