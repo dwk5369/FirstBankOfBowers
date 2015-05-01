@@ -42,11 +42,11 @@ public class MainScreen extends javax.swing.JFrame {
 
     public MainScreen(Teller tell, Transaction trans, Customer cust, Account acct)
     {
+        initComponents();
         currentUser = tell;
         bankTrans = trans;
         custCurrent = cust;
         acctCurrent = acct;
-        initComponents();
         jlLoggedInAs.setText("Logged in as: " + currentUser.getClass().toString().substring(6) + " " + currentUser.toString());
         if(currentUser.getClass().toString().substring(6).equals("Teller"))
             jbManagerTools.setVisible(false);
@@ -326,7 +326,7 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_jbTransferFundsActionPerformed
 
     private void jbAccountInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAccountInfoActionPerformed
-        new AccountInfo(bankTrans,custCurrent).setVisible(true);
+        new AccountInfo(currentUser, bankTrans, custCurrent, acctCurrent).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jbAccountInfoActionPerformed
                                         

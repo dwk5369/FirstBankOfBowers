@@ -18,10 +18,12 @@ public class AccountInfo extends javax.swing.JFrame {
     Teller currentUser;
     Account acctCurrent;
     
-    public AccountInfo(Transaction trans, Customer cust) {
-
+    public AccountInfo(Teller tell, Transaction trans, Customer cust, Account acct) {
+        initComponents();
+        currentUser = tell;
         bankTrans = trans;
         custCurrent = cust;
+        acctCurrent = acct;      
         jtxtCustomerID.setText(""+custCurrent.getCustomerIDnumber());
         jtxtLastName.setText(custCurrent.getLname());
         jtxtFirstName.setText(custCurrent.getFname());
@@ -241,9 +243,10 @@ public class AccountInfo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCloseActionPerformed
-        this.dispose();
-        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
         new MainScreen(currentUser,bankTrans,custCurrent,acctCurrent).setVisible(true);
+        this.dispose();
+//        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+        
     }//GEN-LAST:event_jbCloseActionPerformed
 
     private void jbSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSaveActionPerformed
