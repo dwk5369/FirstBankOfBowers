@@ -284,6 +284,12 @@ public class Transaction
         }
     }//getAccount
     
+    /**
+     * 
+     * @param cust
+     * @param strCOS
+     * @return 
+     */
     public Account getAccount(Customer cust, String strCOS)
     {
         try 
@@ -313,6 +319,11 @@ public class Transaction
         }
     }//getAccount    
  
+    /**
+     * 
+     * @param intAcctNum
+     * @return 
+     */
     public Account getAccount(int intAcctNum)
     {
         try 
@@ -383,10 +394,6 @@ public class Transaction
         }        
     }//withdraw
     
-    public double getBalance(Account acct)
-    {
-        return 0;
-    }//withdraw
     
     /**
      * 
@@ -452,6 +459,11 @@ public class Transaction
                 
     }//createCustAccount
     
+    /**
+     * 
+     * @param strSSN
+     * @return 
+     */
     private int getCustomerID(String strSSN) 
     {
         try
@@ -469,7 +481,11 @@ public class Transaction
             return 0;
         }   
     } 
-     
+    
+    /**
+     * 
+     * @param accountNumber 
+     */
     public void closeAccount(int accountNumber)
     {
         try
@@ -485,7 +501,20 @@ public class Transaction
             JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE); 
         }    
     } //closeAccount
-        
+    
+    /**
+     * 
+     * 
+     * @param strSSN
+     * @param strFName
+     * @param strLName
+     * @param strAddress
+     * @param strCity
+     * @param strState
+     * @param strZipcode
+     * @param strEmail
+     * @return 
+     */
     public Customer createCustomer(String strSSN, String strFName, String strLName, String strAddress, String strCity, String strState, String strZipcode, String strEmail)
     {
         try
@@ -516,7 +545,13 @@ public class Transaction
         }            
         return new Customer(strSSN,strFName,strLName,strAddress,strCity,strState,strZipcode,strEmail);
     }//createAccount
-
+    
+    /**
+     * 
+     * @param acctFrom
+     * @param acctTo
+     * @param dblTransfer 
+     */
     public void transferFunds(Account acctFrom, Account acctTo, double dblTransfer) 
     {
         try
@@ -534,8 +569,12 @@ public class Transaction
         {
             JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE); 
         }            
-    }    
-
+    }  
+    
+    /**
+     * 
+     * @param cust 
+     */
     public void updateCustomer(Customer cust)
     {
         try
@@ -557,6 +596,9 @@ public class Transaction
         }              
     }
     
+    /**
+     * Disconnect from the database
+     */
     public void disconnect()
     {
         try 

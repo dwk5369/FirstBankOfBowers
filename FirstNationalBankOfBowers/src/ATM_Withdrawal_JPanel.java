@@ -214,7 +214,7 @@ public class ATM_Withdrawal_JPanel extends javax.swing.JPanel{
         // TODO add your handling code here:
         ATMI.trans.connect();
         Account userAcct = ATMI.trans.getAccount(ATMI.acctNum);
-        ATMI.trans.withdrawalFunds(userAcct, Integer.parseInt(textAmount.getText().trim()));
+        ATMI.trans.withdraw(userAcct.getAccountNumber(), Integer.parseInt(textAmount.getText().trim()));
         JOptionPane.showMessageDialog(this, "Successful. Please Take Your Cash Below.");
         ATMI.trans.disconnect();
     }//GEN-LAST:event_bWithdrawalActionPerformed
