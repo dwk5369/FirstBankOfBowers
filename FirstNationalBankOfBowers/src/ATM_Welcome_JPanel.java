@@ -15,11 +15,13 @@ public class ATM_Welcome_JPanel extends javax.swing.JPanel{
      */
     ATM_Methods AtmM = new ATM_Methods();
     ATMInterface ATMI;
+    
     public ATM_Welcome_JPanel(ATMInterface ATMIget) {
         ATMI = ATMIget;
         initComponents();
         //try catch on startup to get user info, if incorrect default
         try{
+           //AtmM.setUserInfoFname();
             Jlabel_Welcome.setText(AtmM.getUserInfoFname());
            
         } catch (Exception e){Jlabel_Welcome.setText("Welcome Back!!");}

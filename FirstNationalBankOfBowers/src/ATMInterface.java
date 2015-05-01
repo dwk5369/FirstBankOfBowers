@@ -21,6 +21,16 @@ public class ATMInterface extends javax.swing.JFrame {
     JPanel jWelc;
     JPanel jWith;
     JPanel jBala;
+    
+    //Call Variables for entire transaction
+    int acctNum;
+    String acctFname;
+    String acctLname;
+    double acctBal;
+    
+    //declare transaction for child frames
+    Transaction trans = new Transaction();
+    
     public ATMInterface() {
         initComponents();
         jMain = new ATM_Main_JPanel(this);

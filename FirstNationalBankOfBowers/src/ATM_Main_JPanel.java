@@ -18,6 +18,7 @@ public class ATM_Main_JPanel extends javax.swing.JPanel {
      */
     ATM_Methods AtmM = new ATM_Methods();
     ATMInterface ATMI;
+    
     public ATM_Main_JPanel(ATMInterface ATMIget) {
         ATMI = ATMIget;
         initComponents();
@@ -91,14 +92,14 @@ public class ATM_Main_JPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bInitializeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bInitializeActionPerformed
-        Transaction trans = new Transaction();
-        int acctNum = Integer.parseInt(jtfAccount.getText().trim());
-        trans.connect();
-        Account userAcct = trans.getAccount(acctNum);
-        trans.disconnect();
+        ATMI.acctNum = Integer.parseInt(jtfAccount.getText().trim());
+        ATMI.trans.connect();
+        Account userAcct = ATMI.trans.getAccount(ATMI.acctNum);
+        ATMI.trans.disconnect();
         if(userAcct != null)
         {
             ATMI.setContentPane(ATMI.jWelc);
+            
         }
         else
         {
