@@ -11,7 +11,7 @@
 public class ATM_Methods {
     
     String UserInfoFname;
-    double UserAccountBal;
+    String UserAccountBal;
     //Void to get user information and to String for output (Welcome User!)
     public void setUserInfoFname(String setUserFname)
     {
@@ -23,13 +23,13 @@ public class ATM_Methods {
         return UserInfoFname;
     }
     //set Account Balance
-    public void setAccountBalance(double setBalance)
+    public void setAccountBalance(String setBalance)
     {
        UserAccountBal =  setBalance;
                
     }
     //return variable
-    public double getAccountBalance()
+    public String getAccountBalance()
     {
         return UserAccountBal;
     }
