@@ -16,14 +16,13 @@ public class ATM_Main_JPanel extends javax.swing.JPanel {
     /**
      * Creates new form ATM_Main_Jpanel
      */
-    ATM_Methods AtmM = new ATM_Methods();
     ATMInterface ATMI;
     
     public ATM_Main_JPanel(ATMInterface ATMIget) {
         ATMI = ATMIget;
         initComponents();
         try{
-            Jlabel_Welcome.setText(AtmM.getUserInfoFname());
+            Jlabel_Welcome.setText(ATMI.AtmM.getUserInfoFname());
            
         } catch (Exception e){Jlabel_Welcome.setText("Welcome Back!!");}
     }
@@ -92,12 +91,20 @@ public class ATM_Main_JPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bInitializeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bInitializeActionPerformed
-        ATMI.acctNum = Integer.parseInt(jtfAccount.getText().trim());
+        ATMI.acctNum = (jtfAccount.getText().trim());
         ATMI.trans.connect();
-        Account userAcct = ATMI.trans.getAccount(ATMI.acctNum);
+        int intacctNum = Integer.parseInt(ATMI.acctNum);
+        Account userAcct = ATMI.trans.getAccount(intacctNum);
+        ATMI.cPin = ATMI.trans.getCustPin(jtfAccount.getText().trim());
+        JOptionPane.showInputDialog(ATMI, "Please Enter Your Pin", "1234");
+        ATMI.AtmM.setAccountBalance(ATMI.trans.getAccBal(ATMI.acctNum));
+        
         ATMI.trans.disconnect();
-        if(userAcct != null)
-        {
+        if(userAcct != null && ATMI.cPin != null)
+        {   
+            ATMI.trans.connect();            
+            ATMI.AtmM.setUserInfoFname(ATMI.trans.getCustFName(ATMI.acctNum,ATMI.cPin));
+            System.out.println("username: " + ATMI.acctNum + " pin: " + ATMI.cPin + " account: " + userAcct + " Name: " + ATMI.AtmM.getUserInfoFname());
             ATMI.setContentPane(ATMI.jWelc);
             ATMI.repaint(); 
             ATMI.pack();

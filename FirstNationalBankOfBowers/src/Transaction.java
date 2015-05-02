@@ -68,7 +68,12 @@ public class Transaction
     
     protected String strTransferTo = "update account set balance = balance + ? where accountNumber = ?";
     
+    protected String strATMPin = "select pin from customer_account where accountNumber = ?";
+    
     protected String strATMFname = "select fname from customer_account where accountNumber = ? and pin = ?";
+    
+    protected String strATMBal = "Select balance from customer_account where accountNumber = ?";
+    
     
     /*
     For login view:
@@ -622,7 +627,44 @@ public class Transaction
             JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE); 
             return null;
         }            
-    }      
+    }
+    public String getCustPin(String acctNum)
+    {
+        String cPin;
+        try
+        {
+            psGet = connDB.prepareStatement(strATMPin);
+            psGet.setString(1, acctNum);
+            rsResult = psGet.executeQuery();
+            rsResult.first();
+            String sPin = rsResult.getString(1);
+            cPin = sPin;
+        }
+        catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE); 
+            return null;
+        }
+        return cPin;
+    }
+    public String getAccBal(String acctNum)
+    {
+        String ATMBal;
+        try{
+        psGet = connDB.prepareStatement(strATMBal);
+        psGet.setString(1,acctNum);
+        rsResult = psGet.executeQuery();
+        rsResult.first();
+        ATMBal = rsResult.getString(1);
+        
+        }
+        catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error reading database. Please contact IT. " + ex.getMessage(), ex.getClass().toString(), JOptionPane.ERROR_MESSAGE); 
+            return null;
+        }
+        return ATMBal;
+    }
     
     /**
      * Disconnect from the database

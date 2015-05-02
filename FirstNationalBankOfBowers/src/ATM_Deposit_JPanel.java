@@ -16,13 +16,12 @@ public class ATM_Deposit_JPanel extends javax.swing.JPanel {
     /**
      * Creates new form ATM_Deposit_JPanel
      */
-    ATM_Methods AtmM = new ATM_Methods();
     ATMInterface ATMI;
     public ATM_Deposit_JPanel() {
         initComponents();
         //try catch on startup to get user info, if incorrect default
         try{
-            Jlabel_Welcome.setText(AtmM.getUserInfoFname());
+            Jlabel_Welcome.setText(ATMI.AtmM.getUserInfoFname());
            
         } catch (Exception e){Jlabel_Welcome.setText("Welcome Back!!");}
     }
@@ -40,21 +39,22 @@ public class ATM_Deposit_JPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         Jlabel_Welcome = new javax.swing.JLabel();
-        bWithdrawal = new javax.swing.JButton();
+        bCheck = new javax.swing.JButton();
         bDepositCash = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         textAmount = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        bBackDep = new javax.swing.JButton();
 
         Jlabel_Welcome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         Jlabel_Welcome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Jlabel_Welcome.setText("Welcome Back!!!");
+        Jlabel_Welcome.setText("Welcome");
 
-        bWithdrawal.addActionListener(new java.awt.event.ActionListener() {
+        bCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bWithdrawalActionPerformed(evt);
+                bCheckActionPerformed(evt);
             }
         });
 
@@ -74,6 +74,14 @@ public class ATM_Deposit_JPanel extends javax.swing.JPanel {
         jLabel3.setText("Please Type Amount Below");
 
         jLabel4.setText("Then Enter Type");
+
+        bBackDep.setBackground(new java.awt.Color(255, 0, 0));
+        bBackDep.setText("Back");
+        bBackDep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bBackDepActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -95,11 +103,14 @@ public class ATM_Deposit_JPanel extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bWithdrawal, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(bCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bDepositCash, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(bBackDep, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,34 +131,45 @@ public class ATM_Deposit_JPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                            .addComponent(bWithdrawal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(bCheck, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(166, 166, 166))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(textAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bBackDep, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bWithdrawalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bWithdrawalActionPerformed
+    private void bCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCheckActionPerformed
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_bWithdrawalActionPerformed
+    }//GEN-LAST:event_bCheckActionPerformed
 
     private void bDepositCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDepositCashActionPerformed
         // TODO add your handling code here:
         ATMI.trans.connect();
-        Account userAcct = ATMI.trans.getAccount(ATMI.acctNum);
+        int intacctNum = Integer.parseInt(ATMI.acctNum);
+        Account userAcct = ATMI.trans.getAccount(intacctNum);
         ATMI.trans.deposit(userAcct.getAccountNumber(), Integer.parseInt(textAmount.getText().trim()));
         JOptionPane.showMessageDialog(this, "Successful. Please Take Your Cash Below.");
         ATMI.trans.disconnect();
         
     }//GEN-LAST:event_bDepositCashActionPerformed
 
+    private void bBackDepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBackDepActionPerformed
+        // TODO add your handling code here:
+        ATMI.setContentPane(ATMI.jMain);
+        ATMI.repaint(); 
+        ATMI.pack();
+    }//GEN-LAST:event_bBackDepActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Jlabel_Welcome;
+    private javax.swing.JButton bBackDep;
+    private javax.swing.JButton bCheck;
     private javax.swing.JButton bDepositCash;
-    private javax.swing.JButton bWithdrawal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

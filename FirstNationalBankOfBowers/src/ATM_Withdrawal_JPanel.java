@@ -16,7 +16,6 @@ public class ATM_Withdrawal_JPanel extends javax.swing.JPanel{
     /**
      * Creates new form ATM_Withdrawal_JPanel
      */
-    ATM_Methods AtmM = new ATM_Methods();
     ATMInterface ATMI;
     
     //declare methods for withdrawal
@@ -27,7 +26,7 @@ public class ATM_Withdrawal_JPanel extends javax.swing.JPanel{
         ATMI = ATMIget;
         //try catch on startup to get user info, if incorrect default
         try{
-            Jlabel_Welcome.setText(AtmM.getUserInfoFname());
+            Jlabel_Welcome.setText(ATMI.AtmM.getUserInfoFname());
            
         } catch (Exception e){Jlabel_Welcome.setText("Welcome Back!!");}
             }
@@ -55,6 +54,7 @@ public class ATM_Withdrawal_JPanel extends javax.swing.JPanel{
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         textAmount = new javax.swing.JTextField();
+        bBackWith = new javax.swing.JButton();
 
         Jlabel_Welcome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         Jlabel_Welcome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -133,6 +133,14 @@ public class ATM_Withdrawal_JPanel extends javax.swing.JPanel{
         textAmount.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         textAmount.setText("0.00");
 
+        bBackWith.setBackground(new java.awt.Color(255, 0, 0));
+        bBackWith.setText("Back");
+        bBackWith.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bBackWithActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -148,12 +156,8 @@ public class ATM_Withdrawal_JPanel extends javax.swing.JPanel{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(144, 144, 144)
-                .addComponent(bWithdrawal, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -167,6 +171,14 @@ public class ATM_Withdrawal_JPanel extends javax.swing.JPanel{
                             .addComponent(jLabel4))
                         .addGap(103, 103, 103)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(261, Short.MAX_VALUE)
+                .addComponent(bWithdrawal, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(141, 141, 141)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(bBackWith, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,20 +200,19 @@ public class ATM_Withdrawal_JPanel extends javax.swing.JPanel{
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(textAmount))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
+                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(bWithdrawal, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 58, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bBackWith, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                .addGap(6, 6, 6))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -213,7 +224,8 @@ public class ATM_Withdrawal_JPanel extends javax.swing.JPanel{
     private void bWithdrawalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bWithdrawalActionPerformed
         // TODO add your handling code here:
         ATMI.trans.connect();
-        Account userAcct = ATMI.trans.getAccount(ATMI.acctNum);
+        int intacctNum = Integer.parseInt(ATMI.acctNum);
+        Account userAcct = ATMI.trans.getAccount(intacctNum);
         ATMI.trans.withdraw(userAcct.getAccountNumber(), Integer.parseInt(textAmount.getText().trim()));
         JOptionPane.showMessageDialog(this, "Successful. Please Take Your Cash Below.");
         ATMI.trans.disconnect();
@@ -255,9 +267,17 @@ public class ATM_Withdrawal_JPanel extends javax.swing.JPanel{
         textAmount.setText("400");
     }//GEN-LAST:event_jButton8ActionPerformed
 
+    private void bBackWithActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBackWithActionPerformed
+        // TODO add your handling code here:
+        ATMI.setContentPane(ATMI.jWelc);
+        ATMI.repaint(); 
+        ATMI.pack();
+    }//GEN-LAST:event_bBackWithActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Jlabel_Welcome;
+    private javax.swing.JButton bBackWith;
     private javax.swing.JButton bWithdrawal;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

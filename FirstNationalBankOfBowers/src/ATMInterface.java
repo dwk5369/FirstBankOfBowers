@@ -23,13 +23,17 @@ public class ATMInterface extends javax.swing.JFrame {
     JPanel jBala;
     
     //Call Variables for entire transaction
-    int acctNum;
+    String acctNum;
     String acctFname;
     String acctLname;
     double acctBal;
+    String cPin;
     
-    //declare transaction for child frames
+    //declare transaction for child frames    
     Transaction trans = new Transaction();
+    
+    //call ATM Methods
+    ATM_Methods AtmM = new ATM_Methods();
     
     public ATMInterface() {
         initComponents();
@@ -58,11 +62,11 @@ public class ATMInterface extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 701, Short.MAX_VALUE)
+            .addGap(0, 700, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 377, Short.MAX_VALUE)
+            .addGap(0, 375, Short.MAX_VALUE)
         );
 
         pack();

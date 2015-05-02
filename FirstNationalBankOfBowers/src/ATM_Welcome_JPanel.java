@@ -13,18 +13,16 @@ public class ATM_Welcome_JPanel extends javax.swing.JPanel{
     /**
      * Creates new form ATM_Welcome_JPanel
      */
-    ATM_Methods AtmM = new ATM_Methods();
+    ATM_Methods AtmM;
     ATMInterface ATMI;
     
     public ATM_Welcome_JPanel(ATMInterface ATMIget) {
         ATMI = ATMIget;
         initComponents();
         //try catch on startup to get user info, if incorrect default
-        try{
-           //AtmM.setUserInfoFname();
-            Jlabel_Welcome.setText(AtmM.getUserInfoFname());
-           
-        } catch (Exception e){Jlabel_Welcome.setText("Welcome Back!!");}
+        
+           //AtmM.setUserInfoFname();           
+        
     }
 
     /**
@@ -46,7 +44,7 @@ public class ATM_Welcome_JPanel extends javax.swing.JPanel{
 
         Jlabel_Welcome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         Jlabel_Welcome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Jlabel_Welcome.setText("Welcome Back!!!");
+        Jlabel_Welcome.setText("Welcome");
 
         bDeposit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
