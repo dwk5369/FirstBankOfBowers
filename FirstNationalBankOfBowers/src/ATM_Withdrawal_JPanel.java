@@ -275,7 +275,10 @@ public class ATM_Withdrawal_JPanel extends javax.swing.JPanel{
         ATMI.pack();
     }//GEN-LAST:event_bBackWithActionPerformed
 
-
+    public void setLabelName(String name)
+    {
+        Jlabel_Welcome.setText(name);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Jlabel_Welcome;
     private javax.swing.JButton bBackWith;

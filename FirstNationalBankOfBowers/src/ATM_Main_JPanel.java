@@ -107,6 +107,9 @@ public class ATM_Main_JPanel extends javax.swing.JPanel {
             ATMI.trans.connect();            
             ATMI.AtmM.setUserInfoFname(ATMI.trans.getCustFName(ATMI.acctNum,ATMI.cPin));
             ATMI.jBala.setLabelName(ATMI.AtmM.getUserInfoFname());
+            ATMI.jWelc.setLabelName(ATMI.AtmM.getUserInfoFname());
+            ATMI.jDepo.setLabelName(ATMI.AtmM.getUserInfoFname());
+            ATMI.jWith.setLabelName(ATMI.AtmM.getUserInfoFname());
             ATMI.jBala.setLabelBalance("$" + new BigDecimal(ATMI.AtmM.getAccountBalance()).setScale(2, RoundingMode.UP));
             System.out.println("username: " + ATMI.acctNum + " pin: " + ATMI.cPin + " account: " + userAcct + " Name: " + ATMI.AtmM.getUserInfoFname());
             ATMI.setContentPane(ATMI.jWelc);

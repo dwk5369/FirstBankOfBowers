@@ -1,3 +1,7 @@
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -121,6 +125,7 @@ public class ATM_Welcome_JPanel extends javax.swing.JPanel{
         ATMI.setContentPane(ATMI.jBala);
         ATMI.trans.connect();
         ATMI.AtmM.setAccountBalance(ATMI.trans.getAccBal(ATMI.acctNum));
+        ATMI.jBala.setLabelBalance("$" + new BigDecimal(ATMI.AtmM.getAccountBalance()).setScale(2, RoundingMode.UP));
         System.out.println(ATMI.AtmM.getAccountBalance());
         ATMI.trans.disconnect();        
         ATMI.repaint(); 
@@ -134,6 +139,10 @@ public class ATM_Welcome_JPanel extends javax.swing.JPanel{
         ATMI.pack();
     }//GEN-LAST:event_bDepositActionPerformed
 
+    public void setLabelName(String name)
+    {
+        Jlabel_Welcome.setText(name);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Jlabel_Welcome;
