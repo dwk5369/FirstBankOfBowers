@@ -17,8 +17,9 @@ public class ATM_Deposit_JPanel extends javax.swing.JPanel {
      * Creates new form ATM_Deposit_JPanel
      */
     ATMInterface ATMI;
-    public ATM_Deposit_JPanel() {
+    public ATM_Deposit_JPanel(ATMInterface ATMIget) {
         initComponents();
+        ATMI=ATMIget;
         //try catch on startup to get user info, if incorrect default
         try{
             Jlabel_Welcome.setText(ATMI.AtmM.getUserInfoFname());
@@ -152,14 +153,14 @@ public class ATM_Deposit_JPanel extends javax.swing.JPanel {
         int intacctNum = Integer.parseInt(ATMI.acctNum);
         Account userAcct = ATMI.trans.getAccount(intacctNum);
         ATMI.trans.deposit(userAcct.getAccountNumber(), Integer.parseInt(textAmount.getText().trim()));
-        JOptionPane.showMessageDialog(this, "Successful. Please Take Your Cash Below.");
+        JOptionPane.showMessageDialog(this, "Successful. Thank you for your business.");
         ATMI.trans.disconnect();
         
     }//GEN-LAST:event_bDepositCashActionPerformed
 
     private void bBackDepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBackDepActionPerformed
         // TODO add your handling code here:
-        ATMI.setContentPane(ATMI.jMain);
+        ATMI.setContentPane(ATMI.jWelc);
         ATMI.repaint(); 
         ATMI.pack();
     }//GEN-LAST:event_bBackDepActionPerformed

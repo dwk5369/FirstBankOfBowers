@@ -16,11 +16,12 @@ public class ATM_Balance_JPanel extends javax.swing.JPanel {
     ATMInterface ATMI;
     
     
-    public ATM_Balance_JPanel() {
+    public ATM_Balance_JPanel(ATMInterface ATMIget) {
+        
         initComponents();
+        ATMI = ATMIget;
        
-        jlAccBal.setText(ATMI.AtmM.getAccountBalance());
-        repaint();        
+        
         
     }
     
@@ -37,6 +38,7 @@ public class ATM_Balance_JPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jlAccBal = new javax.swing.JLabel();
         bBackBal = new javax.swing.JButton();
+        bBalance = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -46,7 +48,7 @@ public class ATM_Balance_JPanel extends javax.swing.JPanel {
 
         jlAccBal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jlAccBal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlAccBal.setText("0");
+        jlAccBal.setText("Press Get Balance!");
 
         bBackBal.setBackground(new java.awt.Color(255, 0, 0));
         bBackBal.setText("Back");
@@ -56,12 +58,19 @@ public class ATM_Balance_JPanel extends javax.swing.JPanel {
             }
         });
 
+        bBalance.setText("Get Balance!");
+        bBalance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bBalanceActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(232, Short.MAX_VALUE)
+                .addContainerGap(212, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -69,10 +78,14 @@ public class ATM_Balance_JPanel extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jlAccBal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(230, 230, 230))))
             .addGroup(layout.createSequentialGroup()
-                .addComponent(bBackBal, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bBackBal, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(255, 255, 255)
+                        .addComponent(bBalance)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -84,7 +97,9 @@ public class ATM_Balance_JPanel extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addGap(36, 36, 36)
                 .addComponent(jlAccBal, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
+                .addGap(42, 42, 42)
+                .addComponent(bBalance)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addComponent(bBackBal, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -97,9 +112,23 @@ public class ATM_Balance_JPanel extends javax.swing.JPanel {
         ATMI.pack();
     }//GEN-LAST:event_bBackBalActionPerformed
 
+    private void bBalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBalanceActionPerformed
+        // TODO add your handling code here:
+        ATMI.trans.connect();
+        ATMI.AtmM.setAccountBalance(ATMI.trans.getAccBal(ATMI.acctNum));
+        System.out.println(ATMI.AtmM.getAccountBalance());
+        ATMI.trans.disconnect();
+        jlAccBal.setText(ATMI.AtmM.getAccountBalance().trim());
+        jlAccBal.repaint();
+        
+        
+        
+    }//GEN-LAST:event_bBalanceActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bBackBal;
+    private javax.swing.JButton bBalance;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jlAccBal;

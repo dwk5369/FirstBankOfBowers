@@ -38,10 +38,10 @@ public class ATMInterface extends javax.swing.JFrame {
     public ATMInterface() {
         initComponents();
         jMain = new ATM_Main_JPanel(this);
-        jDepo = new ATM_Deposit_JPanel();
+        jDepo = new ATM_Deposit_JPanel(this);
         jWelc = new ATM_Welcome_JPanel(this);
         jWith = new ATM_Withdrawal_JPanel(this);
-        jBala = new ATM_Balance_JPanel();
+        jBala = new ATM_Balance_JPanel(this);
         setContentPane(jMain);
         
         

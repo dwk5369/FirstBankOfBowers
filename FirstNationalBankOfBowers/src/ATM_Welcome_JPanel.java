@@ -119,6 +119,10 @@ public class ATM_Welcome_JPanel extends javax.swing.JPanel{
     private void bBalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBalanceActionPerformed
         // TODO add your handling code here:
         ATMI.setContentPane(ATMI.jBala);
+        ATMI.trans.connect();
+        ATMI.AtmM.setAccountBalance(ATMI.trans.getAccBal(ATMI.acctNum));
+        System.out.println(ATMI.AtmM.getAccountBalance());
+        ATMI.trans.disconnect();        
         ATMI.repaint(); 
         ATMI.pack();
     }//GEN-LAST:event_bBalanceActionPerformed
