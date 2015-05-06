@@ -16,11 +16,11 @@ public class ATMInterface extends javax.swing.JFrame {
      */
 
     //declare new jPanel
-    JPanel jMain;
-    JPanel jDepo;
-    JPanel jWelc;
-    JPanel jWith;
-    JPanel jBala;
+    ATM_Main_JPanel jMain;
+    ATM_Deposit_JPanel jDepo;
+    ATM_Welcome_JPanel jWelc;
+    ATM_Withdrawal_JPanel jWith;
+    ATM_Balance_JPanel jBala;
     
     //Call Variables for entire transaction
     String acctNum;

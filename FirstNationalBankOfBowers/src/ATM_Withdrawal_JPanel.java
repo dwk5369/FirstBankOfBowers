@@ -1,5 +1,6 @@
 
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -269,7 +270,7 @@ public class ATM_Withdrawal_JPanel extends javax.swing.JPanel{
 
     private void bBackWithActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBackWithActionPerformed
         // TODO add your handling code here:
-        ATMI.setContentPane(ATMI.jWelc);
+        ATMI.setContentPane((JPanel)ATMI.jWelc);
         ATMI.repaint(); 
         ATMI.pack();
     }//GEN-LAST:event_bBackWithActionPerformed
